@@ -5,52 +5,29 @@
 @import "bulma.sass";
 
 nav {
-  @extend .navbar;
+  @extend 
+    .navbar,
+    .is-primary,
+    .mb-3;
+  .navbar-menu {
+    @extend .is-active;
+  }
+  h1 {
+    @extend .has-text-light;
+  }
+}
+
+h1 {
+  @extend .title;
 }
 
 section.settings {
   @extend .modal;
-  div {
-    @extend .is-fullwidth;
-    &.ChosenSets {
-      @extend .tags;
-    }
-  }
-  .tags {
-    .tag {
-      position: relative;
-      display: inline-block;
-      max-width: fit-content;
-      .tooltip {
-        @extend .has-background-dark, .has-text-light;
-        visibility: hidden;
-        position: absolute;
-        bottom: 105%;
-        z-index: 100;
-        padding: 5px;
-        border-radius: 6px;
-    
-        &::after {
-          content: " ";
-          position: absolute;
-          top: 100%; /* At the bottom of the tooltip */
-          left: 5%;
-          margin-left: 10px;
-          border-width: 5px;
-          border-style: solid;
-          border-color: $dark transparent transparent transparent
-        }
-      }
-      &:hover {
-        .tooltip {
-          visibility: visible;
-        }
-      }
-    }
+  .ChosenSets {
+    @extend .field, .is-grouped, .is-grouped-multiline;
+    min-height: 1em;
   }
 }
-
-.Music 
 
 .card {
   @extend .box;
@@ -70,7 +47,7 @@ section.control_panel {
 div.Master, div.OneShots {
   @extend .is-narrow;
   button {
-    @extend .is-fullwidth, .mb-3;
+    @extend .mb-3, .is-fullwidth;
   }
 }
 

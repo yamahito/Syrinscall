@@ -16,38 +16,53 @@
 			}</script>
 	</head>
 	<body>
-		<nav>Some Nav Content</nav>
-		<section class="settings">
+		<nav role="navigation">
+			<div class="navbar-brand">
+				<div class="navbar-item">
+					<h1>Syrinscall</h1>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<button id="show_settings">Settings</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<section id="settings" class="settings">
 			<div class="modal-background"></div>
 			<div class="modal-card">
 				<header class="modal-card-head">
 					<p>Settings</p>
 				</header>
-				<div class="modal-card-body">
-					<div class="auth_token field has-addons">
-						<div class="control">
-							<input class="input" type="password" placeholder="Syrinscape Auth Token" />
-						</div>
-						<div class="control">
-							<button id="update_auth">Update</button>
-						</div>
-					</div>
+				<form class="modal-card-body">
 					<div class="MoodChooser">
 						<div class="SetChoose field has-addons">
 							<div class="control">
-								<input class="input" placeholder="Add controls by ID here" />
+								<p contenteditable="true" id="add_set" class="input is-fullwidth"></p>
 							</div>
 							<div class="control">
-								<button id="choose_set" class="is-inactive">Update</button>
+								<button id="choose_set" type="button" class="is-inactive">Add</button>
 							</div>
 						</div>
-						<div class="ChosenSets">
-							<span class="tag"><span class="tooltip">Absalom Station (Custom)</span>15676<button class="delete is-small"></button></span>
+						<div id="ChosenSets" class="ChosenSets"></div>
+						<input type="hidden" id="setsParams" name="sets"></input>
+					</div>
+					<div class="auth_token field">
+						<div class="control">
+							<input class="input" type="password" placeholder="Syrinscape Auth Token" id="update_auth" name="auth_token"/>
 						</div>
 					</div>
-				</div>
+					<div class="field">
+						<div class="control">
+							<button id="submit_settings">Apply</button>
+						</div>
+					</div>
+				</form>
 			</div>
-			<div class="modal-close is-large" aria-label="close"></div>
+			<div class="modal-close is-large" id="modal_close" aria-label="close"></div>
 		</section>
 		<section class="control_panel">
 			<form method="post" target="formResponses">
@@ -79,7 +94,6 @@
 								</div>
               </div>
               <footer class="card-footer">
-                <range class="card-footer-item">50</range>
               </footer>
 						</div>
 						<div class="card">
@@ -91,7 +105,6 @@
 								</div>
               </div>
               <footer class="card-footer">
-                <range class="card-footer-item"></range>
               </footer>
 						</div>
 						<div class="card">
@@ -103,7 +116,6 @@
 								</div>
               </div>
               <footer class="card-footer">
-                <range class="card-footer-item"></range>
               </footer>
 						</div>
 						<div class="card">
@@ -115,55 +127,6 @@
 								</div>
               </div>
               <footer class="card-footer">
-                <range class="card-footer-item"></range>
-              </footer>
-						</div>
-						<div class="card">
-							<div class="card-content">
-								<div class="media">
-									<div class="media-content">
-										<p class="title is-4">Imperial Battle</p>
-									</div>
-								</div>
-              </div>
-              <footer class="card-footer">
-                <range class="card-footer-item"></range>
-              </footer>
-						</div>
-						<div class="card">
-							<div class="card-content">
-								<div class="media">
-									<div class="media-content">
-										<p class="title is-4">Battle Music</p>
-									</div>
-								</div>
-              </div>
-              <footer class="card-footer">
-                <range class="card-footer-item"></range>
-              </footer>
-						</div>
-						<div class="card">
-							<div class="card-content">
-								<div class="media">
-									<div class="media-content">
-										<p class="title is-4">Cave Music</p>
-									</div>
-								</div>
-              </div>
-              <footer class="card-footer">
-                <range class="card-footer-item"></range>
-              </footer>
-						</div>
-						<div class="card">
-							<div class="card-content">
-								<div class="media">
-									<div class="media-content">
-										<p class="title is-4">Battle Music</p>
-									</div>
-								</div>
-              </div>
-              <footer class="card-footer">
-                <range class="card-footer-item"></range>
               </footer>
 						</div>
 					</div>

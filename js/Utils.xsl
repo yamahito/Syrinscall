@@ -42,6 +42,7 @@
 		<xsl:param name="element" as="element()*"/>
 		<xsl:param name="class" as="xs:string*"/>
 		<xsl:variable name="addedClasses" select="distinct-values($class!tokenize(., '\s'))"/>
+		<!--<xsl:message>Adding classes to elements: {$element ! local-name(.)}</xsl:message>-->
 		<xsl:for-each select="$element">
 			<xsl:variable name="classes" as="xs:string*" select="tokenize(@class, '\s')"/>
 			<!--<xsl:message>Adding class(es) "{$addedClasses}" to {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>-->
@@ -63,7 +64,7 @@
 			<xsl:variable name="classResult" as="xs:string*" select="$class[not(. = $removedClasses)]"/>
 			<!--<xsl:message>Removing class(es) "{$removedClasses}" from {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>-->
 			<xsl:choose>
-				<xsl:when test="$classResult">
+				<xsl:when test="exists($classResult)">
 					<ixsl:set-attribute name="class" select="string-join($classResult, ' ')" object="."/>
 				</xsl:when>
 				<xsl:otherwise>
@@ -86,8 +87,16 @@
 			<xsl:variable name="classes" as="xs:string*" select="tokenize(@class, '\s')"/>
 			<xsl:variable name="removedClasses" select="$classes[. = $toggleClasses]" as="xs:string*"/>
 			<xsl:variable name="addedClasses" select="$toggleClasses[not(. = $classes)]" as="xs:string*"/>
+			<xsl:variable name="classResult" as="xs:string*" select="$classes[not(. = $removedClasses)], $addedClasses"/>
 			<!--<xsl:message>Toggling class(es) "{$toggleClasses}" of {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>-->
-			<ixsl:set-attribute name="class" select="string-join(($classes[not(. = $removedClasses)], $addedClasses), ' ')" object="."/>
+			<xsl:choose>
+				<xsl:when test="exists($classResult)">
+					<ixsl:set-attribute name="class" select="string-join($classResult, ' ')" object="."/>
+				</xsl:when>
+				<xsl:otherwise>
+					<ixsl:remove-attribute name="class" object="."/>
+				</xsl:otherwise>
+			</xsl:choose>
 		</xsl:for-each>
 	</xsl:function>
 	
