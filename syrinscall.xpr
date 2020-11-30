@@ -245,6 +245,5 @@
     <projectTree name="syrinscall.xpr">
         <folder path="../../Downloads/xslweb-v4.0.0-RC1-osx/home/webapps/declarative-amsterdam/xsl/workshop/"/>
         <folder path="."/>
-        <file name="../../Downloads/xslweb-v4.0.0-RC1-osx/home/webapps/declarative-amsterdam/static/css/workshop-saxonjs.css"/>
     </projectTree>
 </project>

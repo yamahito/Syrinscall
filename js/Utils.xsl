@@ -60,8 +60,16 @@
 		<xsl:variable name="removedClasses" select="distinct-values($class!tokenize(., '\s'))"/>
 		<xsl:for-each select="$element">
 			<xsl:variable name="classes" as="xs:string*" select="tokenize(@class, '\s')"/>
+			<xsl:variable name="classResult" as="xs:string*" select="$class[not(. = $removedClasses)]"/>
 			<!--<xsl:message>Removing class(es) "{$removedClasses}" from {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>-->
-			<ixsl:set-attribute name="class" select="string-join($class[not(. = $removedClasses)], ' ')" object="."/>
+			<xsl:choose>
+				<xsl:when test="$classResult">
+					<ixsl:set-attribute name="class" select="string-join($classResult, ' ')" object="."/>
+				</xsl:when>
+				<xsl:otherwise>
+					<ixsl:remove-attribute name="class" object="."/>
+				</xsl:otherwise>
+			</xsl:choose>
 		</xsl:for-each>	
 	</xsl:function>
 	
@@ -82,5 +90,14 @@
 			<ixsl:set-attribute name="class" select="string-join(($classes[not(. = $removedClasses)], $addedClasses), ' ')" object="."/>
 		</xsl:for-each>
 	</xsl:function>
+	
+	<xd:doc>
+		<xd:desc>This template simply returns a message (for use with ixsl:schedule-action)</xd:desc>
+		<xd:param name="value">The value to be returned in the message</xd:param>
+	</xd:doc>
+	<xsl:template name="local:message">
+		<xsl:param name="value" as="xs:string"/>
+		<xsl:message>{$value}</xsl:message>
+	</xsl:template>
 	
 </xsl:stylesheet>

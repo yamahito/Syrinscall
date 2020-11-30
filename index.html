@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=1024, user-scalable=no" />
+		<link rel="stylesheet" href="css/syrinscall.css" />
+		<title>Syrinscall</title>
+		<script src="js/SaxonJS2.rt.js"></script>
+		<script>
+			window.onload = function () {
+				SaxonJS.transform({
+					stylesheetLocation: "js/Syrinscall.sef.json"
+				},
+				"async");
+			}</script>
+	</head>
+	<body>
+		<nav>Some Nav Content</nav>
+		<section class="settings">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p>Settings</p>
+				</header>
+				<div class="modal-card-body">
+					<div class="auth_token field has-addons">
+						<div class="control">
+							<input class="input" type="password" placeholder="Syrinscape Auth Token" />
+						</div>
+						<div class="control">
+							<button id="update_auth">Update</button>
+						</div>
+					</div>
+					<div class="MoodChooser">
+						<div class="SetChoose field has-addons">
+							<div class="control">
+								<input class="input" placeholder="Add controls by ID here" />
+							</div>
+							<div class="control">
+								<button id="choose_set" class="is-inactive">Update</button>
+							</div>
+						</div>
+						<div class="ChosenSets">
+							<span class="tag"><span class="tooltip">Absalom Station (Custom)</span>15676<button class="delete is-small"></button></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-close is-large" aria-label="close"></div>
+		</section>
+		<section class="control_panel">
+			<form method="post" target="formResponses">
+				<div class="Master">
+					<div id="Stop">
+						<p class="menu-label">Master Control</p>
+						<button class="master_stop" formaction="https://www.syrinscape.com/online/frontend-api/stop-all/" formmethod="get">Stop ALL</button>
+					</div>
+					<div id="Moods">
+						<p class="menu-label">Canyon Moods</p>
+						<button type="submit" data-rid="m:37660" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37660/play/?format=json">Walking In</button>
+						<button data-rid="m:37661" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37661/play/?format=json">Catching Breath</button>
+						<button data-rid="m:37663" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37663/play/?format=json">Canyon Chargers</button>
+						<button data-rid="m:37664" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37664/play/?format=json">Imperials unaware</button>
+						<button data-rid="m:37665" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37665/play/?format=json">Final Complication</button>
+						<button data-rid="m:37666" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37666/play/?format=json">Final Complication (lightsabers)</button>
+						<button data-rid="m:37667" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37667/play/?format=json">Escape to the end credits!</button>
+					</div>
+				</div>
+				<div class="MoodElements">
+					<div class="Music">
+						<p class="menu-label">Music Elements</p>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-6">End Credits</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item">50</range>
+              </footer>
+						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-6">Canyon Music</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item"></range>
+              </footer>
+						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-6">Droids</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item"></range>
+              </footer>
+						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-6">Charger Music</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item"></range>
+              </footer>
+						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-4">Imperial Battle</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item"></range>
+              </footer>
+						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-4">Battle Music</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item"></range>
+              </footer>
+						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-4">Cave Music</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item"></range>
+              </footer>
+						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-4">Battle Music</p>
+									</div>
+								</div>
+              </div>
+              <footer class="card-footer">
+                <range class="card-footer-item"></range>
+              </footer>
+						</div>
+					</div>
+					<div class="Elements">
+						<p class="menu-label">Current Elements</p>
+					</div>
+				</div>
+				<div class="OneShots">
+          <p class="menu-label">One Shots</p>
+          <button data-rid="e:206909" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206909/play/?format=json">Canyon Charger</button>
+          <button data-rid="e:206914" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206914/play/?format=json">Canyon Charge</button>
+          <button data-rid="e:206917" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206917/play/?format=json">Pew!</button>
+          <button data-rid="e:206921" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206921/play/?format=json">Lightsaber ON</button>
+        </div>
+				<section class="is-hidden" id="formcontrols">
+					<iframe name="formResponses" id="formResponses" style="display:none"></iframe>
+				</section>
+			</form>
+		</section>
+	</body>
+</html>

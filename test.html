@@ -4,7 +4,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=1024, user-scalable=no" />
-		<title>Hidden Depths - The Canyon</title>
+		<link rel="stylesheet" href="css/syrinscall.css" />
+		<title>Syrinscall</title>
 		<script src="js/SaxonJS2.rt.js"></script>
 		<script>
 			window.onload = function () {
@@ -12,15 +13,58 @@
 					stylesheetLocation: "js/Syrinscall.sef.json"
 				},
 				"async");
-			}
-		</script>
+			}</script>
 	</head>
 	<body>
-		<div id="moods">
-      <ul>
+		<nav>
+			<p class="logo">Syrinscall</p>
+		</nav>
+		<div id="settings">
+			<div id="auth_token">
+				<div class="control">
+					<input class="input" type="text" placeholder="Syrinscape Auth Token"/>
+				</div>
+				<div class="control">
+					<button id="update_auth">Update</button>
+				</div>
+			</div>
+		</div>
+		<form id="syrinscall" method="post" target="formResponses">
 
-        
-      </ul>
-    </div>
+
+
+
+			<aside id="mood-menu">
+				<div id="master">
+					<p class="menu-label">Master Control</p>
+					<button id="master_stop" formaction="https://www.syrinscape.com/online/frontend-api/stop-all/" formmethod="get">Stop ALL</button>
+				</div>
+				<div id="moods">
+					<p class="menu-label">Canyon Moods</p>
+					<button type="submit" data-rid="m:37660" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37660/play/?format=json">Walking In</button>
+					<button data-rid="m:37661" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37661/play/?format=json">Catching Breath</button>
+					<button data-rid="m:37663" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37663/play/?format=json">Canyon Chargers</button>
+					<button data-rid="m:37664" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37664/play/?format=json">Imperials unaware</button>
+					<button data-rid="m:37665" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37665/play/?format=json">Final Complication</button>
+					<button data-rid="m:37666" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37666/play/?format=json">Final Complication (lightsabers)</button>
+					<button data-rid="m:37667" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/37667/play/?format=json">Escape to the end credits!</button>
+				</div>
+			</aside>
+			<section class="current">
+				<div class="current_music">Current music will go here</div>
+				<div class="current_moodelements">Mood Elements will go here</div>
+			</section>
+			<section class="one-shots">
+				<p class="menu-label">One Shots</p>
+				<button data-rid="e:206909" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206909/play/?format=json">Canyon Charger</button>
+				<button data-rid="e:206914" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206914/play/?format=json">Canyon Charge</button>
+				<button data-rid="e:206917" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206917/play/?format=json">Pew!</button>
+				<button data-rid="e:206921" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/206921/play/?format=json">Lightsaber ON</button>
+			</section>
+			<div class="hidden" id="formcontrols">
+				<iframe name="formResponses" id="formResponses" style="display:none"></iframe>
+				<input type="hidden" name="format" value="json" />
+			</div>
+		</form>
 	</body>
 </html>

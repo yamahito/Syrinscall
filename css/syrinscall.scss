@@ -1,0 +1,99 @@
+//overrides
+
+
+//import bulma
+@import "bulma.sass";
+
+nav {
+  @extend .navbar;
+}
+
+section.settings {
+  @extend .modal;
+  div {
+    @extend .is-fullwidth;
+    &.ChosenSets {
+      @extend .tags;
+    }
+  }
+  .tags {
+    .tag {
+      position: relative;
+      display: inline-block;
+      max-width: fit-content;
+      .tooltip {
+        @extend .has-background-dark, .has-text-light;
+        visibility: hidden;
+        position: absolute;
+        bottom: 105%;
+        z-index: 100;
+        padding: 5px;
+        border-radius: 6px;
+    
+        &::after {
+          content: " ";
+          position: absolute;
+          top: 100%; /* At the bottom of the tooltip */
+          left: 5%;
+          margin-left: 10px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: $dark transparent transparent transparent
+        }
+      }
+      &:hover {
+        .tooltip {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+
+.Music 
+
+.card {
+  @extend .box;
+  max-width: 20rem;
+}
+
+section.control_panel {
+  @extend .container;
+  &>form {
+      @extend .columns;
+    &>div {
+      @extend .column;
+    }
+  }
+}
+
+div.Master, div.OneShots {
+  @extend .is-narrow;
+  button {
+    @extend .is-fullwidth, .mb-3;
+  }
+}
+
+button {
+  @extend .button;
+}
+
+.active_mood {
+  @extend .is-primary;
+}
+
+.master_stop {
+  &:active {
+    @extend .is-danger, .is-outlined;
+  }
+}
+
+.play_element {
+  &:active {
+    @extend .is-primary, .is-outlined;
+  }
+}
+
+label {
+  @extend .label;
+}
