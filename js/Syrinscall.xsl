@@ -24,7 +24,7 @@
 		Params
 	-->
 	<xsl:param name="falseAtRunTime" select="false()" as="xs:boolean"/>
-	<xsl:param name="CORSproxy" select="'https://cors-yamahito.herokuapp.com'"/>
+	<xsl:param name="CORSproxy" select="'https://cors-yamahito.herokuapp.com/'"/>
 	
 	<!--
 		Variables
