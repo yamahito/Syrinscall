@@ -62,6 +62,7 @@
 		<xsl:message>Using Auth Token: {$auth_token}</xsl:message>
 		<xsl:result-document href="#formcontrols">
 			<input type="hidden" name="auth_token" value="{$auth_token}"/>
+			<input type="hidden" name="cors" value="{$CORSproxy}"/>
 		</xsl:result-document>
 		<ixsl:set-attribute name="value" select="$auth_token" object="id('update_auth', ixsl:page())"/>
 	</xsl:template>
