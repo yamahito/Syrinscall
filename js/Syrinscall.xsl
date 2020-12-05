@@ -104,7 +104,7 @@
 	<xsl:template match=".[.?element_type eq 'music']" mode="local:element">
 		<xsl:message>Adding Music element: {.?name}</xsl:message>
 		<xsl:result-document href="#Music">
-			<div class="card" id="e:{.?pk}">
+			<div class="card is-hidden" id="e:{.?pk}">
 				<div class="card-content">
 					<div class="media">
 						<div class="media-content">
@@ -125,7 +125,7 @@
 	<xsl:template match=".[.?element_type eq 'sfx']" mode="local:element">
 		<xsl:message>Adding SFX element: {.?name}</xsl:message>
 		<xsl:result-document href="#Elements">
-			<div class="card" id="e:{.?pk}">
+			<div class="card is-hidden" id="e:{.?pk}">
 				<div class="card-content">
 					<div class="media">
 						<div class="media-content">
