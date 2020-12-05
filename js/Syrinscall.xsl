@@ -24,7 +24,7 @@
 		Params
 	-->
 	<xsl:param name="falseAtRunTime" select="false()" as="xs:boolean"/>
-	<xsl:param name="CORSproxy" select="'https://cors-yamahito.herokuapp.com/'"/>
+	<xsl:param name="CORSproxy" select="(ixsl:query-params()?cors, 'https://cors-yamahito.herokuapp.com/')[1]"/>
 	
 	<!--
 		Variables
@@ -38,6 +38,7 @@
 	
 	<!-- The initial template opens the setting pane if there is no auth_token set; it also populates the configured sound set IDs in the settings. -->
 	<xsl:template name="xsl:initial-template">
+		<xsl:message>using CORS proxy at {$CORSproxy}</xsl:message>
 		<xsl:choose>
 			<xsl:when test="exists($auth_token)">
 				<xsl:call-template name="prepare_form"/>
