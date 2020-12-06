@@ -10,6 +10,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:local="http://ns.expertml.com/local"
 	xmlns:array="http://www.w3.org/2005/xpath-functions/array"
+	xmlns:map="http://www.w3.org/2005/xpath-functions/map"
 	xmlns="http://www.w3.org/1999/xhtml"
 	extension-element-prefixes="ixsl"
 	expand-text="yes"
@@ -31,6 +32,12 @@
 	-->
 	<xsl:variable name="auth_token" select="ixsl:query-params()?auth_token" as="xs:string?"/>
 	<xsl:variable name="sets" select="tokenize(ixsl:query-params()?sets, '\+')" as="xs:string*"/>
+	
+	<!--
+		Keys
+	-->
+	<xsl:key name="byClass" match="*[@class]" use="tokenize(@class, '\s')"/>
+	
 	
 	<!-- 
 		Named Templates 
@@ -54,7 +61,8 @@
 				</xsl:call-template>
 			</xsl:result-document>
 		</xsl:for-each>
-		<xsl:call-template name="populateMoods"/>		
+		<xsl:call-template name="populateMoods"/>	
+		<xsl:call-template name="refresh_state"/>
 	</xsl:template>
 	
 	<!-- prepare_form adds the auth_token to the main control panel form and settings page -->
@@ -104,7 +112,7 @@
 	<xsl:template match=".[.?element_type eq 'music']" mode="local:element">
 		<xsl:message>Adding Music element: {.?name}</xsl:message>
 		<xsl:result-document href="#Music">
-			<div class="card is-hidden" id="e:{.?pk}">
+			<div class="music-element element card is-hidden" id="e:{.?pk}">
 				<div class="card-content">
 					<div class="media">
 						<div class="media-content">
@@ -125,7 +133,7 @@
 	<xsl:template match=".[.?element_type eq 'sfx']" mode="local:element">
 		<xsl:message>Adding SFX element: {.?name}</xsl:message>
 		<xsl:result-document href="#Elements">
-			<div class="card is-hidden" id="e:{.?pk}">
+			<div class="sfx-element element card is-hidden" id="e:{.?pk}">
 				<div class="card-content">
 					<div class="media">
 						<div class="media-content">
@@ -157,15 +165,16 @@
 			<xsl:variable name="id" select="$moods(.)?pk"/>
 			<xsl:variable name="name" select="$moods(.)?name"/>
 			<xsl:message>Adding mood: {$name}</xsl:message>
-			<xsl:result-document href="#{$soundset}">
-				<button type="submit" data-rid="m:{$id}" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
-			</xsl:result-document>
-			<xsl:variable name="elems" select="$moods(.)?elements" as="array(*)"/>
+			<xsl:variable name="elems" select="$moods(.)?elements" as="array(*)?"/>
 			<xsl:variable name="elemURLs" as="xs:string*">
-				<xsl:for-each select="(1 to array:size($elems))[array:size($elems) gt 1]">
-					<xsl:sequence select="$elems(.)?element"/>
+				<xsl:for-each select="(1 to array:size($elems))[exists($elems)]">
+					<xsl:sequence select="$elems(.)[.?plays]?element"/>
 				</xsl:for-each>
 			</xsl:variable>
+			<xsl:variable name='data-elements' as="xs:string*" select="$elemURLs!replace(., 'https://www.syrinscape.com/online/frontend-api/elements/(\d+)/', 'e:$1')"/>			
+			<xsl:result-document href="#{$soundset}">
+				<button type="submit" id="m:{$id}" data-elements="{string-join($data-elements, ' ')}" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
+			</xsl:result-document>
 			<xsl:next-iteration>
 				<xsl:with-param name="elements" select="distinct-values(($elements, $elemURLs))"/>
 			</xsl:next-iteration>
@@ -192,15 +201,56 @@
 		<ixsl:set-attribute name="value" select="string-join(distinct-values((tokenize($old_tags, '\+'), $new_tag)), '+')" object="id('setsParams', ixsl:page())"/>
 	</xsl:template>
 	
-	<!-- process_mood mode -->
-	<xsl:mode name="process_mood" on-multiple-match="use-last"/>
-	
-	<xsl:template match=".[. instance of map(*)]" mode="process_mood">
-		<xsl:message>{serialize(., map{'method':'json'})}</xsl:message>
+	<!-- Refresh state -->
+	<xsl:template name="refresh_state">
+		<xsl:call-template name="clear_state"/>
+		<xsl:message>Acquiring Current State</xsl:message>
+		<ixsl:schedule-action http-request="map{
+				'method' : 'get',
+				'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/?auth_token='||$auth_token
+			}">
+			<xsl:call-template name="handle_state"/>
+		</ixsl:schedule-action>
 	</xsl:template>
 	
-	<xsl:template match="html:iframe[@class='set_response']" mode="process_mood">
-		<xsl:message>{./node()}</xsl:message>
+	<xsl:template name="clear_state">
+		<xsl:message>Clearing state...</xsl:message>
+		<xsl:sequence select="ejs:remove-class(id('Moods', ixsl:page())/html:div/html:button, 'is-playing')"/>
+		<xsl:sequence select="ejs:add-class(id('MoodElements', ixsl:page())/html:div/html:div, 'is-hidden')"/>
+	</xsl:template>
+	
+	<xsl:template name="handle_state">
+		<xsl:context-item as="map(*)" use="required"/>
+		<xsl:variable name="state" select="parse-json(.?body)"/>
+		<xsl:variable name="current-mood" as="xs:string?" select="string($state?mixpanel-current-mood?pk)"/>
+		<xsl:apply-templates mode="local:status" select="id('m:'||$current-mood, ixsl:page())">
+			<xsl:with-param name="state" select="$state" tunnel="yes"/>
+		</xsl:apply-templates>
+	</xsl:template>
+	
+	<!-- status mode -->
+	<xsl:mode name="local:status" on-multiple-match="use-last"/>
+	
+	<xsl:template match="html:button[ejs:contains-class(., 'play_mood')]" mode="local:status">
+		<xsl:param name="state" as="map(*)" tunnel="yes"/>
+		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
+		<xsl:variable name="elements" select="tokenize(@data-elements, '\s')" as="xs:string*"/>
+		<!-- Update mood -->
+		<xsl:if test="$state?mood($pk)?is_playing">
+			<xsl:sequence select="ejs:add-class(., 'is-playing')"/>
+			<xsl:message>Mood {@id} playing</xsl:message>
+			<xsl:apply-templates mode="#current" select="$elements!id(., ixsl:page())"/>
+		</xsl:if>
+		<xsl:on-empty>
+			<xsl:message>Mood {@id} not playing</xsl:message>
+		</xsl:on-empty>
+	</xsl:template>
+	
+	<xsl:template match="html:div[@id=('Music', 'Elements')]/html:div" mode="local:status">
+		<xsl:param name="state" as="map(*)" tunnel="yes"/>
+		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
+		<xsl:message>Showing element {@id}</xsl:message>
+		<xsl:sequence select="ejs:remove-class(., 'is-hidden')"/>
 	</xsl:template>
 	
 	
@@ -215,21 +265,15 @@
 	</xsl:template>
 	
 	<!-- Logging play messages -->
-	<xsl:template match="html:button[@data-rid][ejs:contains-class(., 'play')]" mode="ixsl:onclick">
-		<xsl:message>Playing {.} (ID:{@data-rid})</xsl:message>
-	</xsl:template>
-	
-	<!-- Playing Moods -->
-	<xsl:template match="html:button[@data-rid][ejs:contains-class(., 'play_mood')]" mode="ixsl:onclick">
-		<xsl:sequence select="ejs:remove-class(../html:button[ejs:contains-class(., 'active_mood')], 'active_mood')"/>
-		<xsl:sequence select="ejs:add-class(., 'active_mood')"/>
-		<xsl:next-match/>
+	<xsl:template match="html:button[ejs:contains-class(., 'play')]" mode="ixsl:onclick">
+		<xsl:message>Playing {.} (ID:{@id})</xsl:message>
+		<xsl:call-template name="refresh_state"/>
 	</xsl:template>
 	
 	<!-- Master Stop All sounds Button-->
 	<xsl:template match="html:button[@id = 'master_stop']" mode="ixsl:onclick">
 		<xsl:message>Stopping all sounds.</xsl:message>
-		<xsl:sequence select="ejs:remove-class(//html:button[ejs:contains-class(., 'active_mood')], 'active_mood')"/>
+		<xsl:call-template name="refresh_state"/>
 	</xsl:template>
 	
 	<!-- Delete Soundset Tags Button-->
@@ -263,6 +307,7 @@
 		<xsl:message>Saving...</xsl:message>
 		<ixsl:set-property name="auth_token" select="id('update_auth')/@value" object="ixsl:page()"/>
 		<xsl:message>auth_token set to {ixsl:query-params()?auth_token}</xsl:message>
+		<ixsl:set-property name="cors" select="id('cors')/@value" object="ixsl:page()"/>
 		<xsl:call-template name="toggle_settings"/>
 	</xsl:template>
 	
@@ -275,6 +320,9 @@
 		<xsl:param name="id" as="xs:string"/>
 		<xsl:variable name="prefix" select="substring-before($id, ':')"/>
 		<xsl:choose>
+			<xsl:when test="$prefix = 's'">
+				<xsl:text>soundset</xsl:text>
+			</xsl:when>
 			<xsl:when test="$prefix = 'm'">
 				<xsl:text>moods</xsl:text>
 			</xsl:when>

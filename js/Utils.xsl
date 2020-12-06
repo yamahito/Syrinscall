@@ -45,7 +45,7 @@
 		<!--<xsl:message>Adding classes to elements: {$element ! local-name(.)}</xsl:message>-->
 		<xsl:for-each select="$element">
 			<xsl:variable name="classes" as="xs:string*" select="tokenize(@class, '\s')"/>
-			<!--<xsl:message>Adding class(es) "{$addedClasses}" to {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>-->
+			<xsl:message>Adding class(es) "{$addedClasses}" to {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>
 			<ixsl:set-attribute name="class" select="string-join(distinct-values(($classes, $addedClasses)), ' ')" object="."/>
 		</xsl:for-each>
 	</xsl:function>
@@ -59,10 +59,10 @@
 		<xsl:param name="element" as="element()*"/>
 		<xsl:param name="class" as="xs:string*"/>
 		<xsl:variable name="removedClasses" select="distinct-values($class!tokenize(., '\s'))"/>
-		<xsl:for-each select="$element">
-			<xsl:variable name="classes" as="xs:string*" select="tokenize(@class, '\s')"/>
-			<xsl:variable name="classResult" as="xs:string*" select="$class[not(. = $removedClasses)]"/>
-			<!--<xsl:message>Removing class(es) "{$removedClasses}" from {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>-->
+		<xsl:for-each select="$element[@class]">
+			<xsl:variable name="extant_classes" as="xs:string*" select="tokenize(@class, '\s')"/>
+			<xsl:variable name="classResult" as="xs:string*" select="$extant_classes[not(. = $removedClasses)]"/>
+			<xsl:message>Removing class(es) "{$removedClasses}" from {local-name(.)} element {generate-id(.)} with existing class(es): {string-join($extant_classes, ' ')}"</xsl:message>
 			<xsl:choose>
 				<xsl:when test="exists($classResult)">
 					<ixsl:set-attribute name="class" select="string-join($classResult, ' ')" object="."/>

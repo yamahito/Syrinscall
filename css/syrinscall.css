@@ -1072,41 +1072,41 @@ fieldset[disabled] .button.is-dark.is-inverted.play_element:active {
   color: #fff;
 }
 
-.button.is-primary, nav.button, button.is-primary, button.active_mood, button.play_element:active, .button.active_mood, .button.play_element:active {
+.button.is-primary, nav.button, button.is-primary, button.is-playing, button.play_element:active, .button.is-playing, .button.play_element:active {
   background-color: #00d1b2;
   border-color: transparent;
   color: #fff;
 }
 
-.button.is-primary:hover, nav.button:hover, button.is-primary:hover, button.active_mood:hover, button.play_element:hover:active, .button.active_mood:hover, .button.play_element:hover:active, .button.is-primary.is-hovered, nav.button.is-hovered, button.is-primary.is-hovered, button.is-hovered.active_mood, button.is-hovered.play_element:active, .button.is-hovered.active_mood, .button.is-hovered.play_element:active {
+.button.is-primary:hover, nav.button:hover, button.is-primary:hover, button.is-playing:hover, button.play_element:hover:active, .button.is-playing:hover, .button.play_element:hover:active, .button.is-primary.is-hovered, nav.button.is-hovered, button.is-primary.is-hovered, button.is-hovered.is-playing, button.is-hovered.play_element:active, .button.is-hovered.is-playing, .button.is-hovered.play_element:active {
   background-color: #00c4a7;
   border-color: transparent;
   color: #fff;
 }
 
-.button.is-primary:focus, nav.button:focus, button.is-primary:focus, button.active_mood:focus, button.play_element:focus:active, .button.active_mood:focus, .button.play_element:focus:active, .button.is-primary.is-focused, nav.button.is-focused, button.is-primary.is-focused, button.is-focused.active_mood, button.is-focused.play_element:active, .button.is-focused.active_mood, .button.is-focused.play_element:active {
+.button.is-primary:focus, nav.button:focus, button.is-primary:focus, button.is-playing:focus, button.play_element:focus:active, .button.is-playing:focus, .button.play_element:focus:active, .button.is-primary.is-focused, nav.button.is-focused, button.is-primary.is-focused, button.is-focused.is-playing, button.is-focused.play_element:active, .button.is-focused.is-playing, .button.is-focused.play_element:active {
   border-color: transparent;
   color: #fff;
 }
 
-.button.is-primary:focus:not(:active), nav.button:focus:not(:active), button.is-primary:focus:not(:active), button.active_mood:focus:not(:active), button.play_element:focus:not(:active):active, .button.active_mood:focus:not(:active), .button.play_element:focus:not(:active):active, .button.is-primary.is-focused:not(:active), nav.button.is-focused:not(:active), button.is-primary.is-focused:not(:active), button.is-focused.active_mood:not(:active), button.is-focused.play_element:not(:active):active, .button.is-focused.active_mood:not(:active), .button.is-focused.play_element:not(:active):active {
+.button.is-primary:focus:not(:active), nav.button:focus:not(:active), button.is-primary:focus:not(:active), button.is-playing:focus:not(:active), button.play_element:focus:not(:active):active, .button.is-playing:focus:not(:active), .button.play_element:focus:not(:active):active, .button.is-primary.is-focused:not(:active), nav.button.is-focused:not(:active), button.is-primary.is-focused:not(:active), button.is-focused.is-playing:not(:active), button.is-focused.play_element:not(:active):active, .button.is-focused.is-playing:not(:active), .button.is-focused.play_element:not(:active):active {
   -webkit-box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
           box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
 }
 
-.button.is-primary:active, nav.button:active, button.is-primary:active, button.active_mood:active, button.play_element:active, .button.active_mood:active, .button.play_element:active, .button.is-primary.is-active, nav.button.is-active, nav nav.button.navbar-menu, nav .button.is-primary.navbar-menu, nav button.is-primary.navbar-menu, nav button.navbar-menu.active_mood, nav button.navbar-menu.play_element:active, nav .button.navbar-menu.active_mood, nav .button.navbar-menu.play_element:active, button.is-primary.is-active, button.is-active.active_mood, button.is-active.play_element:active, .button.is-active.active_mood, .button.is-active.play_element:active {
+.button.is-primary:active, nav.button:active, button.is-primary:active, button.is-playing:active, button.play_element:active, .button.is-playing:active, .button.play_element:active, .button.is-primary.is-active, nav.button.is-active, nav nav.button.navbar-menu, nav .button.is-primary.navbar-menu, nav button.is-primary.navbar-menu, nav button.navbar-menu.is-playing, nav button.navbar-menu.play_element:active, nav .button.navbar-menu.is-playing, nav .button.navbar-menu.play_element:active, button.is-primary.is-active, button.is-active.is-playing, button.is-active.play_element:active, .button.is-active.is-playing, .button.is-active.play_element:active {
   background-color: #00b89c;
   border-color: transparent;
   color: #fff;
 }
 
-.button.is-primary[disabled], nav.button[disabled], button.is-primary[disabled], button.active_mood[disabled], button.play_element[disabled]:active, .button.active_mood[disabled], .button.play_element[disabled]:active,
+.button.is-primary[disabled], nav.button[disabled], button.is-primary[disabled], button.is-playing[disabled], button.play_element[disabled]:active, .button.is-playing[disabled], .button.play_element[disabled]:active,
 fieldset[disabled] .button.is-primary,
 fieldset[disabled] nav.button,
 fieldset[disabled] button.is-primary,
-fieldset[disabled] button.active_mood,
+fieldset[disabled] button.is-playing,
 fieldset[disabled] button.play_element:active,
-fieldset[disabled] .button.active_mood,
+fieldset[disabled] .button.is-playing,
 fieldset[disabled] .button.play_element:active {
   background-color: #00d1b2;
   border-color: transparent;
@@ -1114,22 +1114,22 @@ fieldset[disabled] .button.play_element:active {
           box-shadow: none;
 }
 
-.button.is-primary.is-inverted, nav.button.is-inverted, button.is-primary.is-inverted, button.is-inverted.active_mood, button.is-inverted.play_element:active, .button.is-inverted.active_mood, .button.is-inverted.play_element:active {
+.button.is-primary.is-inverted, nav.button.is-inverted, button.is-primary.is-inverted, button.is-inverted.is-playing, button.is-inverted.play_element:active, .button.is-inverted.is-playing, .button.is-inverted.play_element:active {
   background-color: #fff;
   color: #00d1b2;
 }
 
-.button.is-primary.is-inverted:hover, nav.button.is-inverted:hover, button.is-primary.is-inverted:hover, button.is-inverted.active_mood:hover, button.is-inverted.play_element:hover:active, .button.is-inverted.active_mood:hover, .button.is-inverted.play_element:hover:active, .button.is-primary.is-inverted.is-hovered, nav.button.is-inverted.is-hovered, button.is-primary.is-inverted.is-hovered, button.is-inverted.is-hovered.active_mood, button.is-inverted.is-hovered.play_element:active, .button.is-inverted.is-hovered.active_mood, .button.is-inverted.is-hovered.play_element:active {
+.button.is-primary.is-inverted:hover, nav.button.is-inverted:hover, button.is-primary.is-inverted:hover, button.is-inverted.is-playing:hover, button.is-inverted.play_element:hover:active, .button.is-inverted.is-playing:hover, .button.is-inverted.play_element:hover:active, .button.is-primary.is-inverted.is-hovered, nav.button.is-inverted.is-hovered, button.is-primary.is-inverted.is-hovered, button.is-inverted.is-hovered.is-playing, button.is-inverted.is-hovered.play_element:active, .button.is-inverted.is-hovered.is-playing, .button.is-inverted.is-hovered.play_element:active {
   background-color: #f2f2f2;
 }
 
-.button.is-primary.is-inverted[disabled], nav.button.is-inverted[disabled], button.is-primary.is-inverted[disabled], button.is-inverted.active_mood[disabled], button.is-inverted.play_element[disabled]:active, .button.is-inverted.active_mood[disabled], .button.is-inverted.play_element[disabled]:active,
+.button.is-primary.is-inverted[disabled], nav.button.is-inverted[disabled], button.is-primary.is-inverted[disabled], button.is-inverted.is-playing[disabled], button.is-inverted.play_element[disabled]:active, .button.is-inverted.is-playing[disabled], .button.is-inverted.play_element[disabled]:active,
 fieldset[disabled] .button.is-primary.is-inverted,
 fieldset[disabled] nav.button.is-inverted,
 fieldset[disabled] button.is-primary.is-inverted,
-fieldset[disabled] button.is-inverted.active_mood,
+fieldset[disabled] button.is-inverted.is-playing,
 fieldset[disabled] button.is-inverted.play_element:active,
-fieldset[disabled] .button.is-inverted.active_mood,
+fieldset[disabled] .button.is-inverted.is-playing,
 fieldset[disabled] .button.is-inverted.play_element:active {
   background-color: #fff;
   border-color: transparent;
@@ -1138,42 +1138,42 @@ fieldset[disabled] .button.is-inverted.play_element:active {
   color: #00d1b2;
 }
 
-.button.is-primary.is-loading::after, nav.button.is-loading::after, button.is-primary.is-loading::after, button.is-loading.active_mood::after, button.is-loading.play_element:active::after, .button.is-loading.active_mood::after, .button.is-loading.play_element:active::after {
+.button.is-primary.is-loading::after, nav.button.is-loading::after, button.is-primary.is-loading::after, button.is-loading.is-playing::after, button.is-loading.play_element:active::after, .button.is-loading.is-playing::after, .button.is-loading.play_element:active::after {
   border-color: transparent transparent #fff #fff !important;
 }
 
-.button.is-primary.is-outlined, nav.button.is-outlined, nav.button.master_stop:active, button.is-primary.is-outlined, button.is-outlined.active_mood, button.active_mood.master_stop:active, button.is-primary.master_stop:active, button.play_element:active, .button.is-outlined.active_mood, .button.active_mood.master_stop:active, .button.is-primary.master_stop:active, .button.play_element:active {
+.button.is-primary.is-outlined, nav.button.is-outlined, nav.button.master_stop:active, button.is-primary.is-outlined, button.is-outlined.is-playing, button.is-playing.master_stop:active, button.is-primary.master_stop:active, button.play_element:active, .button.is-outlined.is-playing, .button.is-playing.master_stop:active, .button.is-primary.master_stop:active, .button.play_element:active {
   background-color: transparent;
   border-color: #00d1b2;
   color: #00d1b2;
 }
 
-.button.is-primary.is-outlined:hover, nav.button.is-outlined:hover, nav.button.master_stop:hover:active, button.is-primary.is-outlined:hover, button.is-outlined.active_mood:hover, button.active_mood.master_stop:hover:active, button.is-primary.master_stop:hover:active, button.play_element:hover:active, .button.is-outlined.active_mood:hover, .button.active_mood.master_stop:hover:active, .button.is-primary.master_stop:hover:active, .button.play_element:hover:active, .button.is-primary.is-outlined.is-hovered, nav.button.is-outlined.is-hovered, nav.button.is-hovered.master_stop:active, button.is-primary.is-outlined.is-hovered, button.is-outlined.is-hovered.active_mood, button.is-hovered.active_mood.master_stop:active, button.is-primary.is-hovered.master_stop:active, button.is-hovered.play_element:active, .button.is-outlined.is-hovered.active_mood, .button.is-hovered.active_mood.master_stop:active, .button.is-primary.is-hovered.master_stop:active, .button.is-hovered.play_element:active, .button.is-primary.is-outlined:focus, nav.button.is-outlined:focus, nav.button.master_stop:focus:active, button.is-primary.is-outlined:focus, button.is-outlined.active_mood:focus, button.active_mood.master_stop:focus:active, button.is-primary.master_stop:focus:active, button.play_element:focus:active, .button.is-outlined.active_mood:focus, .button.active_mood.master_stop:focus:active, .button.is-primary.master_stop:focus:active, .button.play_element:focus:active, .button.is-primary.is-outlined.is-focused, nav.button.is-outlined.is-focused, nav.button.is-focused.master_stop:active, button.is-primary.is-outlined.is-focused, button.is-outlined.is-focused.active_mood, button.is-focused.active_mood.master_stop:active, button.is-primary.is-focused.master_stop:active, button.is-focused.play_element:active, .button.is-outlined.is-focused.active_mood, .button.is-focused.active_mood.master_stop:active, .button.is-primary.is-focused.master_stop:active, .button.is-focused.play_element:active {
+.button.is-primary.is-outlined:hover, nav.button.is-outlined:hover, nav.button.master_stop:hover:active, button.is-primary.is-outlined:hover, button.is-outlined.is-playing:hover, button.is-playing.master_stop:hover:active, button.is-primary.master_stop:hover:active, button.play_element:hover:active, .button.is-outlined.is-playing:hover, .button.is-playing.master_stop:hover:active, .button.is-primary.master_stop:hover:active, .button.play_element:hover:active, .button.is-primary.is-outlined.is-hovered, nav.button.is-outlined.is-hovered, nav.button.is-hovered.master_stop:active, button.is-primary.is-outlined.is-hovered, button.is-outlined.is-hovered.is-playing, button.is-hovered.is-playing.master_stop:active, button.is-primary.is-hovered.master_stop:active, button.is-hovered.play_element:active, .button.is-outlined.is-hovered.is-playing, .button.is-hovered.is-playing.master_stop:active, .button.is-primary.is-hovered.master_stop:active, .button.is-hovered.play_element:active, .button.is-primary.is-outlined:focus, nav.button.is-outlined:focus, nav.button.master_stop:focus:active, button.is-primary.is-outlined:focus, button.is-outlined.is-playing:focus, button.is-playing.master_stop:focus:active, button.is-primary.master_stop:focus:active, button.play_element:focus:active, .button.is-outlined.is-playing:focus, .button.is-playing.master_stop:focus:active, .button.is-primary.master_stop:focus:active, .button.play_element:focus:active, .button.is-primary.is-outlined.is-focused, nav.button.is-outlined.is-focused, nav.button.is-focused.master_stop:active, button.is-primary.is-outlined.is-focused, button.is-outlined.is-focused.is-playing, button.is-focused.is-playing.master_stop:active, button.is-primary.is-focused.master_stop:active, button.is-focused.play_element:active, .button.is-outlined.is-focused.is-playing, .button.is-focused.is-playing.master_stop:active, .button.is-primary.is-focused.master_stop:active, .button.is-focused.play_element:active {
   background-color: #00d1b2;
   border-color: #00d1b2;
   color: #fff;
 }
 
-.button.is-primary.is-outlined.is-loading::after, nav.button.is-outlined.is-loading::after, nav.button.is-loading.master_stop:active::after, button.is-primary.is-outlined.is-loading::after, button.is-outlined.is-loading.active_mood::after, button.is-loading.active_mood.master_stop:active::after, button.is-primary.is-loading.master_stop:active::after, button.is-loading.play_element:active::after, .button.is-outlined.is-loading.active_mood::after, .button.is-loading.active_mood.master_stop:active::after, .button.is-primary.is-loading.master_stop:active::after, .button.is-loading.play_element:active::after {
+.button.is-primary.is-outlined.is-loading::after, nav.button.is-outlined.is-loading::after, nav.button.is-loading.master_stop:active::after, button.is-primary.is-outlined.is-loading::after, button.is-outlined.is-loading.is-playing::after, button.is-loading.is-playing.master_stop:active::after, button.is-primary.is-loading.master_stop:active::after, button.is-loading.play_element:active::after, .button.is-outlined.is-loading.is-playing::after, .button.is-loading.is-playing.master_stop:active::after, .button.is-primary.is-loading.master_stop:active::after, .button.is-loading.play_element:active::after {
   border-color: transparent transparent #00d1b2 #00d1b2 !important;
 }
 
-.button.is-primary.is-outlined.is-loading:hover::after, nav.button.is-outlined.is-loading:hover::after, nav.button.is-loading.master_stop:active:hover::after, button.is-primary.is-outlined.is-loading:hover::after, button.is-outlined.is-loading.active_mood:hover::after, button.is-loading.active_mood.master_stop:active:hover::after, button.is-primary.is-loading.master_stop:active:hover::after, button.is-loading.play_element:active:hover::after, .button.is-outlined.is-loading.active_mood:hover::after, .button.is-loading.active_mood.master_stop:active:hover::after, .button.is-primary.is-loading.master_stop:active:hover::after, .button.is-loading.play_element:active:hover::after, .button.is-primary.is-outlined.is-loading.is-hovered::after, nav.button.is-outlined.is-loading.is-hovered::after, nav.button.is-loading.is-hovered.master_stop:active::after, button.is-primary.is-outlined.is-loading.is-hovered::after, button.is-outlined.is-loading.is-hovered.active_mood::after, button.is-loading.is-hovered.active_mood.master_stop:active::after, button.is-primary.is-loading.is-hovered.master_stop:active::after, button.is-loading.is-hovered.play_element:active::after, .button.is-outlined.is-loading.is-hovered.active_mood::after, .button.is-loading.is-hovered.active_mood.master_stop:active::after, .button.is-primary.is-loading.is-hovered.master_stop:active::after, .button.is-loading.is-hovered.play_element:active::after, .button.is-primary.is-outlined.is-loading:focus::after, nav.button.is-outlined.is-loading:focus::after, nav.button.is-loading.master_stop:active:focus::after, button.is-primary.is-outlined.is-loading:focus::after, button.is-outlined.is-loading.active_mood:focus::after, button.is-loading.active_mood.master_stop:active:focus::after, button.is-primary.is-loading.master_stop:active:focus::after, button.is-loading.play_element:active:focus::after, .button.is-outlined.is-loading.active_mood:focus::after, .button.is-loading.active_mood.master_stop:active:focus::after, .button.is-primary.is-loading.master_stop:active:focus::after, .button.is-loading.play_element:active:focus::after, .button.is-primary.is-outlined.is-loading.is-focused::after, nav.button.is-outlined.is-loading.is-focused::after, nav.button.is-loading.is-focused.master_stop:active::after, button.is-primary.is-outlined.is-loading.is-focused::after, button.is-outlined.is-loading.is-focused.active_mood::after, button.is-loading.is-focused.active_mood.master_stop:active::after, button.is-primary.is-loading.is-focused.master_stop:active::after, button.is-loading.is-focused.play_element:active::after, .button.is-outlined.is-loading.is-focused.active_mood::after, .button.is-loading.is-focused.active_mood.master_stop:active::after, .button.is-primary.is-loading.is-focused.master_stop:active::after, .button.is-loading.is-focused.play_element:active::after {
+.button.is-primary.is-outlined.is-loading:hover::after, nav.button.is-outlined.is-loading:hover::after, nav.button.is-loading.master_stop:active:hover::after, button.is-primary.is-outlined.is-loading:hover::after, button.is-outlined.is-loading.is-playing:hover::after, button.is-loading.is-playing.master_stop:active:hover::after, button.is-primary.is-loading.master_stop:active:hover::after, button.is-loading.play_element:active:hover::after, .button.is-outlined.is-loading.is-playing:hover::after, .button.is-loading.is-playing.master_stop:active:hover::after, .button.is-primary.is-loading.master_stop:active:hover::after, .button.is-loading.play_element:active:hover::after, .button.is-primary.is-outlined.is-loading.is-hovered::after, nav.button.is-outlined.is-loading.is-hovered::after, nav.button.is-loading.is-hovered.master_stop:active::after, button.is-primary.is-outlined.is-loading.is-hovered::after, button.is-outlined.is-loading.is-hovered.is-playing::after, button.is-loading.is-hovered.is-playing.master_stop:active::after, button.is-primary.is-loading.is-hovered.master_stop:active::after, button.is-loading.is-hovered.play_element:active::after, .button.is-outlined.is-loading.is-hovered.is-playing::after, .button.is-loading.is-hovered.is-playing.master_stop:active::after, .button.is-primary.is-loading.is-hovered.master_stop:active::after, .button.is-loading.is-hovered.play_element:active::after, .button.is-primary.is-outlined.is-loading:focus::after, nav.button.is-outlined.is-loading:focus::after, nav.button.is-loading.master_stop:active:focus::after, button.is-primary.is-outlined.is-loading:focus::after, button.is-outlined.is-loading.is-playing:focus::after, button.is-loading.is-playing.master_stop:active:focus::after, button.is-primary.is-loading.master_stop:active:focus::after, button.is-loading.play_element:active:focus::after, .button.is-outlined.is-loading.is-playing:focus::after, .button.is-loading.is-playing.master_stop:active:focus::after, .button.is-primary.is-loading.master_stop:active:focus::after, .button.is-loading.play_element:active:focus::after, .button.is-primary.is-outlined.is-loading.is-focused::after, nav.button.is-outlined.is-loading.is-focused::after, nav.button.is-loading.is-focused.master_stop:active::after, button.is-primary.is-outlined.is-loading.is-focused::after, button.is-outlined.is-loading.is-focused.is-playing::after, button.is-loading.is-focused.is-playing.master_stop:active::after, button.is-primary.is-loading.is-focused.master_stop:active::after, button.is-loading.is-focused.play_element:active::after, .button.is-outlined.is-loading.is-focused.is-playing::after, .button.is-loading.is-focused.is-playing.master_stop:active::after, .button.is-primary.is-loading.is-focused.master_stop:active::after, .button.is-loading.is-focused.play_element:active::after {
   border-color: transparent transparent #fff #fff !important;
 }
 
-.button.is-primary.is-outlined[disabled], nav.button.is-outlined[disabled], nav.button.master_stop[disabled]:active, button.is-primary.is-outlined[disabled], button.is-outlined.active_mood[disabled], button.active_mood.master_stop[disabled]:active, button.is-primary.master_stop[disabled]:active, button.play_element[disabled]:active, .button.is-outlined.active_mood[disabled], .button.active_mood.master_stop[disabled]:active, .button.is-primary.master_stop[disabled]:active, .button.play_element[disabled]:active,
+.button.is-primary.is-outlined[disabled], nav.button.is-outlined[disabled], nav.button.master_stop[disabled]:active, button.is-primary.is-outlined[disabled], button.is-outlined.is-playing[disabled], button.is-playing.master_stop[disabled]:active, button.is-primary.master_stop[disabled]:active, button.play_element[disabled]:active, .button.is-outlined.is-playing[disabled], .button.is-playing.master_stop[disabled]:active, .button.is-primary.master_stop[disabled]:active, .button.play_element[disabled]:active,
 fieldset[disabled] .button.is-primary.is-outlined,
 fieldset[disabled] nav.button.is-outlined,
 fieldset[disabled] nav.button.master_stop:active,
 fieldset[disabled] button.is-primary.is-outlined,
-fieldset[disabled] button.is-outlined.active_mood,
-fieldset[disabled] button.active_mood.master_stop:active,
+fieldset[disabled] button.is-outlined.is-playing,
+fieldset[disabled] button.is-playing.master_stop:active,
 fieldset[disabled] button.is-primary.master_stop:active,
 fieldset[disabled] button.play_element:active,
-fieldset[disabled] .button.is-outlined.active_mood,
-fieldset[disabled] button.active_mood.play_element:active,
-fieldset[disabled] .button.active_mood.master_stop:active,
+fieldset[disabled] .button.is-outlined.is-playing,
+fieldset[disabled] button.is-playing.play_element:active,
+fieldset[disabled] .button.is-playing.master_stop:active,
 fieldset[disabled] .button.is-primary.master_stop:active,
 fieldset[disabled] button.master_stop.play_element:active,
 fieldset[disabled] .button.play_element:active {
@@ -1184,33 +1184,33 @@ fieldset[disabled] .button.play_element:active {
   color: #00d1b2;
 }
 
-.button.is-primary.is-inverted.is-outlined, nav.button.is-inverted.is-outlined, nav.button.is-inverted.master_stop:active, button.is-primary.is-inverted.is-outlined, button.is-inverted.is-outlined.active_mood, button.is-inverted.active_mood.master_stop:active, button.is-primary.is-inverted.master_stop:active, button.is-inverted.play_element:active, .button.is-inverted.is-outlined.active_mood, .button.is-inverted.active_mood.master_stop:active, .button.is-primary.is-inverted.master_stop:active, .button.is-inverted.play_element:active {
+.button.is-primary.is-inverted.is-outlined, nav.button.is-inverted.is-outlined, nav.button.is-inverted.master_stop:active, button.is-primary.is-inverted.is-outlined, button.is-inverted.is-outlined.is-playing, button.is-inverted.is-playing.master_stop:active, button.is-primary.is-inverted.master_stop:active, button.is-inverted.play_element:active, .button.is-inverted.is-outlined.is-playing, .button.is-inverted.is-playing.master_stop:active, .button.is-primary.is-inverted.master_stop:active, .button.is-inverted.play_element:active {
   background-color: transparent;
   border-color: #fff;
   color: #fff;
 }
 
-.button.is-primary.is-inverted.is-outlined:hover, nav.button.is-inverted.is-outlined:hover, nav.button.is-inverted.master_stop:hover:active, button.is-primary.is-inverted.is-outlined:hover, button.is-inverted.is-outlined.active_mood:hover, button.is-inverted.active_mood.master_stop:hover:active, button.is-primary.is-inverted.master_stop:hover:active, button.is-inverted.play_element:hover:active, .button.is-inverted.is-outlined.active_mood:hover, .button.is-inverted.active_mood.master_stop:hover:active, .button.is-primary.is-inverted.master_stop:hover:active, .button.is-inverted.play_element:hover:active, .button.is-primary.is-inverted.is-outlined.is-hovered, nav.button.is-inverted.is-outlined.is-hovered, nav.button.is-inverted.is-hovered.master_stop:active, button.is-primary.is-inverted.is-outlined.is-hovered, button.is-inverted.is-outlined.is-hovered.active_mood, button.is-inverted.is-hovered.active_mood.master_stop:active, button.is-primary.is-inverted.is-hovered.master_stop:active, button.is-inverted.is-hovered.play_element:active, .button.is-inverted.is-outlined.is-hovered.active_mood, .button.is-inverted.is-hovered.active_mood.master_stop:active, .button.is-primary.is-inverted.is-hovered.master_stop:active, .button.is-inverted.is-hovered.play_element:active, .button.is-primary.is-inverted.is-outlined:focus, nav.button.is-inverted.is-outlined:focus, nav.button.is-inverted.master_stop:focus:active, button.is-primary.is-inverted.is-outlined:focus, button.is-inverted.is-outlined.active_mood:focus, button.is-inverted.active_mood.master_stop:focus:active, button.is-primary.is-inverted.master_stop:focus:active, button.is-inverted.play_element:focus:active, .button.is-inverted.is-outlined.active_mood:focus, .button.is-inverted.active_mood.master_stop:focus:active, .button.is-primary.is-inverted.master_stop:focus:active, .button.is-inverted.play_element:focus:active, .button.is-primary.is-inverted.is-outlined.is-focused, nav.button.is-inverted.is-outlined.is-focused, nav.button.is-inverted.is-focused.master_stop:active, button.is-primary.is-inverted.is-outlined.is-focused, button.is-inverted.is-outlined.is-focused.active_mood, button.is-inverted.is-focused.active_mood.master_stop:active, button.is-primary.is-inverted.is-focused.master_stop:active, button.is-inverted.is-focused.play_element:active, .button.is-inverted.is-outlined.is-focused.active_mood, .button.is-inverted.is-focused.active_mood.master_stop:active, .button.is-primary.is-inverted.is-focused.master_stop:active, .button.is-inverted.is-focused.play_element:active {
+.button.is-primary.is-inverted.is-outlined:hover, nav.button.is-inverted.is-outlined:hover, nav.button.is-inverted.master_stop:hover:active, button.is-primary.is-inverted.is-outlined:hover, button.is-inverted.is-outlined.is-playing:hover, button.is-inverted.is-playing.master_stop:hover:active, button.is-primary.is-inverted.master_stop:hover:active, button.is-inverted.play_element:hover:active, .button.is-inverted.is-outlined.is-playing:hover, .button.is-inverted.is-playing.master_stop:hover:active, .button.is-primary.is-inverted.master_stop:hover:active, .button.is-inverted.play_element:hover:active, .button.is-primary.is-inverted.is-outlined.is-hovered, nav.button.is-inverted.is-outlined.is-hovered, nav.button.is-inverted.is-hovered.master_stop:active, button.is-primary.is-inverted.is-outlined.is-hovered, button.is-inverted.is-outlined.is-hovered.is-playing, button.is-inverted.is-hovered.is-playing.master_stop:active, button.is-primary.is-inverted.is-hovered.master_stop:active, button.is-inverted.is-hovered.play_element:active, .button.is-inverted.is-outlined.is-hovered.is-playing, .button.is-inverted.is-hovered.is-playing.master_stop:active, .button.is-primary.is-inverted.is-hovered.master_stop:active, .button.is-inverted.is-hovered.play_element:active, .button.is-primary.is-inverted.is-outlined:focus, nav.button.is-inverted.is-outlined:focus, nav.button.is-inverted.master_stop:focus:active, button.is-primary.is-inverted.is-outlined:focus, button.is-inverted.is-outlined.is-playing:focus, button.is-inverted.is-playing.master_stop:focus:active, button.is-primary.is-inverted.master_stop:focus:active, button.is-inverted.play_element:focus:active, .button.is-inverted.is-outlined.is-playing:focus, .button.is-inverted.is-playing.master_stop:focus:active, .button.is-primary.is-inverted.master_stop:focus:active, .button.is-inverted.play_element:focus:active, .button.is-primary.is-inverted.is-outlined.is-focused, nav.button.is-inverted.is-outlined.is-focused, nav.button.is-inverted.is-focused.master_stop:active, button.is-primary.is-inverted.is-outlined.is-focused, button.is-inverted.is-outlined.is-focused.is-playing, button.is-inverted.is-focused.is-playing.master_stop:active, button.is-primary.is-inverted.is-focused.master_stop:active, button.is-inverted.is-focused.play_element:active, .button.is-inverted.is-outlined.is-focused.is-playing, .button.is-inverted.is-focused.is-playing.master_stop:active, .button.is-primary.is-inverted.is-focused.master_stop:active, .button.is-inverted.is-focused.play_element:active {
   background-color: #fff;
   color: #00d1b2;
 }
 
-.button.is-primary.is-inverted.is-outlined.is-loading:hover::after, nav.button.is-inverted.is-outlined.is-loading:hover::after, nav.button.is-inverted.is-loading.master_stop:active:hover::after, button.is-primary.is-inverted.is-outlined.is-loading:hover::after, button.is-inverted.is-outlined.is-loading.active_mood:hover::after, button.is-inverted.is-loading.active_mood.master_stop:active:hover::after, button.is-primary.is-inverted.is-loading.master_stop:active:hover::after, button.is-inverted.is-loading.play_element:active:hover::after, .button.is-inverted.is-outlined.is-loading.active_mood:hover::after, .button.is-inverted.is-loading.active_mood.master_stop:active:hover::after, .button.is-primary.is-inverted.is-loading.master_stop:active:hover::after, .button.is-inverted.is-loading.play_element:active:hover::after, .button.is-primary.is-inverted.is-outlined.is-loading.is-hovered::after, nav.button.is-inverted.is-outlined.is-loading.is-hovered::after, nav.button.is-inverted.is-loading.is-hovered.master_stop:active::after, button.is-primary.is-inverted.is-outlined.is-loading.is-hovered::after, button.is-inverted.is-outlined.is-loading.is-hovered.active_mood::after, button.is-inverted.is-loading.is-hovered.active_mood.master_stop:active::after, button.is-primary.is-inverted.is-loading.is-hovered.master_stop:active::after, button.is-inverted.is-loading.is-hovered.play_element:active::after, .button.is-inverted.is-outlined.is-loading.is-hovered.active_mood::after, .button.is-inverted.is-loading.is-hovered.active_mood.master_stop:active::after, .button.is-primary.is-inverted.is-loading.is-hovered.master_stop:active::after, .button.is-inverted.is-loading.is-hovered.play_element:active::after, .button.is-primary.is-inverted.is-outlined.is-loading:focus::after, nav.button.is-inverted.is-outlined.is-loading:focus::after, nav.button.is-inverted.is-loading.master_stop:active:focus::after, button.is-primary.is-inverted.is-outlined.is-loading:focus::after, button.is-inverted.is-outlined.is-loading.active_mood:focus::after, button.is-inverted.is-loading.active_mood.master_stop:active:focus::after, button.is-primary.is-inverted.is-loading.master_stop:active:focus::after, button.is-inverted.is-loading.play_element:active:focus::after, .button.is-inverted.is-outlined.is-loading.active_mood:focus::after, .button.is-inverted.is-loading.active_mood.master_stop:active:focus::after, .button.is-primary.is-inverted.is-loading.master_stop:active:focus::after, .button.is-inverted.is-loading.play_element:active:focus::after, .button.is-primary.is-inverted.is-outlined.is-loading.is-focused::after, nav.button.is-inverted.is-outlined.is-loading.is-focused::after, nav.button.is-inverted.is-loading.is-focused.master_stop:active::after, button.is-primary.is-inverted.is-outlined.is-loading.is-focused::after, button.is-inverted.is-outlined.is-loading.is-focused.active_mood::after, button.is-inverted.is-loading.is-focused.active_mood.master_stop:active::after, button.is-primary.is-inverted.is-loading.is-focused.master_stop:active::after, button.is-inverted.is-loading.is-focused.play_element:active::after, .button.is-inverted.is-outlined.is-loading.is-focused.active_mood::after, .button.is-inverted.is-loading.is-focused.active_mood.master_stop:active::after, .button.is-primary.is-inverted.is-loading.is-focused.master_stop:active::after, .button.is-inverted.is-loading.is-focused.play_element:active::after {
+.button.is-primary.is-inverted.is-outlined.is-loading:hover::after, nav.button.is-inverted.is-outlined.is-loading:hover::after, nav.button.is-inverted.is-loading.master_stop:active:hover::after, button.is-primary.is-inverted.is-outlined.is-loading:hover::after, button.is-inverted.is-outlined.is-loading.is-playing:hover::after, button.is-inverted.is-loading.is-playing.master_stop:active:hover::after, button.is-primary.is-inverted.is-loading.master_stop:active:hover::after, button.is-inverted.is-loading.play_element:active:hover::after, .button.is-inverted.is-outlined.is-loading.is-playing:hover::after, .button.is-inverted.is-loading.is-playing.master_stop:active:hover::after, .button.is-primary.is-inverted.is-loading.master_stop:active:hover::after, .button.is-inverted.is-loading.play_element:active:hover::after, .button.is-primary.is-inverted.is-outlined.is-loading.is-hovered::after, nav.button.is-inverted.is-outlined.is-loading.is-hovered::after, nav.button.is-inverted.is-loading.is-hovered.master_stop:active::after, button.is-primary.is-inverted.is-outlined.is-loading.is-hovered::after, button.is-inverted.is-outlined.is-loading.is-hovered.is-playing::after, button.is-inverted.is-loading.is-hovered.is-playing.master_stop:active::after, button.is-primary.is-inverted.is-loading.is-hovered.master_stop:active::after, button.is-inverted.is-loading.is-hovered.play_element:active::after, .button.is-inverted.is-outlined.is-loading.is-hovered.is-playing::after, .button.is-inverted.is-loading.is-hovered.is-playing.master_stop:active::after, .button.is-primary.is-inverted.is-loading.is-hovered.master_stop:active::after, .button.is-inverted.is-loading.is-hovered.play_element:active::after, .button.is-primary.is-inverted.is-outlined.is-loading:focus::after, nav.button.is-inverted.is-outlined.is-loading:focus::after, nav.button.is-inverted.is-loading.master_stop:active:focus::after, button.is-primary.is-inverted.is-outlined.is-loading:focus::after, button.is-inverted.is-outlined.is-loading.is-playing:focus::after, button.is-inverted.is-loading.is-playing.master_stop:active:focus::after, button.is-primary.is-inverted.is-loading.master_stop:active:focus::after, button.is-inverted.is-loading.play_element:active:focus::after, .button.is-inverted.is-outlined.is-loading.is-playing:focus::after, .button.is-inverted.is-loading.is-playing.master_stop:active:focus::after, .button.is-primary.is-inverted.is-loading.master_stop:active:focus::after, .button.is-inverted.is-loading.play_element:active:focus::after, .button.is-primary.is-inverted.is-outlined.is-loading.is-focused::after, nav.button.is-inverted.is-outlined.is-loading.is-focused::after, nav.button.is-inverted.is-loading.is-focused.master_stop:active::after, button.is-primary.is-inverted.is-outlined.is-loading.is-focused::after, button.is-inverted.is-outlined.is-loading.is-focused.is-playing::after, button.is-inverted.is-loading.is-focused.is-playing.master_stop:active::after, button.is-primary.is-inverted.is-loading.is-focused.master_stop:active::after, button.is-inverted.is-loading.is-focused.play_element:active::after, .button.is-inverted.is-outlined.is-loading.is-focused.is-playing::after, .button.is-inverted.is-loading.is-focused.is-playing.master_stop:active::after, .button.is-primary.is-inverted.is-loading.is-focused.master_stop:active::after, .button.is-inverted.is-loading.is-focused.play_element:active::after {
   border-color: transparent transparent #00d1b2 #00d1b2 !important;
 }
 
-.button.is-primary.is-inverted.is-outlined[disabled], nav.button.is-inverted.is-outlined[disabled], nav.button.is-inverted.master_stop[disabled]:active, button.is-primary.is-inverted.is-outlined[disabled], button.is-inverted.is-outlined.active_mood[disabled], button.is-inverted.active_mood.master_stop[disabled]:active, button.is-primary.is-inverted.master_stop[disabled]:active, button.is-inverted.play_element[disabled]:active, .button.is-inverted.is-outlined.active_mood[disabled], .button.is-inverted.active_mood.master_stop[disabled]:active, .button.is-primary.is-inverted.master_stop[disabled]:active, .button.is-inverted.play_element[disabled]:active,
+.button.is-primary.is-inverted.is-outlined[disabled], nav.button.is-inverted.is-outlined[disabled], nav.button.is-inverted.master_stop[disabled]:active, button.is-primary.is-inverted.is-outlined[disabled], button.is-inverted.is-outlined.is-playing[disabled], button.is-inverted.is-playing.master_stop[disabled]:active, button.is-primary.is-inverted.master_stop[disabled]:active, button.is-inverted.play_element[disabled]:active, .button.is-inverted.is-outlined.is-playing[disabled], .button.is-inverted.is-playing.master_stop[disabled]:active, .button.is-primary.is-inverted.master_stop[disabled]:active, .button.is-inverted.play_element[disabled]:active,
 fieldset[disabled] .button.is-primary.is-inverted.is-outlined,
 fieldset[disabled] nav.button.is-inverted.is-outlined,
 fieldset[disabled] nav.button.is-inverted.master_stop:active,
 fieldset[disabled] button.is-primary.is-inverted.is-outlined,
-fieldset[disabled] button.is-inverted.is-outlined.active_mood,
-fieldset[disabled] button.is-inverted.active_mood.master_stop:active,
+fieldset[disabled] button.is-inverted.is-outlined.is-playing,
+fieldset[disabled] button.is-inverted.is-playing.master_stop:active,
 fieldset[disabled] button.is-primary.is-inverted.master_stop:active,
 fieldset[disabled] button.is-inverted.play_element:active,
-fieldset[disabled] .button.is-inverted.is-outlined.active_mood,
-fieldset[disabled] button.is-inverted.active_mood.play_element:active,
-fieldset[disabled] .button.is-inverted.active_mood.master_stop:active,
+fieldset[disabled] .button.is-inverted.is-outlined.is-playing,
+fieldset[disabled] button.is-inverted.is-playing.play_element:active,
+fieldset[disabled] .button.is-inverted.is-playing.master_stop:active,
 fieldset[disabled] .button.is-primary.is-inverted.master_stop:active,
 fieldset[disabled] button.is-inverted.master_stop.play_element:active,
 fieldset[disabled] .button.is-inverted.play_element:active {
@@ -1221,18 +1221,18 @@ fieldset[disabled] .button.is-inverted.play_element:active {
   color: #fff;
 }
 
-.button.is-primary.is-light, nav.button.is-light, button.is-primary.is-light, button.is-light.active_mood, button.is-light.play_element:active, .button.is-light.active_mood, .button.is-light.play_element:active {
+.button.is-primary.is-light, nav.button.is-light, button.is-primary.is-light, button.is-light.is-playing, button.is-light.play_element:active, .button.is-light.is-playing, .button.is-light.play_element:active {
   background-color: #ebfffc;
   color: #00947e;
 }
 
-.button.is-primary.is-light:hover, nav.button.is-light:hover, button.is-primary.is-light:hover, button.is-light.active_mood:hover, button.is-light.play_element:hover:active, .button.is-light.active_mood:hover, .button.is-light.play_element:hover:active, .button.is-primary.is-light.is-hovered, nav.button.is-light.is-hovered, button.is-primary.is-light.is-hovered, button.is-light.is-hovered.active_mood, button.is-light.is-hovered.play_element:active, .button.is-light.is-hovered.active_mood, .button.is-light.is-hovered.play_element:active {
+.button.is-primary.is-light:hover, nav.button.is-light:hover, button.is-primary.is-light:hover, button.is-light.is-playing:hover, button.is-light.play_element:hover:active, .button.is-light.is-playing:hover, .button.is-light.play_element:hover:active, .button.is-primary.is-light.is-hovered, nav.button.is-light.is-hovered, button.is-primary.is-light.is-hovered, button.is-light.is-hovered.is-playing, button.is-light.is-hovered.play_element:active, .button.is-light.is-hovered.is-playing, .button.is-light.is-hovered.play_element:active {
   background-color: #defffa;
   border-color: transparent;
   color: #00947e;
 }
 
-.button.is-primary.is-light:active, nav.button.is-light:active, button.is-primary.is-light:active, button.is-light.active_mood:active, button.is-light.play_element:active, .button.is-light.active_mood:active, .button.is-light.play_element:active, .button.is-primary.is-light.is-active, nav.button.is-light.is-active, nav nav.button.is-light.navbar-menu, nav .button.is-primary.is-light.navbar-menu, nav button.is-primary.is-light.navbar-menu, nav button.is-light.navbar-menu.active_mood, nav button.is-light.navbar-menu.play_element:active, nav .button.is-light.navbar-menu.active_mood, nav .button.is-light.navbar-menu.play_element:active, button.is-primary.is-light.is-active, button.is-light.is-active.active_mood, button.is-light.is-active.play_element:active, .button.is-light.is-active.active_mood, .button.is-light.is-active.play_element:active {
+.button.is-primary.is-light:active, nav.button.is-light:active, button.is-primary.is-light:active, button.is-light.is-playing:active, button.is-light.play_element:active, .button.is-light.is-playing:active, .button.is-light.play_element:active, .button.is-primary.is-light.is-active, nav.button.is-light.is-active, nav nav.button.is-light.navbar-menu, nav .button.is-primary.is-light.navbar-menu, nav button.is-primary.is-light.navbar-menu, nav button.is-light.navbar-menu.is-playing, nav button.is-light.navbar-menu.play_element:active, nav .button.is-light.navbar-menu.is-playing, nav .button.is-light.navbar-menu.play_element:active, button.is-primary.is-light.is-active, button.is-light.is-active.is-playing, button.is-light.is-active.play_element:active, .button.is-light.is-active.is-playing, .button.is-light.is-active.play_element:active {
   background-color: #d1fff8;
   border-color: transparent;
   color: #00947e;
@@ -2578,12 +2578,12 @@ fieldset[disabled] button {
   color: #fff;
 }
 
-.notification.is-primary, nav.notification, .notification.active_mood, .notification.play_element:active {
+.notification.is-primary, nav.notification, .notification.is-playing, .notification.play_element:active {
   background-color: #00d1b2;
   color: #fff;
 }
 
-.notification.is-primary.is-light, nav.notification.is-light, .notification.is-light.active_mood, .notification.is-light.play_element:active {
+.notification.is-primary.is-light, nav.notification.is-light, .notification.is-light.is-playing, .notification.is-light.play_element:active {
   background-color: #ebfffc;
   color: #00947e;
 }
@@ -2735,19 +2735,19 @@ fieldset[disabled] button {
   background-image: linear-gradient(to right, #363636 30%, #ededed 30%);
 }
 
-.progress.is-primary::-webkit-progress-value, nav.progress::-webkit-progress-value, .progress.active_mood::-webkit-progress-value, .progress.play_element:active::-webkit-progress-value {
+.progress.is-primary::-webkit-progress-value, nav.progress::-webkit-progress-value, .progress.is-playing::-webkit-progress-value, .progress.play_element:active::-webkit-progress-value {
   background-color: #00d1b2;
 }
 
-.progress.is-primary::-moz-progress-bar, nav.progress::-moz-progress-bar, .progress.active_mood::-moz-progress-bar, .progress.play_element:active::-moz-progress-bar {
+.progress.is-primary::-moz-progress-bar, nav.progress::-moz-progress-bar, .progress.is-playing::-moz-progress-bar, .progress.play_element:active::-moz-progress-bar {
   background-color: #00d1b2;
 }
 
-.progress.is-primary::-ms-fill, nav.progress::-ms-fill, .progress.active_mood::-ms-fill, .progress.play_element:active::-ms-fill {
+.progress.is-primary::-ms-fill, nav.progress::-ms-fill, .progress.is-playing::-ms-fill, .progress.play_element:active::-ms-fill {
   background-color: #00d1b2;
 }
 
-.progress.is-primary:indeterminate, nav.progress:indeterminate, .progress.active_mood:indeterminate, .progress.play_element:indeterminate:active {
+.progress.is-primary:indeterminate, nav.progress:indeterminate, .progress.is-playing:indeterminate, .progress.play_element:indeterminate:active {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(30%, #00d1b2), color-stop(30%, #ededed));
   background-image: linear-gradient(to right, #00d1b2 30%, #ededed 30%);
 }
@@ -2937,9 +2937,9 @@ fieldset[disabled] button {
   color: #fff;
 }
 
-.table td.is-primary, .table td.active_mood, .table td.play_element:active,
+.table td.is-primary, .table td.is-playing, .table td.play_element:active,
 .table th.is-primary,
-.table th.active_mood,
+.table th.is-playing,
 .table th.play_element:active {
   background-color: #00d1b2;
   border-color: #00d1b2;
@@ -3227,12 +3227,12 @@ div.table.OneShots th {
   color: #fff;
 }
 
-.tag:not(body).is-primary, nav.tag:not(body), .tag.active_mood:not(body), .tag.play_element:not(body):active {
+.tag:not(body).is-primary, nav.tag:not(body), .tag.is-playing:not(body), .tag.play_element:not(body):active {
   background-color: #00d1b2;
   color: #fff;
 }
 
-.tag:not(body).is-primary.is-light, nav.tag:not(body).is-light, .tag.active_mood:not(body).is-light, .tag.play_element:not(body).is-light:active {
+.tag:not(body).is-primary.is-light, nav.tag:not(body).is-light, .tag.is-playing:not(body).is-light, .tag.play_element:not(body).is-light:active {
   background-color: #ebfffc;
   color: #00947e;
 }
@@ -3647,11 +3647,11 @@ fieldset[disabled] .select select:-ms-input-placeholder,
           box-shadow: 0 0 0 0.125em rgba(54, 54, 54, 0.25);
 }
 
-.is-primary.input, nav.input, .input.active_mood, .input.play_element:active, .is-primary.textarea, nav.textarea, .textarea.active_mood, .textarea.play_element:active {
+.is-primary.input, nav.input, .input.is-playing, .input.play_element:active, .is-primary.textarea, nav.textarea, .textarea.is-playing, .textarea.play_element:active {
   border-color: #00d1b2;
 }
 
-.is-primary.input:focus, nav.input:focus, .input.active_mood:focus, .input.play_element:focus:active, .is-primary.textarea:focus, nav.textarea:focus, .textarea.active_mood:focus, .textarea.play_element:focus:active, .is-primary.is-focused.input, nav.is-focused.input, .is-focused.input.active_mood, .is-focused.input.play_element:active, .is-primary.is-focused.textarea, nav.is-focused.textarea, .is-focused.textarea.active_mood, .is-focused.textarea.play_element:active, .is-primary.input:active, nav.input:active, .input.active_mood:active, .input.play_element:active, .is-primary.textarea:active, nav.textarea:active, .textarea.active_mood:active, .textarea.play_element:active, .is-primary.is-active.input, nav.is-active.input, nav nav.input.navbar-menu, nav .is-primary.input.navbar-menu, nav .input.navbar-menu.active_mood, nav .input.navbar-menu.play_element:active, .is-active.input.active_mood, .is-active.input.play_element:active, .is-primary.is-active.textarea, nav.is-active.textarea, nav nav.textarea.navbar-menu, nav .is-primary.textarea.navbar-menu, nav .textarea.navbar-menu.active_mood, nav .textarea.navbar-menu.play_element:active, .is-active.textarea.active_mood, .is-active.textarea.play_element:active {
+.is-primary.input:focus, nav.input:focus, .input.is-playing:focus, .input.play_element:focus:active, .is-primary.textarea:focus, nav.textarea:focus, .textarea.is-playing:focus, .textarea.play_element:focus:active, .is-primary.is-focused.input, nav.is-focused.input, .is-focused.input.is-playing, .is-focused.input.play_element:active, .is-primary.is-focused.textarea, nav.is-focused.textarea, .is-focused.textarea.is-playing, .is-focused.textarea.play_element:active, .is-primary.input:active, nav.input:active, .input.is-playing:active, .input.play_element:active, .is-primary.textarea:active, nav.textarea:active, .textarea.is-playing:active, .textarea.play_element:active, .is-primary.is-active.input, nav.is-active.input, nav nav.input.navbar-menu, nav .is-primary.input.navbar-menu, nav .input.navbar-menu.is-playing, nav .input.navbar-menu.play_element:active, .is-active.input.is-playing, .is-active.input.play_element:active, .is-primary.is-active.textarea, nav.is-active.textarea, nav nav.textarea.navbar-menu, nav .is-primary.textarea.navbar-menu, nav .textarea.navbar-menu.is-playing, nav .textarea.navbar-menu.play_element:active, .is-active.textarea.is-playing, .is-active.textarea.play_element:active {
   -webkit-box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
           box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
 }
@@ -3912,19 +3912,19 @@ fieldset[disabled] .select select:hover {
           box-shadow: 0 0 0 0.125em rgba(54, 54, 54, 0.25);
 }
 
-.select.is-primary:not(:hover)::after, nav.select:not(:hover)::after, .select.active_mood:not(:hover)::after, .select.play_element:active:not(:hover)::after {
+.select.is-primary:not(:hover)::after, nav.select:not(:hover)::after, .select.is-playing:not(:hover)::after, .select.play_element:active:not(:hover)::after {
   border-color: #00d1b2;
 }
 
-.select.is-primary select, nav.select select, .select.active_mood select, .select.play_element:active select {
+.select.is-primary select, nav.select select, .select.is-playing select, .select.play_element:active select {
   border-color: #00d1b2;
 }
 
-.select.is-primary select:hover, nav.select select:hover, .select.active_mood select:hover, .select.play_element:active select:hover, .select.is-primary select.is-hovered, nav.select select.is-hovered, .select.active_mood select.is-hovered, .select.play_element:active select.is-hovered {
+.select.is-primary select:hover, nav.select select:hover, .select.is-playing select:hover, .select.play_element:active select:hover, .select.is-primary select.is-hovered, nav.select select.is-hovered, .select.is-playing select.is-hovered, .select.play_element:active select.is-hovered {
   border-color: #00b89c;
 }
 
-.select.is-primary select:focus, nav.select select:focus, .select.active_mood select:focus, .select.play_element:active select:focus, .select.is-primary select.is-focused, nav.select select.is-focused, .select.active_mood select.is-focused, .select.play_element:active select.is-focused, .select.is-primary select:active, nav.select select:active, .select.active_mood select:active, .select.play_element:active select:active, .select.is-primary select.is-active, nav.select select.is-active, .select.active_mood select.is-active, .select.play_element:active select.is-active, .select.is-primary nav select.navbar-menu, nav .select.is-primary select.navbar-menu, nav.select select.navbar-menu, .select.active_mood nav select.navbar-menu, nav .select.active_mood select.navbar-menu, .select.play_element:active nav select.navbar-menu, nav .select.play_element:active select.navbar-menu {
+.select.is-primary select:focus, nav.select select:focus, .select.is-playing select:focus, .select.play_element:active select:focus, .select.is-primary select.is-focused, nav.select select.is-focused, .select.is-playing select.is-focused, .select.play_element:active select.is-focused, .select.is-primary select:active, nav.select select:active, .select.is-playing select:active, .select.play_element:active select:active, .select.is-primary select.is-active, nav.select select.is-active, .select.is-playing select.is-active, .select.play_element:active select.is-active, .select.is-primary nav select.navbar-menu, nav .select.is-primary select.navbar-menu, nav.select select.navbar-menu, .select.is-playing nav select.navbar-menu, nav .select.is-playing select.navbar-menu, .select.play_element:active nav select.navbar-menu, nav .select.play_element:active select.navbar-menu {
   -webkit-box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
           box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
 }
@@ -4173,26 +4173,26 @@ fieldset[disabled] .select select:hover {
   color: #fff;
 }
 
-.file.is-primary .file-cta, nav.file .file-cta, .file.active_mood .file-cta, .file.play_element:active .file-cta {
+.file.is-primary .file-cta, nav.file .file-cta, .file.is-playing .file-cta, .file.play_element:active .file-cta {
   background-color: #00d1b2;
   border-color: transparent;
   color: #fff;
 }
 
-.file.is-primary:hover .file-cta, nav.file:hover .file-cta, .file.active_mood:hover .file-cta, .file.play_element:hover:active .file-cta, .file.is-primary.is-hovered .file-cta, nav.file.is-hovered .file-cta, .file.is-hovered.active_mood .file-cta, .file.is-hovered.play_element:active .file-cta {
+.file.is-primary:hover .file-cta, nav.file:hover .file-cta, .file.is-playing:hover .file-cta, .file.play_element:hover:active .file-cta, .file.is-primary.is-hovered .file-cta, nav.file.is-hovered .file-cta, .file.is-hovered.is-playing .file-cta, .file.is-hovered.play_element:active .file-cta {
   background-color: #00c4a7;
   border-color: transparent;
   color: #fff;
 }
 
-.file.is-primary:focus .file-cta, nav.file:focus .file-cta, .file.active_mood:focus .file-cta, .file.play_element:focus:active .file-cta, .file.is-primary.is-focused .file-cta, nav.file.is-focused .file-cta, .file.is-focused.active_mood .file-cta, .file.is-focused.play_element:active .file-cta {
+.file.is-primary:focus .file-cta, nav.file:focus .file-cta, .file.is-playing:focus .file-cta, .file.play_element:focus:active .file-cta, .file.is-primary.is-focused .file-cta, nav.file.is-focused .file-cta, .file.is-focused.is-playing .file-cta, .file.is-focused.play_element:active .file-cta {
   border-color: transparent;
   -webkit-box-shadow: 0 0 0.5em rgba(0, 209, 178, 0.25);
           box-shadow: 0 0 0.5em rgba(0, 209, 178, 0.25);
   color: #fff;
 }
 
-.file.is-primary:active .file-cta, nav.file:active .file-cta, .file.active_mood:active .file-cta, .file.play_element:active .file-cta, .file.is-primary.is-active .file-cta, nav.file.is-active .file-cta, nav nav.file.navbar-menu .file-cta, nav .file.is-primary.navbar-menu .file-cta, nav .file.navbar-menu.active_mood .file-cta, nav .file.navbar-menu.play_element:active .file-cta, .file.is-active.active_mood .file-cta, .file.is-active.play_element:active .file-cta {
+.file.is-primary:active .file-cta, nav.file:active .file-cta, .file.is-playing:active .file-cta, .file.play_element:active .file-cta, .file.is-primary.is-active .file-cta, nav.file.is-active .file-cta, nav nav.file.navbar-menu .file-cta, nav .file.is-primary.navbar-menu .file-cta, nav .file.navbar-menu.is-playing .file-cta, nav .file.navbar-menu.play_element:active .file-cta, .file.is-active.is-playing .file-cta, .file.is-active.play_element:active .file-cta {
   background-color: #00b89c;
   border-color: transparent;
   color: #fff;
@@ -4579,7 +4579,7 @@ fieldset[disabled] .select select:hover {
   color: #363636;
 }
 
-.help.is-primary, nav.help, .help.active_mood, .help.play_element:active {
+.help.is-primary, nav.help, .help.is-playing, .help.play_element:active {
   color: #00d1b2;
 }
 
@@ -5633,16 +5633,16 @@ nav button.dropdown-item.navbar-menu {
   border-color: #363636;
 }
 
-.message.is-primary, nav.message, .message.active_mood, .message.play_element:active {
+.message.is-primary, nav.message, .message.is-playing, .message.play_element:active {
   background-color: #ebfffc;
 }
 
-.message.is-primary .message-header, nav.message .message-header, .message.active_mood .message-header, .message.play_element:active .message-header {
+.message.is-primary .message-header, nav.message .message-header, .message.is-playing .message-header, .message.play_element:active .message-header {
   background-color: #00d1b2;
   color: #fff;
 }
 
-.message.is-primary .message-body, nav.message .message-body, .message.active_mood .message-body, .message.play_element:active .message-body {
+.message.is-primary .message-body, nav.message .message-body, .message.is-playing .message-body, .message.play_element:active .message-body {
   border-color: #00d1b2;
   color: #00947e;
 }
@@ -6284,46 +6284,46 @@ nav.is-dark .navbar-brand .navbar-link.navbar-menu {
   }
 }
 
-.navbar.is-primary, nav, .navbar.active_mood, nav.active_mood, .navbar.play_element:active, nav.play_element:active {
+.navbar.is-primary, nav, .navbar.is-playing, nav.is-playing, .navbar.play_element:active, nav.play_element:active {
   background-color: #00d1b2;
   color: #fff;
 }
 
-.navbar.is-primary .navbar-brand > .navbar-item, nav .navbar-brand > .navbar-item, .navbar.active_mood .navbar-brand > .navbar-item, nav.active_mood .navbar-brand > .navbar-item, .navbar.play_element:active .navbar-brand > .navbar-item, nav.play_element:active .navbar-brand > .navbar-item,
+.navbar.is-primary .navbar-brand > .navbar-item, nav .navbar-brand > .navbar-item, .navbar.is-playing .navbar-brand > .navbar-item, nav.is-playing .navbar-brand > .navbar-item, .navbar.play_element:active .navbar-brand > .navbar-item, nav.play_element:active .navbar-brand > .navbar-item,
 .navbar.is-primary .navbar-brand .navbar-link,
 nav .navbar-brand .navbar-link,
-.navbar.active_mood .navbar-brand .navbar-link,
-nav.active_mood .navbar-brand .navbar-link,
+.navbar.is-playing .navbar-brand .navbar-link,
+nav.is-playing .navbar-brand .navbar-link,
 .navbar.play_element:active .navbar-brand .navbar-link,
 nav.play_element:active .navbar-brand .navbar-link {
   color: #fff;
 }
 
-.navbar.is-primary .navbar-brand > a.navbar-item:focus, nav .navbar-brand > a.navbar-item:focus, .navbar.active_mood .navbar-brand > a.navbar-item:focus, nav.active_mood .navbar-brand > a.navbar-item:focus, .navbar.play_element:active .navbar-brand > a.navbar-item:focus, nav.play_element:active .navbar-brand > a.navbar-item:focus, .navbar.is-primary .navbar-brand > a.navbar-item:hover, nav .navbar-brand > a.navbar-item:hover, .navbar.active_mood .navbar-brand > a.navbar-item:hover, nav.active_mood .navbar-brand > a.navbar-item:hover, .navbar.play_element:active .navbar-brand > a.navbar-item:hover, nav.play_element:active .navbar-brand > a.navbar-item:hover, .navbar.is-primary .navbar-brand > a.navbar-item.is-active, nav .navbar-brand > a.navbar-item.is-active, .navbar.active_mood .navbar-brand > a.navbar-item.is-active, nav.active_mood .navbar-brand > a.navbar-item.is-active, .navbar.play_element:active .navbar-brand > a.navbar-item.is-active, nav.play_element:active .navbar-brand > a.navbar-item.is-active, .navbar.is-primary nav .navbar-brand > a.navbar-item.navbar-menu, nav .navbar.is-primary .navbar-brand > a.navbar-item.navbar-menu, nav .navbar-brand > a.navbar-item.navbar-menu, .navbar.active_mood nav .navbar-brand > a.navbar-item.navbar-menu, nav .navbar.active_mood .navbar-brand > a.navbar-item.navbar-menu, nav.active_mood .navbar-brand > a.navbar-item.navbar-menu, .navbar.play_element:active nav .navbar-brand > a.navbar-item.navbar-menu, nav .navbar.play_element:active .navbar-brand > a.navbar-item.navbar-menu, nav.play_element:active .navbar-brand > a.navbar-item.navbar-menu,
+.navbar.is-primary .navbar-brand > a.navbar-item:focus, nav .navbar-brand > a.navbar-item:focus, .navbar.is-playing .navbar-brand > a.navbar-item:focus, nav.is-playing .navbar-brand > a.navbar-item:focus, .navbar.play_element:active .navbar-brand > a.navbar-item:focus, nav.play_element:active .navbar-brand > a.navbar-item:focus, .navbar.is-primary .navbar-brand > a.navbar-item:hover, nav .navbar-brand > a.navbar-item:hover, .navbar.is-playing .navbar-brand > a.navbar-item:hover, nav.is-playing .navbar-brand > a.navbar-item:hover, .navbar.play_element:active .navbar-brand > a.navbar-item:hover, nav.play_element:active .navbar-brand > a.navbar-item:hover, .navbar.is-primary .navbar-brand > a.navbar-item.is-active, nav .navbar-brand > a.navbar-item.is-active, .navbar.is-playing .navbar-brand > a.navbar-item.is-active, nav.is-playing .navbar-brand > a.navbar-item.is-active, .navbar.play_element:active .navbar-brand > a.navbar-item.is-active, nav.play_element:active .navbar-brand > a.navbar-item.is-active, .navbar.is-primary nav .navbar-brand > a.navbar-item.navbar-menu, nav .navbar.is-primary .navbar-brand > a.navbar-item.navbar-menu, nav .navbar-brand > a.navbar-item.navbar-menu, .navbar.is-playing nav .navbar-brand > a.navbar-item.navbar-menu, nav .navbar.is-playing .navbar-brand > a.navbar-item.navbar-menu, nav.is-playing .navbar-brand > a.navbar-item.navbar-menu, .navbar.play_element:active nav .navbar-brand > a.navbar-item.navbar-menu, nav .navbar.play_element:active .navbar-brand > a.navbar-item.navbar-menu, nav.play_element:active .navbar-brand > a.navbar-item.navbar-menu,
 .navbar.is-primary .navbar-brand .navbar-link:focus,
 nav .navbar-brand .navbar-link:focus,
-.navbar.active_mood .navbar-brand .navbar-link:focus,
-nav.active_mood .navbar-brand .navbar-link:focus,
+.navbar.is-playing .navbar-brand .navbar-link:focus,
+nav.is-playing .navbar-brand .navbar-link:focus,
 .navbar.play_element:active .navbar-brand .navbar-link:focus,
 nav.play_element:active .navbar-brand .navbar-link:focus,
 .navbar.is-primary .navbar-brand .navbar-link:hover,
 nav .navbar-brand .navbar-link:hover,
-.navbar.active_mood .navbar-brand .navbar-link:hover,
-nav.active_mood .navbar-brand .navbar-link:hover,
+.navbar.is-playing .navbar-brand .navbar-link:hover,
+nav.is-playing .navbar-brand .navbar-link:hover,
 .navbar.play_element:active .navbar-brand .navbar-link:hover,
 nav.play_element:active .navbar-brand .navbar-link:hover,
 .navbar.is-primary .navbar-brand .navbar-link.is-active,
 nav .navbar-brand .navbar-link.is-active,
-.navbar.active_mood .navbar-brand .navbar-link.is-active,
-nav.active_mood .navbar-brand .navbar-link.is-active,
+.navbar.is-playing .navbar-brand .navbar-link.is-active,
+nav.is-playing .navbar-brand .navbar-link.is-active,
 .navbar.play_element:active .navbar-brand .navbar-link.is-active,
 nav.play_element:active .navbar-brand .navbar-link.is-active,
 .navbar.is-primary .navbar-brand nav .navbar-link.navbar-menu,
 nav .navbar.is-primary .navbar-brand .navbar-link.navbar-menu,
 nav .navbar-brand .navbar-link.navbar-menu,
-.navbar.active_mood .navbar-brand nav .navbar-link.navbar-menu,
-nav .navbar.active_mood .navbar-brand .navbar-link.navbar-menu,
-nav.active_mood .navbar-brand .navbar-link.navbar-menu,
+.navbar.is-playing .navbar-brand nav .navbar-link.navbar-menu,
+nav .navbar.is-playing .navbar-brand .navbar-link.navbar-menu,
+nav.is-playing .navbar-brand .navbar-link.navbar-menu,
 .navbar.play_element:active .navbar-brand nav .navbar-link.navbar-menu,
 nav .navbar.play_element:active .navbar-brand .navbar-link.navbar-menu,
 nav.play_element:active .navbar-brand .navbar-link.navbar-menu {
@@ -6331,156 +6331,156 @@ nav.play_element:active .navbar-brand .navbar-link.navbar-menu {
   color: #fff;
 }
 
-.navbar.is-primary .navbar-brand .navbar-link::after, nav .navbar-brand .navbar-link::after, .navbar.active_mood .navbar-brand .navbar-link::after, nav.active_mood .navbar-brand .navbar-link::after, .navbar.play_element:active .navbar-brand .navbar-link::after, nav.play_element:active .navbar-brand .navbar-link::after {
+.navbar.is-primary .navbar-brand .navbar-link::after, nav .navbar-brand .navbar-link::after, .navbar.is-playing .navbar-brand .navbar-link::after, nav.is-playing .navbar-brand .navbar-link::after, .navbar.play_element:active .navbar-brand .navbar-link::after, nav.play_element:active .navbar-brand .navbar-link::after {
   border-color: #fff;
 }
 
-.navbar.is-primary .navbar-burger, nav .navbar-burger, .navbar.active_mood .navbar-burger, nav.active_mood .navbar-burger, .navbar.play_element:active .navbar-burger, nav.play_element:active .navbar-burger {
+.navbar.is-primary .navbar-burger, nav .navbar-burger, .navbar.is-playing .navbar-burger, nav.is-playing .navbar-burger, .navbar.play_element:active .navbar-burger, nav.play_element:active .navbar-burger {
   color: #fff;
 }
 
 @media screen and (min-width: 1024px) {
-  .navbar.is-primary .navbar-start > .navbar-item, nav .navbar-start > .navbar-item, .navbar.active_mood .navbar-start > .navbar-item, nav.active_mood .navbar-start > .navbar-item, .navbar.play_element:active .navbar-start > .navbar-item, nav.play_element:active .navbar-start > .navbar-item,
+  .navbar.is-primary .navbar-start > .navbar-item, nav .navbar-start > .navbar-item, .navbar.is-playing .navbar-start > .navbar-item, nav.is-playing .navbar-start > .navbar-item, .navbar.play_element:active .navbar-start > .navbar-item, nav.play_element:active .navbar-start > .navbar-item,
   .navbar.is-primary .navbar-start .navbar-link,
   nav .navbar-start .navbar-link,
-  .navbar.active_mood .navbar-start .navbar-link,
-  nav.active_mood .navbar-start .navbar-link,
+  .navbar.is-playing .navbar-start .navbar-link,
+  nav.is-playing .navbar-start .navbar-link,
   .navbar.play_element:active .navbar-start .navbar-link,
   nav.play_element:active .navbar-start .navbar-link,
   .navbar.is-primary .navbar-end > .navbar-item,
   nav .navbar-end > .navbar-item,
-  .navbar.active_mood .navbar-end > .navbar-item,
-  nav.active_mood .navbar-end > .navbar-item,
+  .navbar.is-playing .navbar-end > .navbar-item,
+  nav.is-playing .navbar-end > .navbar-item,
   .navbar.play_element:active .navbar-end > .navbar-item,
   nav.play_element:active .navbar-end > .navbar-item,
   .navbar.is-primary .navbar-end .navbar-link,
   nav .navbar-end .navbar-link,
-  .navbar.active_mood .navbar-end .navbar-link,
-  nav.active_mood .navbar-end .navbar-link,
+  .navbar.is-playing .navbar-end .navbar-link,
+  nav.is-playing .navbar-end .navbar-link,
   .navbar.play_element:active .navbar-end .navbar-link,
   nav.play_element:active .navbar-end .navbar-link {
     color: #fff;
   }
-  .navbar.is-primary .navbar-start > a.navbar-item:focus, nav .navbar-start > a.navbar-item:focus, .navbar.active_mood .navbar-start > a.navbar-item:focus, nav.active_mood .navbar-start > a.navbar-item:focus, .navbar.play_element:active .navbar-start > a.navbar-item:focus, nav.play_element:active .navbar-start > a.navbar-item:focus, .navbar.is-primary .navbar-start > a.navbar-item:hover, nav .navbar-start > a.navbar-item:hover, .navbar.active_mood .navbar-start > a.navbar-item:hover, nav.active_mood .navbar-start > a.navbar-item:hover, .navbar.play_element:active .navbar-start > a.navbar-item:hover, nav.play_element:active .navbar-start > a.navbar-item:hover, .navbar.is-primary .navbar-start > a.navbar-item.is-active, nav .navbar-start > a.navbar-item.is-active, .navbar.active_mood .navbar-start > a.navbar-item.is-active, nav.active_mood .navbar-start > a.navbar-item.is-active, .navbar.play_element:active .navbar-start > a.navbar-item.is-active, nav.play_element:active .navbar-start > a.navbar-item.is-active, .navbar.is-primary nav .navbar-start > a.navbar-item.navbar-menu, nav .navbar.is-primary .navbar-start > a.navbar-item.navbar-menu, nav .navbar-start > a.navbar-item.navbar-menu, .navbar.active_mood nav .navbar-start > a.navbar-item.navbar-menu, nav .navbar.active_mood .navbar-start > a.navbar-item.navbar-menu, nav.active_mood .navbar-start > a.navbar-item.navbar-menu, .navbar.play_element:active nav .navbar-start > a.navbar-item.navbar-menu, nav .navbar.play_element:active .navbar-start > a.navbar-item.navbar-menu, nav.play_element:active .navbar-start > a.navbar-item.navbar-menu,
+  .navbar.is-primary .navbar-start > a.navbar-item:focus, nav .navbar-start > a.navbar-item:focus, .navbar.is-playing .navbar-start > a.navbar-item:focus, nav.is-playing .navbar-start > a.navbar-item:focus, .navbar.play_element:active .navbar-start > a.navbar-item:focus, nav.play_element:active .navbar-start > a.navbar-item:focus, .navbar.is-primary .navbar-start > a.navbar-item:hover, nav .navbar-start > a.navbar-item:hover, .navbar.is-playing .navbar-start > a.navbar-item:hover, nav.is-playing .navbar-start > a.navbar-item:hover, .navbar.play_element:active .navbar-start > a.navbar-item:hover, nav.play_element:active .navbar-start > a.navbar-item:hover, .navbar.is-primary .navbar-start > a.navbar-item.is-active, nav .navbar-start > a.navbar-item.is-active, .navbar.is-playing .navbar-start > a.navbar-item.is-active, nav.is-playing .navbar-start > a.navbar-item.is-active, .navbar.play_element:active .navbar-start > a.navbar-item.is-active, nav.play_element:active .navbar-start > a.navbar-item.is-active, .navbar.is-primary nav .navbar-start > a.navbar-item.navbar-menu, nav .navbar.is-primary .navbar-start > a.navbar-item.navbar-menu, nav .navbar-start > a.navbar-item.navbar-menu, .navbar.is-playing nav .navbar-start > a.navbar-item.navbar-menu, nav .navbar.is-playing .navbar-start > a.navbar-item.navbar-menu, nav.is-playing .navbar-start > a.navbar-item.navbar-menu, .navbar.play_element:active nav .navbar-start > a.navbar-item.navbar-menu, nav .navbar.play_element:active .navbar-start > a.navbar-item.navbar-menu, nav.play_element:active .navbar-start > a.navbar-item.navbar-menu,
   .navbar.is-primary .navbar-start .navbar-link:focus,
   nav .navbar-start .navbar-link:focus,
-  .navbar.active_mood .navbar-start .navbar-link:focus,
-  nav.active_mood .navbar-start .navbar-link:focus,
+  .navbar.is-playing .navbar-start .navbar-link:focus,
+  nav.is-playing .navbar-start .navbar-link:focus,
   .navbar.play_element:active .navbar-start .navbar-link:focus,
   nav.play_element:active .navbar-start .navbar-link:focus,
   .navbar.is-primary .navbar-start .navbar-link:hover,
   nav .navbar-start .navbar-link:hover,
-  .navbar.active_mood .navbar-start .navbar-link:hover,
-  nav.active_mood .navbar-start .navbar-link:hover,
+  .navbar.is-playing .navbar-start .navbar-link:hover,
+  nav.is-playing .navbar-start .navbar-link:hover,
   .navbar.play_element:active .navbar-start .navbar-link:hover,
   nav.play_element:active .navbar-start .navbar-link:hover,
   .navbar.is-primary .navbar-start .navbar-link.is-active,
   nav .navbar-start .navbar-link.is-active,
-  .navbar.active_mood .navbar-start .navbar-link.is-active,
-  nav.active_mood .navbar-start .navbar-link.is-active,
+  .navbar.is-playing .navbar-start .navbar-link.is-active,
+  nav.is-playing .navbar-start .navbar-link.is-active,
   .navbar.play_element:active .navbar-start .navbar-link.is-active,
   nav.play_element:active .navbar-start .navbar-link.is-active,
   .navbar.is-primary .navbar-start nav .navbar-link.navbar-menu,
   nav .navbar.is-primary .navbar-start .navbar-link.navbar-menu,
   nav .navbar-start .navbar-link.navbar-menu,
-  .navbar.active_mood .navbar-start nav .navbar-link.navbar-menu,
-  nav .navbar.active_mood .navbar-start .navbar-link.navbar-menu,
-  nav.active_mood .navbar-start .navbar-link.navbar-menu,
+  .navbar.is-playing .navbar-start nav .navbar-link.navbar-menu,
+  nav .navbar.is-playing .navbar-start .navbar-link.navbar-menu,
+  nav.is-playing .navbar-start .navbar-link.navbar-menu,
   .navbar.play_element:active .navbar-start nav .navbar-link.navbar-menu,
   nav .navbar.play_element:active .navbar-start .navbar-link.navbar-menu,
   nav.play_element:active .navbar-start .navbar-link.navbar-menu,
   .navbar.is-primary .navbar-end > a.navbar-item:focus,
   nav .navbar-end > a.navbar-item:focus,
-  .navbar.active_mood .navbar-end > a.navbar-item:focus,
-  nav.active_mood .navbar-end > a.navbar-item:focus,
+  .navbar.is-playing .navbar-end > a.navbar-item:focus,
+  nav.is-playing .navbar-end > a.navbar-item:focus,
   .navbar.play_element:active .navbar-end > a.navbar-item:focus,
   nav.play_element:active .navbar-end > a.navbar-item:focus,
   .navbar.is-primary .navbar-end > a.navbar-item:hover,
   nav .navbar-end > a.navbar-item:hover,
-  .navbar.active_mood .navbar-end > a.navbar-item:hover,
-  nav.active_mood .navbar-end > a.navbar-item:hover,
+  .navbar.is-playing .navbar-end > a.navbar-item:hover,
+  nav.is-playing .navbar-end > a.navbar-item:hover,
   .navbar.play_element:active .navbar-end > a.navbar-item:hover,
   nav.play_element:active .navbar-end > a.navbar-item:hover,
   .navbar.is-primary .navbar-end > a.navbar-item.is-active,
   nav .navbar-end > a.navbar-item.is-active,
-  .navbar.active_mood .navbar-end > a.navbar-item.is-active,
-  nav.active_mood .navbar-end > a.navbar-item.is-active,
+  .navbar.is-playing .navbar-end > a.navbar-item.is-active,
+  nav.is-playing .navbar-end > a.navbar-item.is-active,
   .navbar.play_element:active .navbar-end > a.navbar-item.is-active,
   nav.play_element:active .navbar-end > a.navbar-item.is-active,
   .navbar.is-primary nav .navbar-end > a.navbar-item.navbar-menu,
   nav .navbar.is-primary .navbar-end > a.navbar-item.navbar-menu,
   nav .navbar-end > a.navbar-item.navbar-menu,
-  .navbar.active_mood nav .navbar-end > a.navbar-item.navbar-menu,
-  nav .navbar.active_mood .navbar-end > a.navbar-item.navbar-menu,
-  nav.active_mood .navbar-end > a.navbar-item.navbar-menu,
+  .navbar.is-playing nav .navbar-end > a.navbar-item.navbar-menu,
+  nav .navbar.is-playing .navbar-end > a.navbar-item.navbar-menu,
+  nav.is-playing .navbar-end > a.navbar-item.navbar-menu,
   .navbar.play_element:active nav .navbar-end > a.navbar-item.navbar-menu,
   nav .navbar.play_element:active .navbar-end > a.navbar-item.navbar-menu,
   nav.play_element:active .navbar-end > a.navbar-item.navbar-menu,
   .navbar.is-primary .navbar-end .navbar-link:focus,
   nav .navbar-end .navbar-link:focus,
-  .navbar.active_mood .navbar-end .navbar-link:focus,
-  nav.active_mood .navbar-end .navbar-link:focus,
+  .navbar.is-playing .navbar-end .navbar-link:focus,
+  nav.is-playing .navbar-end .navbar-link:focus,
   .navbar.play_element:active .navbar-end .navbar-link:focus,
   nav.play_element:active .navbar-end .navbar-link:focus,
   .navbar.is-primary .navbar-end .navbar-link:hover,
   nav .navbar-end .navbar-link:hover,
-  .navbar.active_mood .navbar-end .navbar-link:hover,
-  nav.active_mood .navbar-end .navbar-link:hover,
+  .navbar.is-playing .navbar-end .navbar-link:hover,
+  nav.is-playing .navbar-end .navbar-link:hover,
   .navbar.play_element:active .navbar-end .navbar-link:hover,
   nav.play_element:active .navbar-end .navbar-link:hover,
   .navbar.is-primary .navbar-end .navbar-link.is-active,
   nav .navbar-end .navbar-link.is-active,
-  .navbar.active_mood .navbar-end .navbar-link.is-active,
-  nav.active_mood .navbar-end .navbar-link.is-active,
+  .navbar.is-playing .navbar-end .navbar-link.is-active,
+  nav.is-playing .navbar-end .navbar-link.is-active,
   .navbar.play_element:active .navbar-end .navbar-link.is-active,
   nav.play_element:active .navbar-end .navbar-link.is-active,
   .navbar.is-primary .navbar-end nav .navbar-link.navbar-menu,
   nav .navbar.is-primary .navbar-end .navbar-link.navbar-menu,
   nav .navbar-end .navbar-link.navbar-menu,
-  .navbar.active_mood .navbar-end nav .navbar-link.navbar-menu,
-  nav .navbar.active_mood .navbar-end .navbar-link.navbar-menu,
-  nav.active_mood .navbar-end .navbar-link.navbar-menu,
+  .navbar.is-playing .navbar-end nav .navbar-link.navbar-menu,
+  nav .navbar.is-playing .navbar-end .navbar-link.navbar-menu,
+  nav.is-playing .navbar-end .navbar-link.navbar-menu,
   .navbar.play_element:active .navbar-end nav .navbar-link.navbar-menu,
   nav .navbar.play_element:active .navbar-end .navbar-link.navbar-menu,
   nav.play_element:active .navbar-end .navbar-link.navbar-menu {
     background-color: #00b89c;
     color: #fff;
   }
-  .navbar.is-primary .navbar-start .navbar-link::after, nav .navbar-start .navbar-link::after, .navbar.active_mood .navbar-start .navbar-link::after, nav.active_mood .navbar-start .navbar-link::after, .navbar.play_element:active .navbar-start .navbar-link::after, nav.play_element:active .navbar-start .navbar-link::after,
+  .navbar.is-primary .navbar-start .navbar-link::after, nav .navbar-start .navbar-link::after, .navbar.is-playing .navbar-start .navbar-link::after, nav.is-playing .navbar-start .navbar-link::after, .navbar.play_element:active .navbar-start .navbar-link::after, nav.play_element:active .navbar-start .navbar-link::after,
   .navbar.is-primary .navbar-end .navbar-link::after,
   nav .navbar-end .navbar-link::after,
-  .navbar.active_mood .navbar-end .navbar-link::after,
-  nav.active_mood .navbar-end .navbar-link::after,
+  .navbar.is-playing .navbar-end .navbar-link::after,
+  nav.is-playing .navbar-end .navbar-link::after,
   .navbar.play_element:active .navbar-end .navbar-link::after,
   nav.play_element:active .navbar-end .navbar-link::after {
     border-color: #fff;
   }
-  .navbar.is-primary .navbar-item.has-dropdown:focus .navbar-link, nav .navbar-item.has-dropdown:focus .navbar-link, .navbar.active_mood .navbar-item.has-dropdown:focus .navbar-link, nav.active_mood .navbar-item.has-dropdown:focus .navbar-link, .navbar.play_element:active .navbar-item.has-dropdown:focus .navbar-link, nav.play_element:active .navbar-item.has-dropdown:focus .navbar-link,
+  .navbar.is-primary .navbar-item.has-dropdown:focus .navbar-link, nav .navbar-item.has-dropdown:focus .navbar-link, .navbar.is-playing .navbar-item.has-dropdown:focus .navbar-link, nav.is-playing .navbar-item.has-dropdown:focus .navbar-link, .navbar.play_element:active .navbar-item.has-dropdown:focus .navbar-link, nav.play_element:active .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-primary .navbar-item.has-dropdown:hover .navbar-link,
   nav .navbar-item.has-dropdown:hover .navbar-link,
-  .navbar.active_mood .navbar-item.has-dropdown:hover .navbar-link,
-  nav.active_mood .navbar-item.has-dropdown:hover .navbar-link,
+  .navbar.is-playing .navbar-item.has-dropdown:hover .navbar-link,
+  nav.is-playing .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.play_element:active .navbar-item.has-dropdown:hover .navbar-link,
   nav.play_element:active .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-primary .navbar-item.has-dropdown.is-active .navbar-link,
   nav .navbar-item.has-dropdown.is-active .navbar-link,
-  .navbar.active_mood .navbar-item.has-dropdown.is-active .navbar-link,
-  nav.active_mood .navbar-item.has-dropdown.is-active .navbar-link,
+  .navbar.is-playing .navbar-item.has-dropdown.is-active .navbar-link,
+  nav.is-playing .navbar-item.has-dropdown.is-active .navbar-link,
   .navbar.play_element:active .navbar-item.has-dropdown.is-active .navbar-link,
   nav.play_element:active .navbar-item.has-dropdown.is-active .navbar-link,
   .navbar.is-primary nav .navbar-item.has-dropdown.navbar-menu .navbar-link,
   nav .navbar.is-primary .navbar-item.has-dropdown.navbar-menu .navbar-link,
   nav .navbar-item.has-dropdown.navbar-menu .navbar-link,
-  .navbar.active_mood nav .navbar-item.has-dropdown.navbar-menu .navbar-link,
-  nav .navbar.active_mood .navbar-item.has-dropdown.navbar-menu .navbar-link,
-  nav.active_mood .navbar-item.has-dropdown.navbar-menu .navbar-link,
+  .navbar.is-playing nav .navbar-item.has-dropdown.navbar-menu .navbar-link,
+  nav .navbar.is-playing .navbar-item.has-dropdown.navbar-menu .navbar-link,
+  nav.is-playing .navbar-item.has-dropdown.navbar-menu .navbar-link,
   .navbar.play_element:active nav .navbar-item.has-dropdown.navbar-menu .navbar-link,
   nav .navbar.play_element:active .navbar-item.has-dropdown.navbar-menu .navbar-link,
   nav.play_element:active .navbar-item.has-dropdown.navbar-menu .navbar-link {
     background-color: #00b89c;
     color: #fff;
   }
-  .navbar.is-primary .navbar-dropdown a.navbar-item.is-active, nav .navbar-dropdown a.navbar-item.is-active, .navbar.active_mood .navbar-dropdown a.navbar-item.is-active, nav.active_mood .navbar-dropdown a.navbar-item.is-active, .navbar.play_element:active .navbar-dropdown a.navbar-item.is-active, nav.play_element:active .navbar-dropdown a.navbar-item.is-active, .navbar.is-primary .navbar-dropdown nav a.navbar-item.navbar-menu, nav .navbar.is-primary .navbar-dropdown a.navbar-item.navbar-menu, nav .navbar-dropdown a.navbar-item.navbar-menu, .navbar.active_mood .navbar-dropdown nav a.navbar-item.navbar-menu, nav .navbar.active_mood .navbar-dropdown a.navbar-item.navbar-menu, nav.active_mood .navbar-dropdown a.navbar-item.navbar-menu, .navbar.play_element:active .navbar-dropdown nav a.navbar-item.navbar-menu, nav .navbar.play_element:active .navbar-dropdown a.navbar-item.navbar-menu, nav.play_element:active .navbar-dropdown a.navbar-item.navbar-menu {
+  .navbar.is-primary .navbar-dropdown a.navbar-item.is-active, nav .navbar-dropdown a.navbar-item.is-active, .navbar.is-playing .navbar-dropdown a.navbar-item.is-active, nav.is-playing .navbar-dropdown a.navbar-item.is-active, .navbar.play_element:active .navbar-dropdown a.navbar-item.is-active, nav.play_element:active .navbar-dropdown a.navbar-item.is-active, .navbar.is-primary .navbar-dropdown nav a.navbar-item.navbar-menu, nav .navbar.is-primary .navbar-dropdown a.navbar-item.navbar-menu, nav .navbar-dropdown a.navbar-item.navbar-menu, .navbar.is-playing .navbar-dropdown nav a.navbar-item.navbar-menu, nav .navbar.is-playing .navbar-dropdown a.navbar-item.navbar-menu, nav.is-playing .navbar-dropdown a.navbar-item.navbar-menu, .navbar.play_element:active .navbar-dropdown nav a.navbar-item.navbar-menu, nav .navbar.play_element:active .navbar-dropdown a.navbar-item.navbar-menu, nav.play_element:active .navbar-dropdown a.navbar-item.navbar-menu {
     background-color: #00d1b2;
     color: #fff;
   }
@@ -7820,16 +7820,16 @@ nav .navbar-link.navbar-menu {
   color: #363636;
 }
 
-.panel.is-primary .panel-heading, nav.panel .panel-heading, .panel.active_mood .panel-heading, .panel.play_element:active .panel-heading {
+.panel.is-primary .panel-heading, nav.panel .panel-heading, .panel.is-playing .panel-heading, .panel.play_element:active .panel-heading {
   background-color: #00d1b2;
   color: #fff;
 }
 
-.panel.is-primary .panel-tabs a.is-active, nav.panel .panel-tabs a.is-active, .panel.active_mood .panel-tabs a.is-active, .panel.play_element:active .panel-tabs a.is-active, .panel.is-primary .panel-tabs nav a.navbar-menu, nav .panel.is-primary .panel-tabs a.navbar-menu, nav.panel .panel-tabs a.navbar-menu, .panel.active_mood .panel-tabs nav a.navbar-menu, nav .panel.active_mood .panel-tabs a.navbar-menu, .panel.play_element:active .panel-tabs nav a.navbar-menu, nav .panel.play_element:active .panel-tabs a.navbar-menu {
+.panel.is-primary .panel-tabs a.is-active, nav.panel .panel-tabs a.is-active, .panel.is-playing .panel-tabs a.is-active, .panel.play_element:active .panel-tabs a.is-active, .panel.is-primary .panel-tabs nav a.navbar-menu, nav .panel.is-primary .panel-tabs a.navbar-menu, nav.panel .panel-tabs a.navbar-menu, .panel.is-playing .panel-tabs nav a.navbar-menu, nav .panel.is-playing .panel-tabs a.navbar-menu, .panel.play_element:active .panel-tabs nav a.navbar-menu, nav .panel.play_element:active .panel-tabs a.navbar-menu {
   border-bottom-color: #00d1b2;
 }
 
-.panel.is-primary .panel-block.is-active .panel-icon, nav.panel .panel-block.is-active .panel-icon, .panel.active_mood .panel-block.is-active .panel-icon, .panel.play_element:active .panel-block.is-active .panel-icon, .panel.is-primary nav .panel-block.navbar-menu .panel-icon, nav .panel.is-primary .panel-block.navbar-menu .panel-icon, nav.panel .panel-block.navbar-menu .panel-icon, .panel.active_mood nav .panel-block.navbar-menu .panel-icon, nav .panel.active_mood .panel-block.navbar-menu .panel-icon, .panel.play_element:active nav .panel-block.navbar-menu .panel-icon, nav .panel.play_element:active .panel-block.navbar-menu .panel-icon {
+.panel.is-primary .panel-block.is-active .panel-icon, nav.panel .panel-block.is-active .panel-icon, .panel.is-playing .panel-block.is-active .panel-icon, .panel.play_element:active .panel-block.is-active .panel-icon, .panel.is-primary nav .panel-block.navbar-menu .panel-icon, nav .panel.is-primary .panel-block.navbar-menu .panel-icon, nav.panel .panel-block.navbar-menu .panel-icon, .panel.is-playing nav .panel-block.navbar-menu .panel-icon, nav .panel.is-playing .panel-block.navbar-menu .panel-icon, .panel.play_element:active nav .panel-block.navbar-menu .panel-icon, nav .panel.play_element:active .panel-block.navbar-menu .panel-icon {
   color: #00d1b2;
 }
 
@@ -12859,102 +12859,102 @@ nav .hero.is-dark .navbar-link.navbar-menu {
   }
 }
 
-.hero.is-primary, nav.hero, .hero.active_mood, .hero.play_element:active {
+.hero.is-primary, nav.hero, .hero.is-playing, .hero.play_element:active {
   background-color: #00d1b2;
   color: #fff;
 }
 
-.hero.is-primary a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current), nav.hero a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current), .hero.active_mood a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current), .hero.play_element:active a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current),
+.hero.is-primary a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current), nav.hero a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current), .hero.is-playing a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current), .hero.play_element:active a:not(.button):not(button):not(.dropdown-item):not(.tag):not(.pagination-link.is-current),
 .hero.is-primary strong,
 nav.hero strong,
-.hero.active_mood strong,
+.hero.is-playing strong,
 .hero.play_element:active strong {
   color: inherit;
 }
 
-.hero.is-primary .title, nav.hero .title, .hero.active_mood .title, .hero.play_element:active .title, .hero.is-primary h1, nav.hero h1, .hero.active_mood h1, .hero.play_element:active h1 {
+.hero.is-primary .title, nav.hero .title, .hero.is-playing .title, .hero.play_element:active .title, .hero.is-primary h1, nav.hero h1, .hero.is-playing h1, .hero.play_element:active h1 {
   color: #fff;
 }
 
-.hero.is-primary .subtitle, nav.hero .subtitle, .hero.active_mood .subtitle, .hero.play_element:active .subtitle {
+.hero.is-primary .subtitle, nav.hero .subtitle, .hero.is-playing .subtitle, .hero.play_element:active .subtitle {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.hero.is-primary .subtitle a:not(.button):not(button), nav.hero .subtitle a:not(.button):not(button), .hero.active_mood .subtitle a:not(.button):not(button), .hero.play_element:active .subtitle a:not(.button):not(button),
+.hero.is-primary .subtitle a:not(.button):not(button), nav.hero .subtitle a:not(.button):not(button), .hero.is-playing .subtitle a:not(.button):not(button), .hero.play_element:active .subtitle a:not(.button):not(button),
 .hero.is-primary .subtitle strong,
 nav.hero .subtitle strong,
-.hero.active_mood .subtitle strong,
+.hero.is-playing .subtitle strong,
 .hero.play_element:active .subtitle strong {
   color: #fff;
 }
 
 @media screen and (max-width: 1023px) {
-  .hero.is-primary .navbar-menu, nav.hero .navbar-menu, .hero.active_mood .navbar-menu, .hero.play_element:active .navbar-menu {
+  .hero.is-primary .navbar-menu, nav.hero .navbar-menu, .hero.is-playing .navbar-menu, .hero.play_element:active .navbar-menu {
     background-color: #00d1b2;
   }
 }
 
-.hero.is-primary .navbar-item, nav.hero .navbar-item, .hero.active_mood .navbar-item, .hero.play_element:active .navbar-item,
+.hero.is-primary .navbar-item, nav.hero .navbar-item, .hero.is-playing .navbar-item, .hero.play_element:active .navbar-item,
 .hero.is-primary .navbar-link,
 nav.hero .navbar-link,
-.hero.active_mood .navbar-link,
+.hero.is-playing .navbar-link,
 .hero.play_element:active .navbar-link {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.hero.is-primary a.navbar-item:hover, nav.hero a.navbar-item:hover, .hero.active_mood a.navbar-item:hover, .hero.play_element:active a.navbar-item:hover, .hero.is-primary a.navbar-item.is-active, nav.hero a.navbar-item.is-active, .hero.active_mood a.navbar-item.is-active, .hero.play_element:active a.navbar-item.is-active, .hero.is-primary nav a.navbar-item.navbar-menu, nav .hero.is-primary a.navbar-item.navbar-menu, nav.hero a.navbar-item.navbar-menu, .hero.active_mood nav a.navbar-item.navbar-menu, nav .hero.active_mood a.navbar-item.navbar-menu, .hero.play_element:active nav a.navbar-item.navbar-menu, nav .hero.play_element:active a.navbar-item.navbar-menu,
+.hero.is-primary a.navbar-item:hover, nav.hero a.navbar-item:hover, .hero.is-playing a.navbar-item:hover, .hero.play_element:active a.navbar-item:hover, .hero.is-primary a.navbar-item.is-active, nav.hero a.navbar-item.is-active, .hero.is-playing a.navbar-item.is-active, .hero.play_element:active a.navbar-item.is-active, .hero.is-primary nav a.navbar-item.navbar-menu, nav .hero.is-primary a.navbar-item.navbar-menu, nav.hero a.navbar-item.navbar-menu, .hero.is-playing nav a.navbar-item.navbar-menu, nav .hero.is-playing a.navbar-item.navbar-menu, .hero.play_element:active nav a.navbar-item.navbar-menu, nav .hero.play_element:active a.navbar-item.navbar-menu,
 .hero.is-primary .navbar-link:hover,
 nav.hero .navbar-link:hover,
-.hero.active_mood .navbar-link:hover,
+.hero.is-playing .navbar-link:hover,
 .hero.play_element:active .navbar-link:hover,
 .hero.is-primary .navbar-link.is-active,
 nav.hero .navbar-link.is-active,
-.hero.active_mood .navbar-link.is-active,
+.hero.is-playing .navbar-link.is-active,
 .hero.play_element:active .navbar-link.is-active,
 .hero.is-primary nav .navbar-link.navbar-menu,
 nav .hero.is-primary .navbar-link.navbar-menu,
 nav.hero .navbar-link.navbar-menu,
-.hero.active_mood nav .navbar-link.navbar-menu,
-nav .hero.active_mood .navbar-link.navbar-menu,
+.hero.is-playing nav .navbar-link.navbar-menu,
+nav .hero.is-playing .navbar-link.navbar-menu,
 .hero.play_element:active nav .navbar-link.navbar-menu,
 nav .hero.play_element:active .navbar-link.navbar-menu {
   background-color: #00b89c;
   color: #fff;
 }
 
-.hero.is-primary .tabs a, nav.hero .tabs a, .hero.active_mood .tabs a, .hero.play_element:active .tabs a {
+.hero.is-primary .tabs a, nav.hero .tabs a, .hero.is-playing .tabs a, .hero.play_element:active .tabs a {
   color: #fff;
   opacity: 0.9;
 }
 
-.hero.is-primary .tabs a:hover, nav.hero .tabs a:hover, .hero.active_mood .tabs a:hover, .hero.play_element:active .tabs a:hover {
+.hero.is-primary .tabs a:hover, nav.hero .tabs a:hover, .hero.is-playing .tabs a:hover, .hero.play_element:active .tabs a:hover {
   opacity: 1;
 }
 
-.hero.is-primary .tabs li.is-active a, nav.hero .tabs li.is-active a, .hero.active_mood .tabs li.is-active a, .hero.play_element:active .tabs li.is-active a, .hero.is-primary .tabs nav li.navbar-menu a, nav .hero.is-primary .tabs li.navbar-menu a, nav.hero .tabs li.navbar-menu a, .hero.active_mood .tabs nav li.navbar-menu a, nav .hero.active_mood .tabs li.navbar-menu a, .hero.play_element:active .tabs nav li.navbar-menu a, nav .hero.play_element:active .tabs li.navbar-menu a {
+.hero.is-primary .tabs li.is-active a, nav.hero .tabs li.is-active a, .hero.is-playing .tabs li.is-active a, .hero.play_element:active .tabs li.is-active a, .hero.is-primary .tabs nav li.navbar-menu a, nav .hero.is-primary .tabs li.navbar-menu a, nav.hero .tabs li.navbar-menu a, .hero.is-playing .tabs nav li.navbar-menu a, nav .hero.is-playing .tabs li.navbar-menu a, .hero.play_element:active .tabs nav li.navbar-menu a, nav .hero.play_element:active .tabs li.navbar-menu a {
   opacity: 1;
 }
 
-.hero.is-primary .tabs.is-boxed a, nav.hero .tabs.is-boxed a, .hero.active_mood .tabs.is-boxed a, .hero.play_element:active .tabs.is-boxed a, .hero.is-primary .tabs.is-toggle a, nav.hero .tabs.is-toggle a, .hero.active_mood .tabs.is-toggle a, .hero.play_element:active .tabs.is-toggle a {
+.hero.is-primary .tabs.is-boxed a, nav.hero .tabs.is-boxed a, .hero.is-playing .tabs.is-boxed a, .hero.play_element:active .tabs.is-boxed a, .hero.is-primary .tabs.is-toggle a, nav.hero .tabs.is-toggle a, .hero.is-playing .tabs.is-toggle a, .hero.play_element:active .tabs.is-toggle a {
   color: #fff;
 }
 
-.hero.is-primary .tabs.is-boxed a:hover, nav.hero .tabs.is-boxed a:hover, .hero.active_mood .tabs.is-boxed a:hover, .hero.play_element:active .tabs.is-boxed a:hover, .hero.is-primary .tabs.is-toggle a:hover, nav.hero .tabs.is-toggle a:hover, .hero.active_mood .tabs.is-toggle a:hover, .hero.play_element:active .tabs.is-toggle a:hover {
+.hero.is-primary .tabs.is-boxed a:hover, nav.hero .tabs.is-boxed a:hover, .hero.is-playing .tabs.is-boxed a:hover, .hero.play_element:active .tabs.is-boxed a:hover, .hero.is-primary .tabs.is-toggle a:hover, nav.hero .tabs.is-toggle a:hover, .hero.is-playing .tabs.is-toggle a:hover, .hero.play_element:active .tabs.is-toggle a:hover {
   background-color: rgba(10, 10, 10, 0.1);
 }
 
-.hero.is-primary .tabs.is-boxed li.is-active a, nav.hero .tabs.is-boxed li.is-active a, .hero.active_mood .tabs.is-boxed li.is-active a, .hero.play_element:active .tabs.is-boxed li.is-active a, .hero.is-primary .tabs.is-boxed nav li.navbar-menu a, nav .hero.is-primary .tabs.is-boxed li.navbar-menu a, nav.hero .tabs.is-boxed li.navbar-menu a, .hero.active_mood .tabs.is-boxed nav li.navbar-menu a, nav .hero.active_mood .tabs.is-boxed li.navbar-menu a, .hero.play_element:active .tabs.is-boxed nav li.navbar-menu a, nav .hero.play_element:active .tabs.is-boxed li.navbar-menu a, .hero.is-primary .tabs.is-boxed li.is-active a:hover, nav.hero .tabs.is-boxed li.is-active a:hover, .hero.active_mood .tabs.is-boxed li.is-active a:hover, .hero.play_element:active .tabs.is-boxed li.is-active a:hover, .hero.is-primary .tabs.is-boxed nav li.navbar-menu a:hover, nav .hero.is-primary .tabs.is-boxed li.navbar-menu a:hover, nav.hero .tabs.is-boxed li.navbar-menu a:hover, .hero.active_mood .tabs.is-boxed nav li.navbar-menu a:hover, nav .hero.active_mood .tabs.is-boxed li.navbar-menu a:hover, .hero.play_element:active .tabs.is-boxed nav li.navbar-menu a:hover, nav .hero.play_element:active .tabs.is-boxed li.navbar-menu a:hover, .hero.is-primary .tabs.is-toggle li.is-active a, nav.hero .tabs.is-toggle li.is-active a, .hero.active_mood .tabs.is-toggle li.is-active a, .hero.play_element:active .tabs.is-toggle li.is-active a, .hero.is-primary .tabs.is-toggle nav li.navbar-menu a, nav .hero.is-primary .tabs.is-toggle li.navbar-menu a, nav.hero .tabs.is-toggle li.navbar-menu a, .hero.active_mood .tabs.is-toggle nav li.navbar-menu a, nav .hero.active_mood .tabs.is-toggle li.navbar-menu a, .hero.play_element:active .tabs.is-toggle nav li.navbar-menu a, nav .hero.play_element:active .tabs.is-toggle li.navbar-menu a, .hero.is-primary .tabs.is-toggle li.is-active a:hover, nav.hero .tabs.is-toggle li.is-active a:hover, .hero.active_mood .tabs.is-toggle li.is-active a:hover, .hero.play_element:active .tabs.is-toggle li.is-active a:hover, .hero.is-primary .tabs.is-toggle nav li.navbar-menu a:hover, nav .hero.is-primary .tabs.is-toggle li.navbar-menu a:hover, nav.hero .tabs.is-toggle li.navbar-menu a:hover, .hero.active_mood .tabs.is-toggle nav li.navbar-menu a:hover, nav .hero.active_mood .tabs.is-toggle li.navbar-menu a:hover, .hero.play_element:active .tabs.is-toggle nav li.navbar-menu a:hover, nav .hero.play_element:active .tabs.is-toggle li.navbar-menu a:hover {
+.hero.is-primary .tabs.is-boxed li.is-active a, nav.hero .tabs.is-boxed li.is-active a, .hero.is-playing .tabs.is-boxed li.is-active a, .hero.play_element:active .tabs.is-boxed li.is-active a, .hero.is-primary .tabs.is-boxed nav li.navbar-menu a, nav .hero.is-primary .tabs.is-boxed li.navbar-menu a, nav.hero .tabs.is-boxed li.navbar-menu a, .hero.is-playing .tabs.is-boxed nav li.navbar-menu a, nav .hero.is-playing .tabs.is-boxed li.navbar-menu a, .hero.play_element:active .tabs.is-boxed nav li.navbar-menu a, nav .hero.play_element:active .tabs.is-boxed li.navbar-menu a, .hero.is-primary .tabs.is-boxed li.is-active a:hover, nav.hero .tabs.is-boxed li.is-active a:hover, .hero.is-playing .tabs.is-boxed li.is-active a:hover, .hero.play_element:active .tabs.is-boxed li.is-active a:hover, .hero.is-primary .tabs.is-boxed nav li.navbar-menu a:hover, nav .hero.is-primary .tabs.is-boxed li.navbar-menu a:hover, nav.hero .tabs.is-boxed li.navbar-menu a:hover, .hero.is-playing .tabs.is-boxed nav li.navbar-menu a:hover, nav .hero.is-playing .tabs.is-boxed li.navbar-menu a:hover, .hero.play_element:active .tabs.is-boxed nav li.navbar-menu a:hover, nav .hero.play_element:active .tabs.is-boxed li.navbar-menu a:hover, .hero.is-primary .tabs.is-toggle li.is-active a, nav.hero .tabs.is-toggle li.is-active a, .hero.is-playing .tabs.is-toggle li.is-active a, .hero.play_element:active .tabs.is-toggle li.is-active a, .hero.is-primary .tabs.is-toggle nav li.navbar-menu a, nav .hero.is-primary .tabs.is-toggle li.navbar-menu a, nav.hero .tabs.is-toggle li.navbar-menu a, .hero.is-playing .tabs.is-toggle nav li.navbar-menu a, nav .hero.is-playing .tabs.is-toggle li.navbar-menu a, .hero.play_element:active .tabs.is-toggle nav li.navbar-menu a, nav .hero.play_element:active .tabs.is-toggle li.navbar-menu a, .hero.is-primary .tabs.is-toggle li.is-active a:hover, nav.hero .tabs.is-toggle li.is-active a:hover, .hero.is-playing .tabs.is-toggle li.is-active a:hover, .hero.play_element:active .tabs.is-toggle li.is-active a:hover, .hero.is-primary .tabs.is-toggle nav li.navbar-menu a:hover, nav .hero.is-primary .tabs.is-toggle li.navbar-menu a:hover, nav.hero .tabs.is-toggle li.navbar-menu a:hover, .hero.is-playing .tabs.is-toggle nav li.navbar-menu a:hover, nav .hero.is-playing .tabs.is-toggle li.navbar-menu a:hover, .hero.play_element:active .tabs.is-toggle nav li.navbar-menu a:hover, nav .hero.play_element:active .tabs.is-toggle li.navbar-menu a:hover {
   background-color: #fff;
   border-color: #fff;
   color: #00d1b2;
 }
 
-.hero.is-primary.is-bold, nav.hero.is-bold, .hero.is-bold.active_mood, .hero.is-bold.play_element:active {
+.hero.is-primary.is-bold, nav.hero.is-bold, .hero.is-bold.is-playing, .hero.is-bold.play_element:active {
   background-image: linear-gradient(141deg, #009e6c 0%, #00d1b2 71%, #00e7eb 100%);
 }
 
 @media screen and (max-width: 768px) {
-  .hero.is-primary.is-bold .navbar-menu, nav.hero.is-bold .navbar-menu, .hero.is-bold.active_mood .navbar-menu, .hero.is-bold.play_element:active .navbar-menu {
+  .hero.is-primary.is-bold .navbar-menu, nav.hero.is-bold .navbar-menu, .hero.is-bold.is-playing .navbar-menu, .hero.is-bold.play_element:active .navbar-menu {
     background-image: linear-gradient(141deg, #009e6c 0%, #00d1b2 71%, #00e7eb 100%);
   }
 }
