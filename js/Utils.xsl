@@ -30,7 +30,7 @@
 		<xsl:if test="matches($class, '\s')">
 			<xsl:sequence select="error((), 'class parameter must be a single token')"/>
 		</xsl:if>
-		<xsl:sequence select="every $e in $element/@class satisfies ($e!tokenize(., '\s') = $class)"/>
+		<xsl:sequence select="every $e in $element/@class satisfies (tokenize($e, '\s') = $class)"/>
 	</xsl:function>
 	
 	<xd:doc>

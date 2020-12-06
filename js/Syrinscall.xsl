@@ -46,6 +46,9 @@
 	<!-- The initial template opens the setting pane if there is no auth_token set; it also populates the configured sound set IDs in the settings. -->
 	<xsl:template name="xsl:initial-template">
 		<xsl:message>using CORS proxy at {$CORSproxy}</xsl:message>
+		<xsl:result-document href="#settingsForm">
+			<input type="hidden" name="cors" value="{$CORSproxy}"/>
+		</xsl:result-document>
 		<xsl:choose>
 			<xsl:when test="exists($auth_token)">
 				<xsl:call-template name="prepare_form"/>
@@ -70,7 +73,6 @@
 		<xsl:message>Using Auth Token: {$auth_token}</xsl:message>
 		<xsl:result-document href="#formcontrols">
 			<input type="hidden" name="auth_token" value="{$auth_token}"/>
-			<input type="hidden" name="cors" value="{$CORSproxy}"/>
 		</xsl:result-document>
 		<ixsl:set-attribute name="value" select="$auth_token" object="id('update_auth', ixsl:page())"/>
 	</xsl:template>
@@ -260,12 +262,12 @@
 	<xsl:mode name="ixsl:onclick" on-multiple-match="use-last"/>
 	
 	<!-- Show/Hide Settings Pane -->
-	<xsl:template match="html:button[@id= ('show_settings', 'modal_close')]" mode="ixsl:onclick">
+	<xsl:template match="html:button[@id = ('show_settings')]|html:div[@id = ('modal_close')]" mode="ixsl:onclick">
 		<xsl:call-template name="toggle_settings"/>
 	</xsl:template>
 	
 	<!-- Logging play messages -->
-	<xsl:template match="html:button[ejs:contains-class(., 'play')]" mode="ixsl:onclick">
+	<xsl:template match="html:button[tokenize(@class, '\s') = 'play']" mode="ixsl:onclick">
 		<xsl:message>Playing {.} (ID:{@id})</xsl:message>
 		<xsl:call-template name="refresh_state"/>
 	</xsl:template>
@@ -307,7 +309,6 @@
 		<xsl:message>Saving...</xsl:message>
 		<ixsl:set-property name="auth_token" select="id('update_auth')/@value" object="ixsl:page()"/>
 		<xsl:message>auth_token set to {ixsl:query-params()?auth_token}</xsl:message>
-		<ixsl:set-property name="cors" select="id('cors')/@value" object="ixsl:page()"/>
 		<xsl:call-template name="toggle_settings"/>
 	</xsl:template>
 	
