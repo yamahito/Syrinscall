@@ -164,21 +164,26 @@
 					</ixsl:schedule-action>
 				</xsl:for-each>
 			</xsl:on-completion>
-			<xsl:variable name="id" select="$moods(.)?pk"/>
-			<xsl:variable name="name" select="$moods(.)?name"/>
+			<xsl:variable name="this.mood" select="$moods(.)"/>
+			<xsl:variable name="id" select="$this.mood?pk"/>
+			<xsl:variable name="name" select="$this.mood?name"/>
 			<xsl:message>Adding mood: {$name}</xsl:message>
-			<xsl:variable name="elems" select="$moods(.)?elements" as="array(*)?"/>
-			<xsl:variable name="elemURLs" as="xs:string*">
-				<xsl:for-each select="(1 to array:size($elems))[exists($elems)]">
-					<xsl:sequence select="$elems(.)[.?plays]?element"/>
+			<xsl:variable name="elems" as="map(*)*">
+				<xsl:for-each select="(1 to array:size($moods(.)?elements))">
+					<xsl:variable name="this.element" select="$this.mood?elements(.)"/>
+					<xsl:variable name="url" select="$this.element?element"/>
+					<xsl:map>
+						<xsl:map-entry key="'id'" select="replace($url, 'https://www.syrinscape.com/online/frontend-api/elements/(\d+)/', 'e:$1')"/>
+						<xsl:map-entry key="'url'" select="$url"/>
+						<xsl:map-entry key="'plays'" select="$this.element?plays"/> 
+					</xsl:map>
 				</xsl:for-each>
 			</xsl:variable>
-			<xsl:variable name='data-elements' as="xs:string*" select="$elemURLs!replace(., 'https://www.syrinscape.com/online/frontend-api/elements/(\d+)/', 'e:$1')"/>			
 			<xsl:result-document href="#{$soundset}">
-				<button type="submit" id="m:{$id}" data-elements="{string-join($data-elements, ' ')}" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
+				<button type="submit" id="m:{$id}" data-elements="{string-join($elems[.?plays]?id, ' ')}" class="play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
 			</xsl:result-document>
 			<xsl:next-iteration>
-				<xsl:with-param name="elements" select="distinct-values(($elements, $elemURLs))"/>
+				<xsl:with-param name="elements" select="distinct-values(($elements, $elems?url))"/>
 			</xsl:next-iteration>
 		</xsl:iterate>
 	</xsl:template>
