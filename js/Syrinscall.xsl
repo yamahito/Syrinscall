@@ -294,7 +294,7 @@
 		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
 		<xsl:message>Showing element {@id}</xsl:message>
 		<xsl:sequence select="
-			local:set-volume(@id, $state('element')($pk)?vol),
+			local:set-volume(@id, ($state('element')($pk)?vol, id(@id||'-volume-number')/@value div 100, 0)[1]),
 			ejs:remove-class(., 'is-hidden')
 		"/>
 	</xsl:template>
@@ -306,7 +306,7 @@
 	
 	<!-- adjust volume -->
 	<xsl:template match="html:input[@data-rid][ends-with(@id, '-volume-number') or ends-with(@id, '-volume-slider')]" mode="ixsl:onchange">
-		<xsl:variable name="vol" select="ixsl:get(ixsl:event(), 'target.value') div 100"/>
+		<xsl:variable name="vol" select="(ixsl:get(ixsl:event(), 'target.value') div 100, @value div 100, 0)[1]" as="xs:double"/>
 		<xsl:sequence select="local:set-volume(@data-rid, $vol, @max div 100)"/>
 	</xsl:template>
 	
