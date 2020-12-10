@@ -116,21 +116,23 @@
 	<xsl:template match=".[.?element_type eq 'music']" mode="local:element">
 		<xsl:message>Adding Music element: {.?name}</xsl:message>
 		<xsl:result-document href="#Music">
-			<div class="music-element element card is-hidden" id="e:{.?pk}">
-				<div class="card-content">
-					<div class="media">
-						<div class="media-left">
-							<span class="icon is-medium">
-								<i class="fas fa-lg fa-music"></i>
-							</span>
-						</div>
-						<div class="media-content">
-							<p class="title is-6">{.?name}</p>
-							<p class="subtitle is-6">e:{.?pk}</p>
+			<div class="column is-hidden">
+				<div class="music-element element card" id="e:{.?pk}">
+					<div class="card-content">
+						<div class="media">
+							<div class="media-left">
+								<span class="icon is-medium">
+									<i class="fas fa-lg fa-music"/>
+								</span>
+							</div>
+							<div class="media-content">
+								<p class="title is-6">{.?name}</p>
+								<p class="subtitle is-6">e:{.?pk}</p>
+							</div>
 						</div>
 					</div>
+					<xsl:call-template name="card-footer"/>
 				</div>
-				<xsl:call-template name="card-footer"/>
 			</div>
 		</xsl:result-document>
 	</xsl:template>
@@ -143,21 +145,23 @@
 	<xsl:template match=".[.?element_type eq 'sfx']" mode="local:element">
 		<xsl:message>Adding SFX element: {.?name}</xsl:message>
 		<xsl:result-document href="#Elements">
-			<div class="sfx-element element card is-hidden" id="e:{.?pk}">
-				<div class="card-content">
-					<div class="media">
-						<div class="media-left">
-							<span class="icon is-medium">
-								<i class="fas fa-lg fa-volume-up"></i>
-							</span>
-						</div>
-						<div class="media-content">
-							<p class="title is-6">{.?name}</p>
-							<p class="subtitle is-6">e:{.?pk}</p>
+			<div class="column is-hidden">
+				<div class="sfx-element element card" id="e:{.?pk}">
+					<div class="card-content">
+						<div class="media">
+							<div class="media-left">
+								<span class="icon is-medium">
+									<i class="fas fa-lg fa-volume-up"/>
+								</span>
+							</div>
+							<div class="media-content">
+								<p class="title is-6">{.?name}</p>
+								<p class="subtitle is-6">e:{.?pk}</p>
+							</div>
 						</div>
 					</div>
+					<xsl:call-template name="card-footer"/>
 				</div>
-				<xsl:call-template name="card-footer"/>
 			</div>
 		</xsl:result-document>
 	</xsl:template>
@@ -171,10 +175,10 @@
 			</div>
 			<div id="e:{.?pk}-volume" class="card-control volume">
 				<div class="volume-number">
-					<input id="e:{.?pk}-volume-number" data-rid="e:{.?pk}" class="input" type="number" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
+					<input id="e:{.?pk}-volume-number" autocomplete="off" data-rid="e:{.?pk}" class="input" type="number" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
 				</div>
 				<div class="volume-slider">
-					<input id="e:{.?pk}-volume-slider" data-rid="e:{.?pk}" class="slider" type="range" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
+					<input id="e:{.?pk}-volume-slider" autocomplete="off" data-rid="e:{.?pk}" class="slider" type="range" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
 				</div>
 			</div>
 		</footer>
@@ -289,13 +293,13 @@
 		</xsl:on-empty>
 	</xsl:template>
 	
-	<xsl:template match="html:div[@id=('Music', 'Elements')]/html:div" mode="local:status">
+	<xsl:template match="html:div[@id=('Music', 'Elements')]/html:div/html:div" mode="local:status">
 		<xsl:param name="state" as="map(*)" tunnel="yes"/>
 		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
 		<xsl:message>Showing element {@id}</xsl:message>
 		<xsl:sequence select="
 			local:set-volume(@id, ($state('element')($pk)?vol, id(@id||'-volume-number')/@value div 100, 0)[1]),
-			ejs:remove-class(., 'is-hidden')
+			ejs:remove-class(.., 'is-hidden')
 		"/>
 	</xsl:template>
 	

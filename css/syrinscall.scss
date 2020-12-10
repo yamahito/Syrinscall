@@ -52,23 +52,26 @@ section.control_panel {
         &>p {
           @extend .column, .is-full, .mb-0;
         }
-        .card {
-          @extend .column, .is-4-desktop, .is-6-tablet, .box;
-          padding: 0;
-          .card-footer {
-            .card-control {
-              @extend .card-footer-item, .py-0;
-              &.play {
-                max-width: fit-content;
-              }
-              &.volume {
-                width: 100%;
-                padding: 0;
-              }
-              .input, .slider {
-                border: none !important;
-                margin: 0;
-                padding: 0;
+        .column {
+          @extend .is-4-desktop, .is-6-tablet;
+          .card {
+            @extend .box;
+            padding: 0;
+            .card-footer {
+              .card-control {
+                @extend .card-footer-item, .py-0;
+                &.play {
+                  max-width: fit-content;
+                }
+                &.volume {
+                  width: 100%;
+                  padding: 0;
+                }
+                .input, .slider {
+                  border: none !important;
+                  margin: 0;
+                  padding: 0;
+                }
               }
             }
           }
