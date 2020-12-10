@@ -70,6 +70,14 @@
 					<div id="Stop">
 						<p class="menu-label">Master Control</p>
 						<button id="master_stop" formaction="https://www.syrinscape.com/online/frontend-api/stop-all/" formmethod="get">Stop ALL</button>
+						<div id="master-volume" class="field has-addons volume">
+							<div class="control volume-number">
+								<input id="master-volume-number" data-rid="master" class="input" type="number" min="0" max="150" step="1" value="100"/>
+							</div>
+							<div class="control volume-slider">
+								<input id="master-volume-slider" data-rid="master" class="slider" type="range" min="0" max="150" step="1" value="100"/>
+							</div>
+						</div>
 					</div>
 					<div id="Moods">
 					</div>
@@ -84,6 +92,14 @@
 				</div>
 				<div id="OneShots" class="OneShots">
           <p class="menu-label">One Shots</p>
+					<div id="oneshot-volume" class="field has-addons volume">
+						<div class="control volume-number">
+							<input id="oneshot-volume-number" data-rid="oneshot" class="input" type="number" min="0" max="100" step="1" value="50"/>
+						</div>
+						<div class="control volume-slider">
+							<input id="oneshot-volume-slider" data-rid="oneshot" class="slider" type="range" min="0" max="100" step="1" value="50"/>
+						</div>
+					</div>
         </div>
 				<section class="is-hidden" id="formcontrols">
 					<iframe name="formResponses" id="formResponses" style="display:none"></iframe>

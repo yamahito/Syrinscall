@@ -64,8 +64,10 @@
 				</xsl:call-template>
 			</xsl:result-document>
 		</xsl:for-each>
-		<xsl:call-template name="populateMoods"/>	
-		<xsl:call-template name="refresh_state"/>
+		<xsl:call-template name="populateMoods"/>
+		<ixsl:schedule-action wait="2000">
+			<xsl:call-template name="refresh_state"/>
+		</ixsl:schedule-action>
 	</xsl:template>
 	
 	<!-- prepare_form adds the auth_token to the main control panel form and settings page -->
@@ -117,12 +119,18 @@
 			<div class="music-element element card is-hidden" id="e:{.?pk}">
 				<div class="card-content">
 					<div class="media">
+						<div class="media-left">
+							<span class="icon is-medium">
+								<i class="fas fa-lg fa-music"></i>
+							</span>
+						</div>
 						<div class="media-content">
 							<p class="title is-6">{.?name}</p>
+							<p class="subtitle is-6">e:{.?pk}</p>
 						</div>
 					</div>
 				</div>
-				<footer class="card-footer"> </footer>
+				<xsl:call-template name="card-footer"/>
 			</div>
 		</xsl:result-document>
 	</xsl:template>
@@ -138,14 +146,38 @@
 			<div class="sfx-element element card is-hidden" id="e:{.?pk}">
 				<div class="card-content">
 					<div class="media">
+						<div class="media-left">
+							<span class="icon is-medium">
+								<i class="fas fa-lg fa-volume-up"></i>
+							</span>
+						</div>
 						<div class="media-content">
 							<p class="title is-6">{.?name}</p>
+							<p class="subtitle is-6">e:{.?pk}</p>
 						</div>
 					</div>
 				</div>
-				<footer class="card-footer"> </footer>
+				<xsl:call-template name="card-footer"/>
 			</div>
 		</xsl:result-document>
+	</xsl:template>
+	
+	<xsl:template name="card-footer">
+		<footer class="card-footer">
+			<div id="e:{.?pk}-play" class="card-control play">
+				<div class="icon">
+					<i id="e:{.?pk}-play-button" class="fa fa-pause"/>
+				</div>
+			</div>
+			<div id="e:{.?pk}-volume" class="card-control volume">
+				<div class="volume-number">
+					<input id="e:{.?pk}-volume-number" data-rid="e:{.?pk}" class="input" type="number" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
+				</div>
+				<div class="volume-slider">
+					<input id="e:{.?pk}-volume-slider" data-rid="e:{.?pk}" class="slider" type="range" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
+				</div>
+			</div>
+		</footer>
 	</xsl:template>
 	
 	<xsl:template name="local:addMoods">
@@ -210,8 +242,6 @@
 	
 	<!-- Refresh state -->
 	<xsl:template name="refresh_state">
-		<xsl:call-template name="clear_state"/>
-		<xsl:message>Acquiring Current State</xsl:message>
 		<ixsl:schedule-action http-request="map{
 				'method' : 'get',
 				'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/?auth_token='||$auth_token
@@ -228,8 +258,14 @@
 	
 	<xsl:template name="handle_state">
 		<xsl:context-item as="map(*)" use="required"/>
+		<xsl:message>Acquiring Current State</xsl:message>
 		<xsl:variable name="state" select="parse-json(.?body)"/>
 		<xsl:variable name="current-mood" as="xs:string?" select="string($state?mixpanel-current-mood?pk)"/>
+		<xsl:call-template name="clear_state"/>
+		<xsl:sequence select="
+			local:set-volume('master', $state?global?volume, 1.5),
+			local:set-volume('oneshot', $state?global?oneshot_volume)
+			"/>
 		<xsl:apply-templates mode="local:status" select="id('m:'||$current-mood, ixsl:page())">
 			<xsl:with-param name="state" select="$state" tunnel="yes"/>
 		</xsl:apply-templates>
@@ -257,9 +293,22 @@
 		<xsl:param name="state" as="map(*)" tunnel="yes"/>
 		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
 		<xsl:message>Showing element {@id}</xsl:message>
-		<xsl:sequence select="ejs:remove-class(., 'is-hidden')"/>
+		<xsl:sequence select="
+			local:set-volume(@id, $state('element')($pk)?vol),
+			ejs:remove-class(., 'is-hidden')
+		"/>
 	</xsl:template>
 	
+	<!--
+		ixsl:onchange Mode
+	-->
+	<xsl:mode name="ixsl:onchange" on-multiple-match="use-last"/>
+	
+	<!-- adjust volume -->
+	<xsl:template match="html:input[@data-rid][ends-with(@id, '-volume-number') or ends-with(@id, '-volume-slider')]" mode="ixsl:onchange">
+		<xsl:variable name="vol" select="ixsl:get(ixsl:event(), 'target.value') div 100"/>
+		<xsl:sequence select="local:set-volume(@data-rid, $vol, @max div 100)"/>
+	</xsl:template>
 	
 	<!-- 
 		ixsl:onclick Mode
@@ -344,6 +393,25 @@
 	<xsl:function name="local:get-id-number" as="xs:string">
 		<xsl:param name="id" as="xs:string"/>
 		<xsl:sequence select="if (contains($id, ':')) then substring-after($id, ':') else error((), 'Unrecognised ID format: '||$id)"/>
+	</xsl:function>
+	
+	<!-- set volume controls -->
+	<xsl:function name="local:set-volume">
+		<xsl:param name="id" as="xs:string"/>
+		<xsl:param name="volume" as="xs:double"/>
+		<xsl:sequence select="local:set-volume($id, $volume, 1)"/>
+	</xsl:function>
+	<xsl:function name="local:set-volume">
+		<xsl:param name="id" as="xs:string"/>
+		<xsl:param name="volume" as="xs:double"/>
+		<xsl:param name="max" as="xs:double"/>
+		<xsl:variable name="vol_adj" select="xs:integer((if (abs($volume) le $max) then abs($volume) else $max) * 100)" as="xs:integer"/>
+		<xsl:variable name="input" select="$id||'-volume-number'"/>
+		<xsl:variable name="slider" select="$id||'-volume-slider'"/>
+		<xsl:message>Setting volume of {$id} to {$vol_adj}</xsl:message>
+		<xsl:for-each select="($input, $slider)">
+			<ixsl:set-attribute name="value" object="id(., ixsl:page())" select="$vol_adj"/>
+		</xsl:for-each>
 	</xsl:function>
 	
 </xsl:stylesheet>

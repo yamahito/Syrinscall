@@ -1,8 +1,13 @@
 //overrides
 
+$fa-font-path: "webfonts";
 
-//import bulma
+//imports
 @import "bulma.sass";
+@import "slider/index.sass";
+@import "fa/fontawesome.scss";
+@import "fa/solid.scss";
+
 
 nav {
   @extend 
@@ -29,27 +34,65 @@ section.settings {
   }
 }
 
-.card {
-  @extend .box;
-  max-width: 20rem;
-}
-
 section.control_panel {
   @extend .container;
   &>form {
-      @extend .columns;
+    @extend .columns;
+    div.Master, div.OneShots {
+      @extend .is-narrow;
+      button {
+        @extend .mb-3, .is-fullwidth;
+      }
+      div#Moods {@extend .mt-3;}
+    }
     &>div {
       @extend .column;
+      div.Music, div.Elements {
+        @extend .columns, .is-multiline, .is-5;
+        &>p {
+          @extend .column, .is-full, .mb-0;
+        }
+        .card {
+          @extend .column, .is-4-desktop, .is-6-tablet, .box;
+          padding: 0;
+          .card-footer {
+            .card-control {
+              @extend .card-footer-item, .py-0;
+              &.play {
+                max-width: fit-content;
+              }
+              &.volume {
+                width: 100%;
+                padding: 0;
+              }
+              .input, .slider {
+                border: none !important;
+                margin: 0;
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
 
-div.Master, div.OneShots {
-  @extend .is-narrow;
-  button {
-    @extend .mb-3, .is-fullwidth;
+.volume {
+  @extend .field, .has-addons;
+  .volume-number {
+    input {
+      text-align: right;
+    }
   }
-}
+  .volume-slider {
+    @extend .is-fullwidth;
+    .slider{
+      @extend .input, .is-fullwidth, .is-circle;
+    }
+  }
+} 
+
 
 button {
   @extend .button;

@@ -45,7 +45,7 @@
 		<!--<xsl:message>Adding classes to elements: {$element ! local-name(.)}</xsl:message>-->
 		<xsl:for-each select="$element">
 			<xsl:variable name="classes" as="xs:string*" select="tokenize(@class, '\s')"/>
-			<xsl:message>Adding class(es) "{$addedClasses}" to {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>
+			<xsl:message>Adding class(es) "{$addedClasses}" to {local-name(.)} element {(@id, generate-id(.))[1]} with existing class(es): {@class}"</xsl:message>
 			<ixsl:set-attribute name="class" select="string-join(distinct-values(($classes, $addedClasses)), ' ')" object="."/>
 		</xsl:for-each>
 	</xsl:function>
@@ -62,7 +62,7 @@
 		<xsl:for-each select="$element[@class]">
 			<xsl:variable name="extant_classes" as="xs:string*" select="tokenize(@class, '\s')"/>
 			<xsl:variable name="classResult" as="xs:string*" select="$extant_classes[not(. = $removedClasses)]"/>
-			<xsl:message>Removing class(es) "{$removedClasses}" from {local-name(.)} element {generate-id(.)} with existing class(es): {string-join($extant_classes, ' ')}"</xsl:message>
+			<xsl:message>Removing class(es) "{$removedClasses}" from {local-name(.)} element {(@id, generate-id(.))[1]} with existing class(es): {string-join($extant_classes, ' ')}"</xsl:message>
 			<xsl:choose>
 				<xsl:when test="exists($classResult)">
 					<ixsl:set-attribute name="class" select="string-join($classResult, ' ')" object="."/>
@@ -88,7 +88,7 @@
 			<xsl:variable name="removedClasses" select="$classes[. = $toggleClasses]" as="xs:string*"/>
 			<xsl:variable name="addedClasses" select="$toggleClasses[not(. = $classes)]" as="xs:string*"/>
 			<xsl:variable name="classResult" as="xs:string*" select="$classes[not(. = $removedClasses)], $addedClasses"/>
-			<!--<xsl:message>Toggling class(es) "{$toggleClasses}" of {local-name(.)} element {generate-id(.)} with existing class(es): {@class}"</xsl:message>-->
+			<xsl:message>Toggling class(es) "{$toggleClasses}" of {local-name(.)} element {(@id, generate-id(.))[1]} with existing class(es): {@class}"</xsl:message>
 			<xsl:choose>
 				<xsl:when test="exists($classResult)">
 					<ixsl:set-attribute name="class" select="string-join($classResult, ' ')" object="."/>
