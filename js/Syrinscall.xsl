@@ -308,6 +308,43 @@
 	<xsl:template match="html:input[@data-rid][ends-with(@id, '-volume-number') or ends-with(@id, '-volume-slider')]" mode="ixsl:onchange">
 		<xsl:variable name="vol" select="(ixsl:get(ixsl:event(), 'target.value') div 100, @value div 100, 0)[1]" as="xs:double"/>
 		<xsl:sequence select="local:set-volume(@data-rid, $vol, @max div 100)"/>
+		<xsl:choose>
+			<xsl:when test="@data-rid eq 'master'">
+				<ixsl:schedule-action http-request="map{
+						'method': 'patch',
+						'href'  : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/global/?auth_token='||$auth_token,
+						'body'  : serialize(map{'volume': $vol}, map{'method':'json'}),
+						'media-type'	:	'application/json'
+					}">
+					<xsl:call-template name="refresh_state"/>
+				</ixsl:schedule-action>
+			</xsl:when>
+			<xsl:when test="@data-rid eq 'oneshot'">
+				<ixsl:schedule-action http-request="map{
+						'method': 'patch',
+						'href'  : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/global/?auth_token='||$auth_token,
+						'body'  : serialize(map{'oneshot_volume': $vol}, map{'method':'json'}),
+						'media-type'	:	'application/json'
+					}">
+					<xsl:call-template name="refresh_state"/>
+				</ixsl:schedule-action>
+			</xsl:when>
+			<xsl:otherwise>
+				<ixsl:schedule-action http-request="map{
+						'method': 'post',
+						'href'  : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||local:get-id-number(@data-rid)||'/set_current_volume/?auth_token='||$auth_token,
+						'body'  : serialize(map{'current_volume': $vol}, map{'method':'json'}),
+						'media-type'	:	'application/json'
+					}">
+					<xsl:call-template name="refresh_state"/>
+				</ixsl:schedule-action>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<xsl:template name="handle_http">
+		<xsl:context-item as="map(*)" use="required"/>
+		<xsl:message select="serialize(., map{'method':'json'})"/>
 	</xsl:template>
 	
 	<!-- 
