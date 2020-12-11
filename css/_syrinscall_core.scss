@@ -1,0 +1,112 @@
+
+nav {
+  @extend 
+    .navbar,
+    .is-primary,
+    .mb-3;
+  .navbar-menu {
+    @extend .is-active;
+  }
+  h1 {
+    @extend .has-text-light;
+  }
+}
+
+h1 {
+  @extend .title;
+}
+
+section.settings {
+  @extend .modal;
+  .ChosenSets {
+    @extend .field, .is-grouped, .is-grouped-multiline;
+    min-height: 1em;
+  }
+}
+
+section.control_panel {
+  @extend .container;
+  &>form {
+    @extend .columns;
+    div.Master, div.OneShots {
+      @extend .is-narrow;
+      button {
+        @extend .mb-3, .is-fullwidth;
+      }
+      div#Moods {@extend .mt-3;}
+    }
+    &>div {
+      @extend .column;
+      div.Music, div.Elements {
+        @extend .columns, .is-multiline, .is-5;
+        &>p {
+          @extend .column, .is-full, .mb-0;
+        }
+        .column {
+          @extend .is-4-desktop, .is-6-tablet;
+          .card {
+            @extend .box;
+            padding: 0;
+            .card-footer {
+              .card-control {
+                @extend .card-footer-item, .py-0;
+                &.play {
+                  max-width: fit-content;
+                }
+                &.volume {
+                  width: 100%;
+                  padding: 0;
+                }
+                .input, .slider {
+                  border: none !important;
+                  margin: 0;
+                  padding: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.volume {
+  @extend .field, .has-addons;
+  .volume-number {
+    input {
+      text-align: right;
+    }
+  }
+  .volume-slider {
+    @extend .is-fullwidth;
+    .slider{
+      @extend .input, .is-fullwidth, .is-circle;
+    }
+  }
+} 
+
+
+button {
+  @extend .button;
+}
+
+.is-playing {
+  @extend .is-primary;
+}
+
+.master_stop {
+  &:active {
+    @extend .is-danger, .is-outlined;
+  }
+}
+
+.play_element {
+  &:active {
+    @extend .is-primary, .is-outlined;
+  }
+}
+
+label {
+  @extend .label;
+}

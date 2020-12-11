@@ -3,7 +3,7 @@
 $fa-font-path: "webfonts";
 
 //theme variables
-//@import "Themes/darkly/variables";
+@import "Themes/darkly/variables";
 
 //imports
 @import "bulma.sass";
@@ -12,7 +12,7 @@ $fa-font-path: "webfonts";
 @import "fa/solid.scss";
 
 //import theme
-//@import "Themes/darkly/overrides";
+@import "Themes/darkly/overrides";
 
 //import core
 @import "syrinscall_core.scss";

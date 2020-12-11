@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=1024, user-scalable=no" />
+		<link rel="stylesheet" href="css/syrinscall_darkly.css" />
+		<title>Syrinscall</title>
+		<script src="js/SaxonJS2.rt.js"></script>
+		<script>
+			window.onload = function () {
+				SaxonJS.transform({
+					stylesheetLocation: "js/Syrinscall.sef.json"
+				},
+				"async");
+			}</script>
+	</head>
+	<body>
+		<nav role="navigation">
+			<div class="navbar-brand">
+				<div class="navbar-item">
+					<h1>Syrinscall</h1>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<button id="show_settings">Settings</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<section id="settings" class="settings">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p>Settings</p>
+				</header>
+				<form id="settingsForm" class="modal-card-body">
+					<div class="MoodChooser">
+						<div class="SetChoose field has-addons">
+							<div class="control">
+								<p contenteditable="true" id="add_set" class="input is-fullwidth"></p>
+							</div>
+							<div class="control">
+								<button id="choose_set" type="button" class="is-inactive">Add</button>
+							</div>
+						</div>
+						<div id="ChosenSets" class="ChosenSets"></div>
+						<input type="hidden" id="setsParams" name="sets"></input>
+					</div>
+					<div class="auth_token field">
+						<div class="control">
+							<input class="input" type="password" placeholder="Syrinscape Auth Token" id="update_auth" name="auth_token"/>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<button id="submit_settings">Apply</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-close is-large" id="modal_close" aria-label="close"></div>
+		</section>
+		<section class="control_panel">
+			<form method="post" target="formResponses">
+				<div id="Master" class="Master">
+					<div id="Stop">
+						<p class="menu-label">Master Control</p>
+						<button id="master_stop" formaction="https://www.syrinscape.com/online/frontend-api/stop-all/" formmethod="get">Stop ALL</button>
+						<div id="master-volume" class="field has-addons volume">
+							<div class="control volume-number">
+								<input id="master-volume-number" autocomplete="off" data-rid="master" class="input" type="number" min="0" max="150" step="1" value="100"/>
+							</div>
+							<div class="control volume-slider">
+								<input id="master-volume-slider" autocomplete="off" data-rid="master" class="slider" type="range" min="0" max="150" step="1" value="100"/>
+							</div>
+						</div>
+					</div>
+					<div id="Moods">
+					</div>
+				</div>
+				<div id="MoodElements" class="MoodElements">
+					<div id="Music" class="Music">
+						<p class="menu-label">Music Elements</p>
+					</div>
+					<div id="Elements" class="Elements">
+						<p class="menu-label">Current Elements</p>
+					</div>
+				</div>
+				<div id="OneShots" class="OneShots">
+          <p class="menu-label">One Shots</p>
+					<div id="oneshot-volume" class="field has-addons volume">
+						<div class="control volume-number">
+							<input id="oneshot-volume-number" data-rid="oneshot" class="input" type="number" min="0" max="100" step="1" value="50"/>
+						</div>
+						<div class="control volume-slider">
+							<input id="oneshot-volume-slider" data-rid="oneshot" class="slider" type="range" min="0" max="100" step="1" value="50"/>
+						</div>
+					</div>
+        </div>
+				<section class="is-hidden" id="formcontrols">
+					<iframe name="formResponses" id="formResponses" style="display:none"></iframe>
+				</section>
+			</form>
+		</section>
+	</body>
+</html>
