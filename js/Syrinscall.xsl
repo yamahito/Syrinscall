@@ -32,11 +32,12 @@
 	-->
 	<xsl:variable name="auth_token" select="ixsl:query-params()?auth_token" as="xs:string?"/>
 	<xsl:variable name="sets" select="tokenize(ixsl:query-params()?sets, '\+')" as="xs:string*"/>
+	<xsl:variable name="elems" select="tokenize(ixsl:query-params()?elems, '\+')" as="xs:string*"/>
 	
 	<!--
 		Keys
 	-->
-	<xsl:key name="byClass" match="*[@class]" use="tokenize(@class, '\s')"/>
+	<xsl:key name="byClass" match="*[@class]" use="tokenize(@class, '\s+')"/>
 	
 	
 	<!-- 
@@ -60,6 +61,18 @@
 		<xsl:for-each select="$sets">
 			<xsl:result-document href="#ChosenSets">
 				<xsl:call-template name="add_set">
+					<xsl:with-param name="new_tag" select="."/>
+				</xsl:call-template>
+			</xsl:result-document>
+		</xsl:for-each>
+		<xsl:for-each select="$elems">
+			<ixsl:schedule-action http-request="map{'method': 'get', 'href' : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||.||'/?auth_token='||$auth_token}">
+				<xsl:call-template name="local:addElement">
+					<xsl:with-param name="pinned" select="true()" tunnel="yes"/>
+				</xsl:call-template>
+			</ixsl:schedule-action>
+			<xsl:result-document href="#ChosenElems">
+				<xsl:call-template name="add_elem">
 					<xsl:with-param name="new_tag" select="."/>
 				</xsl:call-template>
 			</xsl:result-document>
@@ -114,9 +127,10 @@
 	</xsl:template>
 	
 	<xsl:template match=".[.?element_type eq 'music']" mode="local:element">
+		<xsl:param name="pinned" as="xs:boolean" select="false()" tunnel="yes"/>
 		<xsl:message>Adding Music element: {.?name}</xsl:message>
 		<xsl:result-document href="#Music">
-			<div class="column is-hidden">
+			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned)], 'is-pinned'[$pinned]), ' ')}">
 				<div class="music-element element card" id="e:{.?pk}">
 					<div class="card-content">
 						<div class="media">
@@ -131,6 +145,11 @@
 							</div>
 						</div>
 					</div>
+					<a class="pin">
+						<span class="icon">
+							<i class="pin_icon"/>
+						</span>
+					</a>
 					<xsl:call-template name="card-footer"/>
 				</div>
 			</div>
@@ -143,9 +162,10 @@
 		</xsl:result-document>
 	</xsl:template>
 	<xsl:template match=".[.?element_type eq 'sfx']" mode="local:element">
+		<xsl:param name="pinned" as="xs:boolean" select="false()" tunnel="yes"/>
 		<xsl:message>Adding SFX element: {.?name}</xsl:message>
 		<xsl:result-document href="#Elements">
-			<div class="column is-hidden">
+			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned)], 'is-pinned'[$pinned]), ' ')}">
 				<div class="sfx-element element card" id="e:{.?pk}">
 					<div class="card-content">
 						<div class="media">
@@ -160,6 +180,11 @@
 							</div>
 						</div>
 					</div>
+					<a class="pin">
+						<span class="icon">
+							<i class="pin_icon"/>
+						</span>
+					</a>
 					<xsl:call-template name="card-footer"/>
 				</div>
 			</div>
@@ -191,7 +216,7 @@
 		<xsl:variable name="mood_number" select="array:size($moods)" as="xs:integer"/>
 		<xsl:message>Found {$mood_number} moods...</xsl:message>
 		<xsl:iterate select="(1 to $mood_number)[$mood_number ge 1]">
-			<xsl:param name="elements" select="()" as="xs:string*"/>
+			<xsl:param name="elements" select="for $e in $elems return 'https://www.syrinscape.com/online/frontend-api/elements/'||$e||'/'" as="xs:string*"/>
 			<xsl:on-completion>
 				<xsl:for-each select="$elements">
 					<xsl:message>fetching element at {.}</xsl:message>
@@ -244,6 +269,19 @@
 		<ixsl:set-attribute name="value" select="string-join(distinct-values((tokenize($old_tags, '\+'), $new_tag)), '+')" object="id('setsParams', ixsl:page())"/>
 	</xsl:template>
 	
+	<!-- Add Element Tag -->
+	<xsl:template name="add_elem">
+		<xsl:param name="new_tag" as="xs:string"/>
+		<xsl:variable name="old_tags" as="xs:string?" select="id('elemsParams', ixsl:page())/@value"/>
+		<div class="control">
+			<div class="tags has-addons">
+				<a class="tag is-primary">{$new_tag}</a>
+				<a class="tag is-delete"/>
+			</div>
+		</div>
+		<ixsl:set-attribute name="value" select="string-join(distinct-values((tokenize($old_tags, '\+'), $new_tag)), '+')" object="id('elemsParams', ixsl:page())"/>
+	</xsl:template>
+	
 	<!-- Refresh state -->
 	<xsl:template name="refresh_state">
 		<ixsl:schedule-action http-request="map{
@@ -257,7 +295,7 @@
 	<xsl:template name="clear_state">
 		<xsl:message>Clearing state...</xsl:message>
 		<xsl:sequence select="ejs:remove-class(id('Moods', ixsl:page())/html:div/html:button, 'is-playing')"/>
-		<xsl:sequence select="ejs:add-class(id('MoodElements', ixsl:page())/html:div/html:div, 'is-hidden')"/>
+		<xsl:sequence select="ejs:add-class(id('MoodElements', ixsl:page())/html:div/html:div[not(ejs:contains-class(., 'is-pinned'))], 'is-hidden')"/>
 	</xsl:template>
 	
 	<xsl:template name="handle_state">
@@ -399,12 +437,35 @@
 		</xsl:if>
 	</xsl:template>
 	
+	<!-- Add Element Tags Button-->
+	<xsl:template match="html:button[@id='choose_elem']" mode="ixsl:onclick">
+		<xsl:variable name="new_tag" select="normalize-space(id('add_elem'))[. ne '']" as="xs:string?"/>
+		<xsl:variable name="old_tags" select="(id('ChosenElems')/html:div/html:div/html:a ! normalize-space(.))[.ne '']" as="xs:string*"/>
+		<xsl:if test="exists($new_tag[not(. = $old_tags)])">
+			<xsl:message>Adding tag {$new_tag}</xsl:message>
+			<xsl:result-document href="#ChosenElems">
+				<xsl:call-template name="add_elem">
+					<xsl:with-param name="new_tag" select="$new_tag"/>
+				</xsl:call-template>
+			</xsl:result-document>
+		</xsl:if>
+	</xsl:template>
+	
 	<!-- Submit Settings Button-->
 	<xsl:template match="html:button[@id='submit_settings']" mode="ixsl:onclick">
 		<xsl:message>Saving...</xsl:message>
 		<ixsl:set-property name="auth_token" select="id('update_auth')/@value" object="ixsl:page()"/>
 		<xsl:message>auth_token set to {ixsl:query-params()?auth_token}</xsl:message>
 		<xsl:call-template name="toggle_settings"/>
+	</xsl:template>
+	
+	<!-- Pin/unpin -->
+	<xsl:template match="html:a[@class='pin']" mode="ixsl:onclick">
+		<xsl:variable name="pinned" select="ejs:contains-class(../.., 'is-pinned')" as="xs:boolean"/>
+		<xsl:variable name="this.element" select="local:get-id-number(../@id)" as="xs:string"/>
+		<xsl:variable name="otherValues" select="tokenize(id('elemsParams', ixsl:page()), '\+')/@value[not(. eq $this.element)]" as="xs:string*"/>
+		<xsl:sequence select="ejs:toggle-class(../.., 'is-pinned')"/>
+		<ixsl:set-attribute name="value" select="string-join(distinct-values(($otherValues, 'is-pinned'[not($pinned)])), '+')" object="id('elemsParams', ixsl:page())"/>
 	</xsl:template>
 	
 	<!-- 
