@@ -39,6 +39,7 @@
 				</header>
 				<form id="settingsForm" class="modal-card-body">
 					<div class="MoodChooser">
+						<p class="menu-label">Choose your Soundsets</p>
 						<div class="SetChoose field has-addons">
 							<div class="control">
 								<p contenteditable="true" id="add_set" class="input is-fullwidth"></p>
@@ -49,6 +50,17 @@
 						</div>
 						<div id="ChosenSets" class="ChosenSets"></div>
 						<input type="hidden" id="setsParams" name="sets"></input>
+						<p class="menu-label">Choose your Elements</p>
+						<div class="SetChoose field has-addons">
+							<div class="control">
+								<p contenteditable="true" id="add_elem" class="input is-fullwidth"></p>
+							</div>
+							<div class="control">
+								<button id="choose_elem" type="button" class="is-inactive">Add</button>
+							</div>
+						</div>
+						<div id="ChosenElems" class="ChosenElems"></div>
+						<input type="hidden" id="elemsParams" name="elems"></input>
 					</div>
 					<div class="auth_token field">
 						<div class="control">

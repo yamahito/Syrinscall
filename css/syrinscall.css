@@ -4615,11 +4615,11 @@ fieldset[disabled] .select select:hover {
   color: #f14668;
 }
 
-.field:not(:last-child), section.settings .ChosenSets:not(:last-child), .volume:not(:last-child) {
+.field:not(:last-child), section.settings .ChosenSets:not(:last-child), section.settings .ChosenElems:not(:last-child), .volume:not(:last-child) {
   margin-bottom: 0.75rem;
 }
 
-.field.has-addons, section.settings .has-addons.ChosenSets, section.settings .ChosenSets.volume, .volume {
+.field.has-addons, section.settings .has-addons.ChosenSets, section.settings .ChosenSets.volume, section.settings .has-addons.ChosenElems, section.settings .ChosenElems.volume, .volume {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4628,116 +4628,152 @@ fieldset[disabled] .select select:hover {
           justify-content: flex-start;
 }
 
-.field.has-addons .control:not(:last-child), section.settings .has-addons.ChosenSets .control:not(:last-child), section.settings .ChosenSets.volume .control:not(:last-child), .volume .control:not(:last-child) {
+.field.has-addons .control:not(:last-child), section.settings .has-addons.ChosenSets .control:not(:last-child), section.settings .ChosenSets.volume .control:not(:last-child), section.settings .has-addons.ChosenElems .control:not(:last-child), section.settings .ChosenElems.volume .control:not(:last-child), .volume .control:not(:last-child) {
   margin-right: -1px;
 }
 
-.field.has-addons .control:not(:first-child):not(:last-child) .button, section.settings .has-addons.ChosenSets .control:not(:first-child):not(:last-child) .button, section.settings .ChosenSets.volume .control:not(:first-child):not(:last-child) .button, .volume .control:not(:first-child):not(:last-child) .button, .field.has-addons .control:not(:first-child):not(:last-child) button, section.settings .has-addons.ChosenSets .control:not(:first-child):not(:last-child) button, section.settings .ChosenSets.volume .control:not(:first-child):not(:last-child) button, .volume .control:not(:first-child):not(:last-child) button,
+.field.has-addons .control:not(:first-child):not(:last-child) .button, section.settings .has-addons.ChosenSets .control:not(:first-child):not(:last-child) .button, section.settings .ChosenSets.volume .control:not(:first-child):not(:last-child) .button, section.settings .has-addons.ChosenElems .control:not(:first-child):not(:last-child) .button, section.settings .ChosenElems.volume .control:not(:first-child):not(:last-child) .button, .volume .control:not(:first-child):not(:last-child) .button, .field.has-addons .control:not(:first-child):not(:last-child) button, section.settings .has-addons.ChosenSets .control:not(:first-child):not(:last-child) button, section.settings .ChosenSets.volume .control:not(:first-child):not(:last-child) button, section.settings .has-addons.ChosenElems .control:not(:first-child):not(:last-child) button, section.settings .ChosenElems.volume .control:not(:first-child):not(:last-child) button, .volume .control:not(:first-child):not(:last-child) button,
 .field.has-addons .control:not(:first-child):not(:last-child) .input,
 section.settings .has-addons.ChosenSets .control:not(:first-child):not(:last-child) .input,
 section.settings .ChosenSets.volume .control:not(:first-child):not(:last-child) .input,
+section.settings .has-addons.ChosenElems .control:not(:first-child):not(:last-child) .input,
+section.settings .ChosenElems.volume .control:not(:first-child):not(:last-child) .input,
 .volume .control:not(:first-child):not(:last-child) .input,
 .field.has-addons .control:not(:first-child):not(:last-child) .volume .volume-slider .slider,
 section.settings .has-addons.ChosenSets .control:not(:first-child):not(:last-child) .volume .volume-slider .slider,
+section.settings .has-addons.ChosenElems .control:not(:first-child):not(:last-child) .volume .volume-slider .slider,
 .volume .control:not(:first-child):not(:last-child) .volume-slider .slider,
 .volume .volume-slider .control:not(:first-child):not(:last-child) .slider,
 .field.has-addons .control:not(:first-child):not(:last-child) .select select,
 section.settings .has-addons.ChosenSets .control:not(:first-child):not(:last-child) .select select,
 section.settings .ChosenSets.volume .control:not(:first-child):not(:last-child) .select select,
+section.settings .has-addons.ChosenElems .control:not(:first-child):not(:last-child) .select select,
+section.settings .ChosenElems.volume .control:not(:first-child):not(:last-child) .select select,
 .volume .control:not(:first-child):not(:last-child) .select select {
   border-radius: 0;
 }
 
-.field.has-addons .control:first-child:not(:only-child) .button, section.settings .has-addons.ChosenSets .control:first-child:not(:only-child) .button, section.settings .ChosenSets.volume .control:first-child:not(:only-child) .button, .volume .control:first-child:not(:only-child) .button, .field.has-addons .control:first-child:not(:only-child) button, section.settings .has-addons.ChosenSets .control:first-child:not(:only-child) button, section.settings .ChosenSets.volume .control:first-child:not(:only-child) button, .volume .control:first-child:not(:only-child) button,
+.field.has-addons .control:first-child:not(:only-child) .button, section.settings .has-addons.ChosenSets .control:first-child:not(:only-child) .button, section.settings .ChosenSets.volume .control:first-child:not(:only-child) .button, section.settings .has-addons.ChosenElems .control:first-child:not(:only-child) .button, section.settings .ChosenElems.volume .control:first-child:not(:only-child) .button, .volume .control:first-child:not(:only-child) .button, .field.has-addons .control:first-child:not(:only-child) button, section.settings .has-addons.ChosenSets .control:first-child:not(:only-child) button, section.settings .ChosenSets.volume .control:first-child:not(:only-child) button, section.settings .has-addons.ChosenElems .control:first-child:not(:only-child) button, section.settings .ChosenElems.volume .control:first-child:not(:only-child) button, .volume .control:first-child:not(:only-child) button,
 .field.has-addons .control:first-child:not(:only-child) .input,
 section.settings .has-addons.ChosenSets .control:first-child:not(:only-child) .input,
 section.settings .ChosenSets.volume .control:first-child:not(:only-child) .input,
+section.settings .has-addons.ChosenElems .control:first-child:not(:only-child) .input,
+section.settings .ChosenElems.volume .control:first-child:not(:only-child) .input,
 .volume .control:first-child:not(:only-child) .input,
 .field.has-addons .control:first-child:not(:only-child) .volume .volume-slider .slider,
 section.settings .has-addons.ChosenSets .control:first-child:not(:only-child) .volume .volume-slider .slider,
+section.settings .has-addons.ChosenElems .control:first-child:not(:only-child) .volume .volume-slider .slider,
 .volume .control:first-child:not(:only-child) .volume-slider .slider,
 .volume .volume-slider .control:first-child:not(:only-child) .slider,
 .field.has-addons .control:first-child:not(:only-child) .select select,
 section.settings .has-addons.ChosenSets .control:first-child:not(:only-child) .select select,
 section.settings .ChosenSets.volume .control:first-child:not(:only-child) .select select,
+section.settings .has-addons.ChosenElems .control:first-child:not(:only-child) .select select,
+section.settings .ChosenElems.volume .control:first-child:not(:only-child) .select select,
 .volume .control:first-child:not(:only-child) .select select {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
-.field.has-addons .control:last-child:not(:only-child) .button, section.settings .has-addons.ChosenSets .control:last-child:not(:only-child) .button, section.settings .ChosenSets.volume .control:last-child:not(:only-child) .button, .volume .control:last-child:not(:only-child) .button, .field.has-addons .control:last-child:not(:only-child) button, section.settings .has-addons.ChosenSets .control:last-child:not(:only-child) button, section.settings .ChosenSets.volume .control:last-child:not(:only-child) button, .volume .control:last-child:not(:only-child) button,
+.field.has-addons .control:last-child:not(:only-child) .button, section.settings .has-addons.ChosenSets .control:last-child:not(:only-child) .button, section.settings .ChosenSets.volume .control:last-child:not(:only-child) .button, section.settings .has-addons.ChosenElems .control:last-child:not(:only-child) .button, section.settings .ChosenElems.volume .control:last-child:not(:only-child) .button, .volume .control:last-child:not(:only-child) .button, .field.has-addons .control:last-child:not(:only-child) button, section.settings .has-addons.ChosenSets .control:last-child:not(:only-child) button, section.settings .ChosenSets.volume .control:last-child:not(:only-child) button, section.settings .has-addons.ChosenElems .control:last-child:not(:only-child) button, section.settings .ChosenElems.volume .control:last-child:not(:only-child) button, .volume .control:last-child:not(:only-child) button,
 .field.has-addons .control:last-child:not(:only-child) .input,
 section.settings .has-addons.ChosenSets .control:last-child:not(:only-child) .input,
 section.settings .ChosenSets.volume .control:last-child:not(:only-child) .input,
+section.settings .has-addons.ChosenElems .control:last-child:not(:only-child) .input,
+section.settings .ChosenElems.volume .control:last-child:not(:only-child) .input,
 .volume .control:last-child:not(:only-child) .input,
 .field.has-addons .control:last-child:not(:only-child) .volume .volume-slider .slider,
 section.settings .has-addons.ChosenSets .control:last-child:not(:only-child) .volume .volume-slider .slider,
+section.settings .has-addons.ChosenElems .control:last-child:not(:only-child) .volume .volume-slider .slider,
 .volume .control:last-child:not(:only-child) .volume-slider .slider,
 .volume .volume-slider .control:last-child:not(:only-child) .slider,
 .field.has-addons .control:last-child:not(:only-child) .select select,
 section.settings .has-addons.ChosenSets .control:last-child:not(:only-child) .select select,
 section.settings .ChosenSets.volume .control:last-child:not(:only-child) .select select,
+section.settings .has-addons.ChosenElems .control:last-child:not(:only-child) .select select,
+section.settings .ChosenElems.volume .control:last-child:not(:only-child) .select select,
 .volume .control:last-child:not(:only-child) .select select {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
 
-.field.has-addons .control .button:not([disabled]):hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]):hover, section.settings .ChosenSets.volume .control .button:not([disabled]):hover, .volume .control .button:not([disabled]):hover, .field.has-addons .control button:not([disabled]):hover, section.settings .has-addons.ChosenSets .control button:not([disabled]):hover, section.settings .ChosenSets.volume .control button:not([disabled]):hover, .volume .control button:not([disabled]):hover, .field.has-addons .control .button:not([disabled]).is-hovered, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-hovered, section.settings .ChosenSets.volume .control .button:not([disabled]).is-hovered, .volume .control .button:not([disabled]).is-hovered, .field.has-addons .control button:not([disabled]).is-hovered, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-hovered, section.settings .ChosenSets.volume .control button:not([disabled]).is-hovered, .volume .control button:not([disabled]).is-hovered,
+.field.has-addons .control .button:not([disabled]):hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]):hover, section.settings .ChosenSets.volume .control .button:not([disabled]):hover, section.settings .has-addons.ChosenElems .control .button:not([disabled]):hover, section.settings .ChosenElems.volume .control .button:not([disabled]):hover, .volume .control .button:not([disabled]):hover, .field.has-addons .control button:not([disabled]):hover, section.settings .has-addons.ChosenSets .control button:not([disabled]):hover, section.settings .ChosenSets.volume .control button:not([disabled]):hover, section.settings .has-addons.ChosenElems .control button:not([disabled]):hover, section.settings .ChosenElems.volume .control button:not([disabled]):hover, .volume .control button:not([disabled]):hover, .field.has-addons .control .button:not([disabled]).is-hovered, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-hovered, section.settings .ChosenSets.volume .control .button:not([disabled]).is-hovered, section.settings .has-addons.ChosenElems .control .button:not([disabled]).is-hovered, section.settings .ChosenElems.volume .control .button:not([disabled]).is-hovered, .volume .control .button:not([disabled]).is-hovered, .field.has-addons .control button:not([disabled]).is-hovered, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-hovered, section.settings .ChosenSets.volume .control button:not([disabled]).is-hovered, section.settings .has-addons.ChosenElems .control button:not([disabled]).is-hovered, section.settings .ChosenElems.volume .control button:not([disabled]).is-hovered, .volume .control button:not([disabled]).is-hovered,
 .field.has-addons .control .input:not([disabled]):hover,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]):hover,
 section.settings .ChosenSets.volume .control .input:not([disabled]):hover,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]):hover,
+section.settings .ChosenElems.volume .control .input:not([disabled]):hover,
 .volume .control .input:not([disabled]):hover,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]):hover,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]):hover,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]):hover,
 .volume .control .volume-slider .slider:not([disabled]):hover,
 .volume .volume-slider .control .slider:not([disabled]):hover,
 .field.has-addons .control .input:not([disabled]).is-hovered,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]).is-hovered,
 section.settings .ChosenSets.volume .control .input:not([disabled]).is-hovered,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]).is-hovered,
+section.settings .ChosenElems.volume .control .input:not([disabled]).is-hovered,
 .volume .control .input:not([disabled]).is-hovered,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]).is-hovered,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]).is-hovered,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]).is-hovered,
 .volume .control .volume-slider .slider:not([disabled]).is-hovered,
 .volume .volume-slider .control .slider:not([disabled]).is-hovered,
 .field.has-addons .control .select select:not([disabled]):hover,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]):hover,
 section.settings .ChosenSets.volume .control .select select:not([disabled]):hover,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]):hover,
+section.settings .ChosenElems.volume .control .select select:not([disabled]):hover,
 .volume .control .select select:not([disabled]):hover,
 .field.has-addons .control .select select:not([disabled]).is-hovered,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]).is-hovered,
 section.settings .ChosenSets.volume .control .select select:not([disabled]).is-hovered,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]).is-hovered,
+section.settings .ChosenElems.volume .control .select select:not([disabled]).is-hovered,
 .volume .control .select select:not([disabled]).is-hovered {
   z-index: 2;
 }
 
-.field.has-addons .control .button:not([disabled]):focus, section.settings .has-addons.ChosenSets .control .button:not([disabled]):focus, section.settings .ChosenSets.volume .control .button:not([disabled]):focus, .volume .control .button:not([disabled]):focus, .field.has-addons .control button:not([disabled]):focus, section.settings .has-addons.ChosenSets .control button:not([disabled]):focus, section.settings .ChosenSets.volume .control button:not([disabled]):focus, .volume .control button:not([disabled]):focus, .field.has-addons .control .button:not([disabled]).is-focused, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-focused, section.settings .ChosenSets.volume .control .button:not([disabled]).is-focused, .volume .control .button:not([disabled]).is-focused, .field.has-addons .control button:not([disabled]).is-focused, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-focused, section.settings .ChosenSets.volume .control button:not([disabled]).is-focused, .volume .control button:not([disabled]).is-focused, .field.has-addons .control .button:not([disabled]):active, section.settings .has-addons.ChosenSets .control .button:not([disabled]):active, section.settings .ChosenSets.volume .control .button:not([disabled]):active, .volume .control .button:not([disabled]):active, .field.has-addons .control button:not([disabled]):active, section.settings .has-addons.ChosenSets .control button:not([disabled]):active, section.settings .ChosenSets.volume .control button:not([disabled]):active, .volume .control button:not([disabled]):active, .field.has-addons .control .button:not([disabled]).is-active, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-active, section.settings .ChosenSets.volume .control .button:not([disabled]).is-active, .volume .control .button:not([disabled]).is-active, .field.has-addons .control nav .button.navbar-menu:not([disabled]), nav .field.has-addons .control .button.navbar-menu:not([disabled]), section.settings .has-addons.ChosenSets .control nav .button.navbar-menu:not([disabled]), nav section.settings .has-addons.ChosenSets .control .button.navbar-menu:not([disabled]), section.settings .ChosenSets.volume .control nav .button.navbar-menu:not([disabled]), nav section.settings .ChosenSets.volume .control .button.navbar-menu:not([disabled]), .volume .control nav .button.navbar-menu:not([disabled]), nav .volume .control .button.navbar-menu:not([disabled]), .field.has-addons .control nav button.navbar-menu:not([disabled]), nav .field.has-addons .control button.navbar-menu:not([disabled]), section.settings .has-addons.ChosenSets .control nav button.navbar-menu:not([disabled]), nav section.settings .has-addons.ChosenSets .control button.navbar-menu:not([disabled]), section.settings .ChosenSets.volume .control nav button.navbar-menu:not([disabled]), nav section.settings .ChosenSets.volume .control button.navbar-menu:not([disabled]), .volume .control nav button.navbar-menu:not([disabled]), nav .volume .control button.navbar-menu:not([disabled]), .field.has-addons .control button:not([disabled]).is-active, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-active, section.settings .ChosenSets.volume .control button:not([disabled]).is-active, .volume .control button:not([disabled]).is-active,
+.field.has-addons .control .button:not([disabled]):focus, section.settings .has-addons.ChosenSets .control .button:not([disabled]):focus, section.settings .ChosenSets.volume .control .button:not([disabled]):focus, section.settings .has-addons.ChosenElems .control .button:not([disabled]):focus, section.settings .ChosenElems.volume .control .button:not([disabled]):focus, .volume .control .button:not([disabled]):focus, .field.has-addons .control button:not([disabled]):focus, section.settings .has-addons.ChosenSets .control button:not([disabled]):focus, section.settings .ChosenSets.volume .control button:not([disabled]):focus, section.settings .has-addons.ChosenElems .control button:not([disabled]):focus, section.settings .ChosenElems.volume .control button:not([disabled]):focus, .volume .control button:not([disabled]):focus, .field.has-addons .control .button:not([disabled]).is-focused, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-focused, section.settings .ChosenSets.volume .control .button:not([disabled]).is-focused, section.settings .has-addons.ChosenElems .control .button:not([disabled]).is-focused, section.settings .ChosenElems.volume .control .button:not([disabled]).is-focused, .volume .control .button:not([disabled]).is-focused, .field.has-addons .control button:not([disabled]).is-focused, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-focused, section.settings .ChosenSets.volume .control button:not([disabled]).is-focused, section.settings .has-addons.ChosenElems .control button:not([disabled]).is-focused, section.settings .ChosenElems.volume .control button:not([disabled]).is-focused, .volume .control button:not([disabled]).is-focused, .field.has-addons .control .button:not([disabled]):active, section.settings .has-addons.ChosenSets .control .button:not([disabled]):active, section.settings .ChosenSets.volume .control .button:not([disabled]):active, section.settings .has-addons.ChosenElems .control .button:not([disabled]):active, section.settings .ChosenElems.volume .control .button:not([disabled]):active, .volume .control .button:not([disabled]):active, .field.has-addons .control button:not([disabled]):active, section.settings .has-addons.ChosenSets .control button:not([disabled]):active, section.settings .ChosenSets.volume .control button:not([disabled]):active, section.settings .has-addons.ChosenElems .control button:not([disabled]):active, section.settings .ChosenElems.volume .control button:not([disabled]):active, .volume .control button:not([disabled]):active, .field.has-addons .control .button:not([disabled]).is-active, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-active, section.settings .ChosenSets.volume .control .button:not([disabled]).is-active, section.settings .has-addons.ChosenElems .control .button:not([disabled]).is-active, section.settings .ChosenElems.volume .control .button:not([disabled]).is-active, .volume .control .button:not([disabled]).is-active, .field.has-addons .control nav .button.navbar-menu:not([disabled]), nav .field.has-addons .control .button.navbar-menu:not([disabled]), section.settings .has-addons.ChosenSets .control nav .button.navbar-menu:not([disabled]), nav section.settings .has-addons.ChosenSets .control .button.navbar-menu:not([disabled]), section.settings .ChosenSets.volume .control nav .button.navbar-menu:not([disabled]), nav section.settings .ChosenSets.volume .control .button.navbar-menu:not([disabled]), section.settings .has-addons.ChosenElems .control nav .button.navbar-menu:not([disabled]), nav section.settings .has-addons.ChosenElems .control .button.navbar-menu:not([disabled]), section.settings .ChosenElems.volume .control nav .button.navbar-menu:not([disabled]), nav section.settings .ChosenElems.volume .control .button.navbar-menu:not([disabled]), .volume .control nav .button.navbar-menu:not([disabled]), nav .volume .control .button.navbar-menu:not([disabled]), .field.has-addons .control nav button.navbar-menu:not([disabled]), nav .field.has-addons .control button.navbar-menu:not([disabled]), section.settings .has-addons.ChosenSets .control nav button.navbar-menu:not([disabled]), nav section.settings .has-addons.ChosenSets .control button.navbar-menu:not([disabled]), section.settings .ChosenSets.volume .control nav button.navbar-menu:not([disabled]), nav section.settings .ChosenSets.volume .control button.navbar-menu:not([disabled]), section.settings .has-addons.ChosenElems .control nav button.navbar-menu:not([disabled]), nav section.settings .has-addons.ChosenElems .control button.navbar-menu:not([disabled]), section.settings .ChosenElems.volume .control nav button.navbar-menu:not([disabled]), nav section.settings .ChosenElems.volume .control button.navbar-menu:not([disabled]), .volume .control nav button.navbar-menu:not([disabled]), nav .volume .control button.navbar-menu:not([disabled]), .field.has-addons .control button:not([disabled]).is-active, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-active, section.settings .ChosenSets.volume .control button:not([disabled]).is-active, section.settings .has-addons.ChosenElems .control button:not([disabled]).is-active, section.settings .ChosenElems.volume .control button:not([disabled]).is-active, .volume .control button:not([disabled]).is-active,
 .field.has-addons .control .input:not([disabled]):focus,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]):focus,
 section.settings .ChosenSets.volume .control .input:not([disabled]):focus,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]):focus,
+section.settings .ChosenElems.volume .control .input:not([disabled]):focus,
 .volume .control .input:not([disabled]):focus,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]):focus,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]):focus,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]):focus,
 .volume .control .volume-slider .slider:not([disabled]):focus,
 .volume .volume-slider .control .slider:not([disabled]):focus,
 .field.has-addons .control .input:not([disabled]).is-focused,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]).is-focused,
 section.settings .ChosenSets.volume .control .input:not([disabled]).is-focused,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]).is-focused,
+section.settings .ChosenElems.volume .control .input:not([disabled]).is-focused,
 .volume .control .input:not([disabled]).is-focused,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]).is-focused,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]).is-focused,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]).is-focused,
 .volume .control .volume-slider .slider:not([disabled]).is-focused,
 .volume .volume-slider .control .slider:not([disabled]).is-focused,
 .field.has-addons .control .input:not([disabled]):active,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]):active,
 section.settings .ChosenSets.volume .control .input:not([disabled]):active,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]):active,
+section.settings .ChosenElems.volume .control .input:not([disabled]):active,
 .volume .control .input:not([disabled]):active,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]):active,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]):active,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]):active,
 .volume .control .volume-slider .slider:not([disabled]):active,
 .volume .volume-slider .control .slider:not([disabled]):active,
 .field.has-addons .control .input:not([disabled]).is-active,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]).is-active,
 section.settings .ChosenSets.volume .control .input:not([disabled]).is-active,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]).is-active,
+section.settings .ChosenElems.volume .control .input:not([disabled]).is-active,
 .volume .control .input:not([disabled]).is-active,
 .field.has-addons .control nav .input.navbar-menu:not([disabled]),
 nav .field.has-addons .control .input.navbar-menu:not([disabled]),
@@ -4745,35 +4781,50 @@ section.settings .has-addons.ChosenSets .control nav .input.navbar-menu:not([dis
 nav section.settings .has-addons.ChosenSets .control .input.navbar-menu:not([disabled]),
 section.settings .ChosenSets.volume .control nav .input.navbar-menu:not([disabled]),
 nav section.settings .ChosenSets.volume .control .input.navbar-menu:not([disabled]),
+section.settings .has-addons.ChosenElems .control nav .input.navbar-menu:not([disabled]),
+nav section.settings .has-addons.ChosenElems .control .input.navbar-menu:not([disabled]),
+section.settings .ChosenElems.volume .control nav .input.navbar-menu:not([disabled]),
+nav section.settings .ChosenElems.volume .control .input.navbar-menu:not([disabled]),
 .volume .control nav .input.navbar-menu:not([disabled]),
 nav .volume .control .input.navbar-menu:not([disabled]),
 .field.has-addons .control nav .volume .volume-slider .navbar-menu.slider:not([disabled]),
 section.settings .has-addons.ChosenSets .control nav .volume .volume-slider .navbar-menu.slider:not([disabled]),
+section.settings .has-addons.ChosenElems .control nav .volume .volume-slider .navbar-menu.slider:not([disabled]),
 nav .volume .control .volume-slider .navbar-menu.slider:not([disabled]),
 nav .volume .volume-slider .control .navbar-menu.slider:not([disabled]),
 .field.has-addons .control .volume .volume-slider nav .navbar-menu.slider:not([disabled]),
 section.settings .has-addons.ChosenSets .control .volume .volume-slider nav .navbar-menu.slider:not([disabled]),
+section.settings .has-addons.ChosenElems .control .volume .volume-slider nav .navbar-menu.slider:not([disabled]),
 .volume .control .volume-slider nav .navbar-menu.slider:not([disabled]),
 .volume .volume-slider nav .control .navbar-menu.slider:not([disabled]),
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]).is-active,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]).is-active,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]).is-active,
 .volume .control .volume-slider .slider:not([disabled]).is-active,
 .volume .volume-slider .control .slider:not([disabled]).is-active,
 .field.has-addons .control .select select:not([disabled]):focus,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]):focus,
 section.settings .ChosenSets.volume .control .select select:not([disabled]):focus,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]):focus,
+section.settings .ChosenElems.volume .control .select select:not([disabled]):focus,
 .volume .control .select select:not([disabled]):focus,
 .field.has-addons .control .select select:not([disabled]).is-focused,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]).is-focused,
 section.settings .ChosenSets.volume .control .select select:not([disabled]).is-focused,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]).is-focused,
+section.settings .ChosenElems.volume .control .select select:not([disabled]).is-focused,
 .volume .control .select select:not([disabled]).is-focused,
 .field.has-addons .control .select select:not([disabled]):active,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]):active,
 section.settings .ChosenSets.volume .control .select select:not([disabled]):active,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]):active,
+section.settings .ChosenElems.volume .control .select select:not([disabled]):active,
 .volume .control .select select:not([disabled]):active,
 .field.has-addons .control .select select:not([disabled]).is-active,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]).is-active,
 section.settings .ChosenSets.volume .control .select select:not([disabled]).is-active,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]).is-active,
+section.settings .ChosenElems.volume .control .select select:not([disabled]).is-active,
 .volume .control .select select:not([disabled]).is-active,
 .field.has-addons .control .select nav select.navbar-menu:not([disabled]),
 nav .field.has-addons .control .select select.navbar-menu:not([disabled]),
@@ -4781,39 +4832,54 @@ section.settings .has-addons.ChosenSets .control .select nav select.navbar-menu:
 nav section.settings .has-addons.ChosenSets .control .select select.navbar-menu:not([disabled]),
 section.settings .ChosenSets.volume .control .select nav select.navbar-menu:not([disabled]),
 nav section.settings .ChosenSets.volume .control .select select.navbar-menu:not([disabled]),
+section.settings .has-addons.ChosenElems .control .select nav select.navbar-menu:not([disabled]),
+nav section.settings .has-addons.ChosenElems .control .select select.navbar-menu:not([disabled]),
+section.settings .ChosenElems.volume .control .select nav select.navbar-menu:not([disabled]),
+nav section.settings .ChosenElems.volume .control .select select.navbar-menu:not([disabled]),
 .volume .control .select nav select.navbar-menu:not([disabled]),
 nav .volume .control .select select.navbar-menu:not([disabled]) {
   z-index: 3;
 }
 
-.field.has-addons .control .button:not([disabled]):focus:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]):focus:hover, section.settings .ChosenSets.volume .control .button:not([disabled]):focus:hover, .volume .control .button:not([disabled]):focus:hover, .field.has-addons .control button:not([disabled]):focus:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]):focus:hover, section.settings .ChosenSets.volume .control button:not([disabled]):focus:hover, .volume .control button:not([disabled]):focus:hover, .field.has-addons .control .button:not([disabled]).is-focused:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-focused:hover, section.settings .ChosenSets.volume .control .button:not([disabled]).is-focused:hover, .volume .control .button:not([disabled]).is-focused:hover, .field.has-addons .control button:not([disabled]).is-focused:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-focused:hover, section.settings .ChosenSets.volume .control button:not([disabled]).is-focused:hover, .volume .control button:not([disabled]).is-focused:hover, .field.has-addons .control .button:not([disabled]):active:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]):active:hover, section.settings .ChosenSets.volume .control .button:not([disabled]):active:hover, .volume .control .button:not([disabled]):active:hover, .field.has-addons .control button:not([disabled]):active:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]):active:hover, section.settings .ChosenSets.volume .control button:not([disabled]):active:hover, .volume .control button:not([disabled]):active:hover, .field.has-addons .control .button:not([disabled]).is-active:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-active:hover, section.settings .ChosenSets.volume .control .button:not([disabled]).is-active:hover, .volume .control .button:not([disabled]).is-active:hover, .field.has-addons .control nav .button.navbar-menu:not([disabled]):hover, nav .field.has-addons .control .button.navbar-menu:not([disabled]):hover, section.settings .has-addons.ChosenSets .control nav .button.navbar-menu:not([disabled]):hover, nav section.settings .has-addons.ChosenSets .control .button.navbar-menu:not([disabled]):hover, section.settings .ChosenSets.volume .control nav .button.navbar-menu:not([disabled]):hover, nav section.settings .ChosenSets.volume .control .button.navbar-menu:not([disabled]):hover, .volume .control nav .button.navbar-menu:not([disabled]):hover, nav .volume .control .button.navbar-menu:not([disabled]):hover, .field.has-addons .control nav button.navbar-menu:not([disabled]):hover, nav .field.has-addons .control button.navbar-menu:not([disabled]):hover, section.settings .has-addons.ChosenSets .control nav button.navbar-menu:not([disabled]):hover, nav section.settings .has-addons.ChosenSets .control button.navbar-menu:not([disabled]):hover, section.settings .ChosenSets.volume .control nav button.navbar-menu:not([disabled]):hover, nav section.settings .ChosenSets.volume .control button.navbar-menu:not([disabled]):hover, .volume .control nav button.navbar-menu:not([disabled]):hover, nav .volume .control button.navbar-menu:not([disabled]):hover, .field.has-addons .control button:not([disabled]).is-active:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-active:hover, section.settings .ChosenSets.volume .control button:not([disabled]).is-active:hover, .volume .control button:not([disabled]).is-active:hover,
+.field.has-addons .control .button:not([disabled]):focus:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]):focus:hover, section.settings .ChosenSets.volume .control .button:not([disabled]):focus:hover, section.settings .has-addons.ChosenElems .control .button:not([disabled]):focus:hover, section.settings .ChosenElems.volume .control .button:not([disabled]):focus:hover, .volume .control .button:not([disabled]):focus:hover, .field.has-addons .control button:not([disabled]):focus:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]):focus:hover, section.settings .ChosenSets.volume .control button:not([disabled]):focus:hover, section.settings .has-addons.ChosenElems .control button:not([disabled]):focus:hover, section.settings .ChosenElems.volume .control button:not([disabled]):focus:hover, .volume .control button:not([disabled]):focus:hover, .field.has-addons .control .button:not([disabled]).is-focused:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-focused:hover, section.settings .ChosenSets.volume .control .button:not([disabled]).is-focused:hover, section.settings .has-addons.ChosenElems .control .button:not([disabled]).is-focused:hover, section.settings .ChosenElems.volume .control .button:not([disabled]).is-focused:hover, .volume .control .button:not([disabled]).is-focused:hover, .field.has-addons .control button:not([disabled]).is-focused:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-focused:hover, section.settings .ChosenSets.volume .control button:not([disabled]).is-focused:hover, section.settings .has-addons.ChosenElems .control button:not([disabled]).is-focused:hover, section.settings .ChosenElems.volume .control button:not([disabled]).is-focused:hover, .volume .control button:not([disabled]).is-focused:hover, .field.has-addons .control .button:not([disabled]):active:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]):active:hover, section.settings .ChosenSets.volume .control .button:not([disabled]):active:hover, section.settings .has-addons.ChosenElems .control .button:not([disabled]):active:hover, section.settings .ChosenElems.volume .control .button:not([disabled]):active:hover, .volume .control .button:not([disabled]):active:hover, .field.has-addons .control button:not([disabled]):active:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]):active:hover, section.settings .ChosenSets.volume .control button:not([disabled]):active:hover, section.settings .has-addons.ChosenElems .control button:not([disabled]):active:hover, section.settings .ChosenElems.volume .control button:not([disabled]):active:hover, .volume .control button:not([disabled]):active:hover, .field.has-addons .control .button:not([disabled]).is-active:hover, section.settings .has-addons.ChosenSets .control .button:not([disabled]).is-active:hover, section.settings .ChosenSets.volume .control .button:not([disabled]).is-active:hover, section.settings .has-addons.ChosenElems .control .button:not([disabled]).is-active:hover, section.settings .ChosenElems.volume .control .button:not([disabled]).is-active:hover, .volume .control .button:not([disabled]).is-active:hover, .field.has-addons .control nav .button.navbar-menu:not([disabled]):hover, nav .field.has-addons .control .button.navbar-menu:not([disabled]):hover, section.settings .has-addons.ChosenSets .control nav .button.navbar-menu:not([disabled]):hover, nav section.settings .has-addons.ChosenSets .control .button.navbar-menu:not([disabled]):hover, section.settings .ChosenSets.volume .control nav .button.navbar-menu:not([disabled]):hover, nav section.settings .ChosenSets.volume .control .button.navbar-menu:not([disabled]):hover, section.settings .has-addons.ChosenElems .control nav .button.navbar-menu:not([disabled]):hover, nav section.settings .has-addons.ChosenElems .control .button.navbar-menu:not([disabled]):hover, section.settings .ChosenElems.volume .control nav .button.navbar-menu:not([disabled]):hover, nav section.settings .ChosenElems.volume .control .button.navbar-menu:not([disabled]):hover, .volume .control nav .button.navbar-menu:not([disabled]):hover, nav .volume .control .button.navbar-menu:not([disabled]):hover, .field.has-addons .control nav button.navbar-menu:not([disabled]):hover, nav .field.has-addons .control button.navbar-menu:not([disabled]):hover, section.settings .has-addons.ChosenSets .control nav button.navbar-menu:not([disabled]):hover, nav section.settings .has-addons.ChosenSets .control button.navbar-menu:not([disabled]):hover, section.settings .ChosenSets.volume .control nav button.navbar-menu:not([disabled]):hover, nav section.settings .ChosenSets.volume .control button.navbar-menu:not([disabled]):hover, section.settings .has-addons.ChosenElems .control nav button.navbar-menu:not([disabled]):hover, nav section.settings .has-addons.ChosenElems .control button.navbar-menu:not([disabled]):hover, section.settings .ChosenElems.volume .control nav button.navbar-menu:not([disabled]):hover, nav section.settings .ChosenElems.volume .control button.navbar-menu:not([disabled]):hover, .volume .control nav button.navbar-menu:not([disabled]):hover, nav .volume .control button.navbar-menu:not([disabled]):hover, .field.has-addons .control button:not([disabled]).is-active:hover, section.settings .has-addons.ChosenSets .control button:not([disabled]).is-active:hover, section.settings .ChosenSets.volume .control button:not([disabled]).is-active:hover, section.settings .has-addons.ChosenElems .control button:not([disabled]).is-active:hover, section.settings .ChosenElems.volume .control button:not([disabled]).is-active:hover, .volume .control button:not([disabled]).is-active:hover,
 .field.has-addons .control .input:not([disabled]):focus:hover,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]):focus:hover,
 section.settings .ChosenSets.volume .control .input:not([disabled]):focus:hover,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]):focus:hover,
+section.settings .ChosenElems.volume .control .input:not([disabled]):focus:hover,
 .volume .control .input:not([disabled]):focus:hover,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]):focus:hover,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]):focus:hover,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]):focus:hover,
 .volume .control .volume-slider .slider:not([disabled]):focus:hover,
 .volume .volume-slider .control .slider:not([disabled]):focus:hover,
 .field.has-addons .control .input:not([disabled]).is-focused:hover,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]).is-focused:hover,
 section.settings .ChosenSets.volume .control .input:not([disabled]).is-focused:hover,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]).is-focused:hover,
+section.settings .ChosenElems.volume .control .input:not([disabled]).is-focused:hover,
 .volume .control .input:not([disabled]).is-focused:hover,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]).is-focused:hover,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]).is-focused:hover,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]).is-focused:hover,
 .volume .control .volume-slider .slider:not([disabled]).is-focused:hover,
 .volume .volume-slider .control .slider:not([disabled]).is-focused:hover,
 .field.has-addons .control .input:not([disabled]):active:hover,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]):active:hover,
 section.settings .ChosenSets.volume .control .input:not([disabled]):active:hover,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]):active:hover,
+section.settings .ChosenElems.volume .control .input:not([disabled]):active:hover,
 .volume .control .input:not([disabled]):active:hover,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]):active:hover,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]):active:hover,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]):active:hover,
 .volume .control .volume-slider .slider:not([disabled]):active:hover,
 .volume .volume-slider .control .slider:not([disabled]):active:hover,
 .field.has-addons .control .input:not([disabled]).is-active:hover,
 section.settings .has-addons.ChosenSets .control .input:not([disabled]).is-active:hover,
 section.settings .ChosenSets.volume .control .input:not([disabled]).is-active:hover,
+section.settings .has-addons.ChosenElems .control .input:not([disabled]).is-active:hover,
+section.settings .ChosenElems.volume .control .input:not([disabled]).is-active:hover,
 .volume .control .input:not([disabled]).is-active:hover,
 .field.has-addons .control nav .input.navbar-menu:not([disabled]):hover,
 nav .field.has-addons .control .input.navbar-menu:not([disabled]):hover,
@@ -4821,35 +4887,50 @@ section.settings .has-addons.ChosenSets .control nav .input.navbar-menu:not([dis
 nav section.settings .has-addons.ChosenSets .control .input.navbar-menu:not([disabled]):hover,
 section.settings .ChosenSets.volume .control nav .input.navbar-menu:not([disabled]):hover,
 nav section.settings .ChosenSets.volume .control .input.navbar-menu:not([disabled]):hover,
+section.settings .has-addons.ChosenElems .control nav .input.navbar-menu:not([disabled]):hover,
+nav section.settings .has-addons.ChosenElems .control .input.navbar-menu:not([disabled]):hover,
+section.settings .ChosenElems.volume .control nav .input.navbar-menu:not([disabled]):hover,
+nav section.settings .ChosenElems.volume .control .input.navbar-menu:not([disabled]):hover,
 .volume .control nav .input.navbar-menu:not([disabled]):hover,
 nav .volume .control .input.navbar-menu:not([disabled]):hover,
 .field.has-addons .control nav .volume .volume-slider .navbar-menu.slider:not([disabled]):hover,
 section.settings .has-addons.ChosenSets .control nav .volume .volume-slider .navbar-menu.slider:not([disabled]):hover,
+section.settings .has-addons.ChosenElems .control nav .volume .volume-slider .navbar-menu.slider:not([disabled]):hover,
 nav .volume .control .volume-slider .navbar-menu.slider:not([disabled]):hover,
 nav .volume .volume-slider .control .navbar-menu.slider:not([disabled]):hover,
 .field.has-addons .control .volume .volume-slider nav .navbar-menu.slider:not([disabled]):hover,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider nav .navbar-menu.slider:not([disabled]):hover,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider nav .navbar-menu.slider:not([disabled]):hover,
 .volume .control .volume-slider nav .navbar-menu.slider:not([disabled]):hover,
 .volume .volume-slider nav .control .navbar-menu.slider:not([disabled]):hover,
 .field.has-addons .control .volume .volume-slider .slider:not([disabled]).is-active:hover,
 section.settings .has-addons.ChosenSets .control .volume .volume-slider .slider:not([disabled]).is-active:hover,
+section.settings .has-addons.ChosenElems .control .volume .volume-slider .slider:not([disabled]).is-active:hover,
 .volume .control .volume-slider .slider:not([disabled]).is-active:hover,
 .volume .volume-slider .control .slider:not([disabled]).is-active:hover,
 .field.has-addons .control .select select:not([disabled]):focus:hover,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]):focus:hover,
 section.settings .ChosenSets.volume .control .select select:not([disabled]):focus:hover,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]):focus:hover,
+section.settings .ChosenElems.volume .control .select select:not([disabled]):focus:hover,
 .volume .control .select select:not([disabled]):focus:hover,
 .field.has-addons .control .select select:not([disabled]).is-focused:hover,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]).is-focused:hover,
 section.settings .ChosenSets.volume .control .select select:not([disabled]).is-focused:hover,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]).is-focused:hover,
+section.settings .ChosenElems.volume .control .select select:not([disabled]).is-focused:hover,
 .volume .control .select select:not([disabled]).is-focused:hover,
 .field.has-addons .control .select select:not([disabled]):active:hover,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]):active:hover,
 section.settings .ChosenSets.volume .control .select select:not([disabled]):active:hover,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]):active:hover,
+section.settings .ChosenElems.volume .control .select select:not([disabled]):active:hover,
 .volume .control .select select:not([disabled]):active:hover,
 .field.has-addons .control .select select:not([disabled]).is-active:hover,
 section.settings .has-addons.ChosenSets .control .select select:not([disabled]).is-active:hover,
 section.settings .ChosenSets.volume .control .select select:not([disabled]).is-active:hover,
+section.settings .has-addons.ChosenElems .control .select select:not([disabled]).is-active:hover,
+section.settings .ChosenElems.volume .control .select select:not([disabled]).is-active:hover,
 .volume .control .select select:not([disabled]).is-active:hover,
 .field.has-addons .control .select nav select.navbar-menu:not([disabled]):hover,
 nav .field.has-addons .control .select select.navbar-menu:not([disabled]):hover,
@@ -4857,12 +4938,16 @@ section.settings .has-addons.ChosenSets .control .select nav select.navbar-menu:
 nav section.settings .has-addons.ChosenSets .control .select select.navbar-menu:not([disabled]):hover,
 section.settings .ChosenSets.volume .control .select nav select.navbar-menu:not([disabled]):hover,
 nav section.settings .ChosenSets.volume .control .select select.navbar-menu:not([disabled]):hover,
+section.settings .has-addons.ChosenElems .control .select nav select.navbar-menu:not([disabled]):hover,
+nav section.settings .has-addons.ChosenElems .control .select select.navbar-menu:not([disabled]):hover,
+section.settings .ChosenElems.volume .control .select nav select.navbar-menu:not([disabled]):hover,
+nav section.settings .ChosenElems.volume .control .select select.navbar-menu:not([disabled]):hover,
 .volume .control .select nav select.navbar-menu:not([disabled]):hover,
 nav .volume .control .select select.navbar-menu:not([disabled]):hover {
   z-index: 4;
 }
 
-.field.has-addons .control.is-expanded, section.settings .has-addons.ChosenSets .control.is-expanded, section.settings .ChosenSets.volume .control.is-expanded, .volume .control.is-expanded {
+.field.has-addons .control.is-expanded, section.settings .has-addons.ChosenSets .control.is-expanded, section.settings .ChosenSets.volume .control.is-expanded, section.settings .has-addons.ChosenElems .control.is-expanded, section.settings .ChosenElems.volume .control.is-expanded, .volume .control.is-expanded {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -4870,19 +4955,19 @@ nav .volume .control .select select.navbar-menu:not([disabled]):hover {
       flex-shrink: 1;
 }
 
-.field.has-addons.has-addons-centered, section.settings .has-addons.has-addons-centered.ChosenSets, section.settings .has-addons-centered.ChosenSets.volume, .has-addons-centered.volume {
+.field.has-addons.has-addons-centered, section.settings .has-addons.has-addons-centered.ChosenSets, section.settings .has-addons-centered.ChosenSets.volume, section.settings .has-addons.has-addons-centered.ChosenElems, section.settings .has-addons-centered.ChosenElems.volume, .has-addons-centered.volume {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-.field.has-addons.has-addons-right, section.settings .has-addons.has-addons-right.ChosenSets, section.settings .has-addons-right.ChosenSets.volume, .has-addons-right.volume {
+.field.has-addons.has-addons-right, section.settings .has-addons.has-addons-right.ChosenSets, section.settings .has-addons-right.ChosenSets.volume, section.settings .has-addons.has-addons-right.ChosenElems, section.settings .has-addons-right.ChosenElems.volume, .has-addons-right.volume {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
-.field.has-addons.has-addons-fullwidth .control, section.settings .has-addons.has-addons-fullwidth.ChosenSets .control, section.settings .has-addons-fullwidth.ChosenSets.volume .control, .has-addons-fullwidth.volume .control {
+.field.has-addons.has-addons-fullwidth .control, section.settings .has-addons.has-addons-fullwidth.ChosenSets .control, section.settings .has-addons-fullwidth.ChosenSets.volume .control, section.settings .has-addons.has-addons-fullwidth.ChosenElems .control, section.settings .has-addons-fullwidth.ChosenElems.volume .control, .has-addons-fullwidth.volume .control {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -4890,7 +4975,7 @@ nav .volume .control .select select.navbar-menu:not([disabled]):hover {
       flex-shrink: 0;
 }
 
-.field.is-grouped, section.settings .ChosenSets, .is-grouped.volume {
+.field.is-grouped, section.settings .ChosenSets, section.settings .ChosenElems, .is-grouped.volume {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4899,17 +4984,17 @@ nav .volume .control .select select.navbar-menu:not([disabled]):hover {
           justify-content: flex-start;
 }
 
-.field.is-grouped > .control, section.settings .ChosenSets > .control, .is-grouped.volume > .control {
+.field.is-grouped > .control, section.settings .ChosenSets > .control, section.settings .ChosenElems > .control, .is-grouped.volume > .control {
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
 
-.field.is-grouped > .control:not(:last-child), section.settings .ChosenSets > .control:not(:last-child), .is-grouped.volume > .control:not(:last-child) {
+.field.is-grouped > .control:not(:last-child), section.settings .ChosenSets > .control:not(:last-child), section.settings .ChosenElems > .control:not(:last-child), .is-grouped.volume > .control:not(:last-child) {
   margin-bottom: 0;
   margin-right: 0.75rem;
 }
 
-.field.is-grouped > .control.is-expanded, section.settings .ChosenSets > .control.is-expanded, .is-grouped.volume > .control.is-expanded {
+.field.is-grouped > .control.is-expanded, section.settings .ChosenSets > .control.is-expanded, section.settings .ChosenElems > .control.is-expanded, .is-grouped.volume > .control.is-expanded {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -4917,37 +5002,37 @@ nav .volume .control .select select.navbar-menu:not([disabled]):hover {
       flex-shrink: 1;
 }
 
-.field.is-grouped.is-grouped-centered, section.settings .is-grouped-centered.ChosenSets, .is-grouped.is-grouped-centered.volume {
+.field.is-grouped.is-grouped-centered, section.settings .is-grouped-centered.ChosenSets, section.settings .is-grouped-centered.ChosenElems, .is-grouped.is-grouped-centered.volume {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-.field.is-grouped.is-grouped-right, section.settings .is-grouped-right.ChosenSets, .is-grouped.is-grouped-right.volume {
+.field.is-grouped.is-grouped-right, section.settings .is-grouped-right.ChosenSets, section.settings .is-grouped-right.ChosenElems, .is-grouped.is-grouped-right.volume {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
-.field.is-grouped.is-grouped-multiline, section.settings .ChosenSets, .is-grouped.is-grouped-multiline.volume {
+.field.is-grouped.is-grouped-multiline, section.settings .ChosenSets, section.settings .ChosenElems, .is-grouped.is-grouped-multiline.volume {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
-.field.is-grouped.is-grouped-multiline > .control:last-child, section.settings .ChosenSets > .control:last-child, .is-grouped.is-grouped-multiline.volume > .control:last-child, section.settings .volume.ChosenSets > .control:last-child, .field.is-grouped.is-grouped-multiline > .control:not(:last-child), section.settings .ChosenSets > .control:not(:last-child), .is-grouped.is-grouped-multiline.volume > .control:not(:last-child), section.settings .volume.ChosenSets > .control:not(:last-child) {
+.field.is-grouped.is-grouped-multiline > .control:last-child, section.settings .ChosenSets > .control:last-child, section.settings .ChosenElems > .control:last-child, .is-grouped.is-grouped-multiline.volume > .control:last-child, section.settings .volume.ChosenSets > .control:last-child, section.settings .volume.ChosenElems > .control:last-child, .field.is-grouped.is-grouped-multiline > .control:not(:last-child), section.settings .ChosenSets > .control:not(:last-child), section.settings .ChosenElems > .control:not(:last-child), .is-grouped.is-grouped-multiline.volume > .control:not(:last-child), section.settings .volume.ChosenSets > .control:not(:last-child), section.settings .volume.ChosenElems > .control:not(:last-child) {
   margin-bottom: 0.75rem;
 }
 
-.field.is-grouped.is-grouped-multiline:last-child, section.settings .ChosenSets:last-child, .is-grouped.is-grouped-multiline.volume:last-child {
+.field.is-grouped.is-grouped-multiline:last-child, section.settings .ChosenSets:last-child, section.settings .ChosenElems:last-child, .is-grouped.is-grouped-multiline.volume:last-child {
   margin-bottom: -0.75rem;
 }
 
-.field.is-grouped.is-grouped-multiline:not(:last-child), section.settings .ChosenSets:not(:last-child), .is-grouped.is-grouped-multiline.volume:not(:last-child) {
+.field.is-grouped.is-grouped-multiline:not(:last-child), section.settings .ChosenSets:not(:last-child), section.settings .ChosenElems:not(:last-child), .is-grouped.is-grouped-multiline.volume:not(:last-child) {
   margin-bottom: 0;
 }
 
 @media screen and (min-width: 769px), print {
-  .field.is-horizontal, section.settings .is-horizontal.ChosenSets, .is-horizontal.volume {
+  .field.is-horizontal, section.settings .is-horizontal.ChosenSets, section.settings .is-horizontal.ChosenElems, .is-horizontal.volume {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4993,7 +5078,7 @@ nav .volume .control .select select.navbar-menu:not([disabled]):hover {
   }
 }
 
-.field-body .field .field, .field-body section.settings .ChosenSets .field, section.settings .field-body .ChosenSets .field, .field-body .volume .field, .field-body .field section.settings .ChosenSets, section.settings .field-body .field .ChosenSets, .field-body section.settings .ChosenSets .ChosenSets, section.settings .field-body .ChosenSets .ChosenSets, .field-body .volume section.settings .ChosenSets, section.settings .field-body .volume .ChosenSets, .field-body .field .volume, .field-body section.settings .ChosenSets .volume, section.settings .field-body .ChosenSets .volume, .field-body .volume .volume {
+.field-body .field .field, .field-body section.settings .ChosenSets .field, section.settings .field-body .ChosenSets .field, .field-body section.settings .ChosenElems .field, section.settings .field-body .ChosenElems .field, .field-body .volume .field, .field-body .field section.settings .ChosenSets, section.settings .field-body .field .ChosenSets, .field-body section.settings .ChosenSets .ChosenSets, section.settings .field-body .ChosenSets .ChosenSets, .field-body section.settings .ChosenElems .ChosenSets, section.settings .field-body .ChosenElems .ChosenSets, .field-body .volume section.settings .ChosenSets, section.settings .field-body .volume .ChosenSets, .field-body .field section.settings .ChosenElems, section.settings .field-body .field .ChosenElems, .field-body section.settings .ChosenSets .ChosenElems, section.settings .field-body .ChosenSets .ChosenElems, .field-body section.settings .ChosenElems .ChosenElems, section.settings .field-body .ChosenElems .ChosenElems, .field-body .volume section.settings .ChosenElems, section.settings .field-body .volume .ChosenElems, .field-body .field .volume, .field-body section.settings .ChosenSets .volume, section.settings .field-body .ChosenSets .volume, .field-body section.settings .ChosenElems .volume, section.settings .field-body .ChosenElems .volume, .field-body .volume .volume {
   margin-bottom: 0;
 }
 
@@ -5010,19 +5095,19 @@ nav .volume .control .select select.navbar-menu:not([disabled]):hover {
     -ms-flex-negative: 1;
         flex-shrink: 1;
   }
-  .field-body .field, .field-body section.settings .ChosenSets, section.settings .field-body .ChosenSets, .field-body .volume {
+  .field-body .field, .field-body section.settings .ChosenSets, section.settings .field-body .ChosenSets, .field-body section.settings .ChosenElems, section.settings .field-body .ChosenElems, .field-body .volume {
     margin-bottom: 0;
   }
-  .field-body > .field, section.settings .field-body > .ChosenSets, .field-body > .volume {
+  .field-body > .field, section.settings .field-body > .ChosenSets, section.settings .field-body > .ChosenElems, .field-body > .volume {
     -ms-flex-negative: 1;
         flex-shrink: 1;
   }
-  .field-body > .field:not(.is-narrow), section.settings .field-body > .ChosenSets:not(.is-narrow), .field-body > .volume:not(.is-narrow) {
+  .field-body > .field:not(.is-narrow), section.settings .field-body > .ChosenSets:not(.is-narrow), section.settings .field-body > .ChosenElems:not(.is-narrow), .field-body > .volume:not(.is-narrow) {
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
   }
-  .field-body > .field:not(:last-child), section.settings .field-body > .ChosenSets:not(:last-child), .field-body > .volume:not(:last-child) {
+  .field-body > .field:not(:last-child), section.settings .field-body > .ChosenSets:not(:last-child), section.settings .field-body > .ChosenElems:not(:last-child), .field-body > .volume:not(:last-child) {
     margin-right: 0.75rem;
   }
 }
@@ -20473,7 +20558,7 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
-section.settings .ChosenSets {
+section.settings .ChosenSets, section.settings .ChosenElems {
   min-height: 1em;
 }
 
