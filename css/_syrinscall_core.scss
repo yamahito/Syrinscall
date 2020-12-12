@@ -39,11 +39,21 @@ section.control_panel {
       @extend .column;
       div.Music, div.Elements {
         @extend .columns, .is-multiline, .is-5;
-        &>p {
-          @extend .column, .is-full, .mb-0;
-        }
         .column {
           @extend .is-4-desktop, .is-6-tablet;
+          .pin {
+            position: absolute;
+            top: 0.5em;
+            right: 1em;
+          }
+          .pin_icon {
+            @extend .far, .fa-circle;
+          }
+          &.is-pinned {
+            .pin_icon {
+              @extend .fas, .fa-dot-circle;
+            }
+          }
           .card {
             @extend .box;
             padding: 0;

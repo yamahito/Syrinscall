@@ -130,7 +130,7 @@
 		<xsl:param name="pinned" as="xs:boolean" select="false()" tunnel="yes"/>
 		<xsl:message>Adding Music element: {.?name}</xsl:message>
 		<xsl:result-document href="#Music">
-			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned)]), ' ')}">
+			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned)], 'is-pinned'[$pinned]), ' ')}">
 				<div class="music-element element card" id="e:{.?pk}">
 					<div class="card-content">
 						<div class="media">
@@ -145,6 +145,11 @@
 							</div>
 						</div>
 					</div>
+					<a class="pin">
+						<span class="icon">
+							<i class="pin_icon"/>
+						</span>
+					</a>
 					<xsl:call-template name="card-footer"/>
 				</div>
 			</div>
@@ -160,7 +165,7 @@
 		<xsl:param name="pinned" as="xs:boolean" select="false()" tunnel="yes"/>
 		<xsl:message>Adding SFX element: {.?name}</xsl:message>
 		<xsl:result-document href="#Elements">
-			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned)]), ' ')}">
+			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned)], 'is-pinned'[$pinned]), ' ')}">
 				<div class="sfx-element element card" id="e:{.?pk}">
 					<div class="card-content">
 						<div class="media">
@@ -175,6 +180,11 @@
 							</div>
 						</div>
 					</div>
+					<a class="pin">
+						<span class="icon">
+							<i class="pin_icon"/>
+						</span>
+					</a>
 					<xsl:call-template name="card-footer"/>
 				</div>
 			</div>
@@ -285,7 +295,7 @@
 	<xsl:template name="clear_state">
 		<xsl:message>Clearing state...</xsl:message>
 		<xsl:sequence select="ejs:remove-class(id('Moods', ixsl:page())/html:div/html:button, 'is-playing')"/>
-		<xsl:sequence select="ejs:add-class(id('MoodElements', ixsl:page())/html:div/html:div[not(local:get-id-number(@data-rid)=$elems)], 'is-hidden')"/>
+		<xsl:sequence select="ejs:add-class(id('MoodElements', ixsl:page())/html:div/html:div[not(ejs:contains-class(., 'is-pinned'))], 'is-hidden')"/>
 	</xsl:template>
 	
 	<xsl:template name="handle_state">
@@ -447,6 +457,15 @@
 		<ixsl:set-property name="auth_token" select="id('update_auth')/@value" object="ixsl:page()"/>
 		<xsl:message>auth_token set to {ixsl:query-params()?auth_token}</xsl:message>
 		<xsl:call-template name="toggle_settings"/>
+	</xsl:template>
+	
+	<!-- Pin/unpin -->
+	<xsl:template match="html:a[@class='pin']" mode="ixsl:onclick">
+		<xsl:variable name="pinned" select="ejs:contains-class(../.., 'is-pinned')" as="xs:boolean"/>
+		<xsl:variable name="this.element" select="local:get-id-number(../@id)" as="xs:string"/>
+		<xsl:variable name="otherValues" select="tokenize(id('elemsParams', ixsl:page()), '\+')/@value[not(. eq $this.element)]" as="xs:string*"/>
+		<xsl:sequence select="ejs:toggle-class(../.., 'is-pinned')"/>
+		<ixsl:set-attribute name="value" select="string-join(distinct-values(($otherValues, 'is-pinned'[not($pinned)])), '+')" object="id('elemsParams', ixsl:page())"/>
 	</xsl:template>
 	
 	<!-- 
