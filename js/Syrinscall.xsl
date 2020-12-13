@@ -487,7 +487,8 @@
 		</ixsl:schedule-action>
 	</xsl:template>
 	
-	<!-- Element Play Response -->
+	<!-- Element Play Response Handling -->
+	
 	<xsl:template match=".[. eq xs:QName('local:play-element')]" mode="ejs:action">
 		<xsl:param name="response" tunnel="yes"/>
 		<xsl:apply-templates select="$response" mode="local:play-element"/>

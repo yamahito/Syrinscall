@@ -10,6 +10,12 @@ nav {
   h1 {
     @extend .has-text-light;
   }
+  #Stop {
+    @extend .level, .ml-5;
+  }
+  #master_stop, #master-volume {
+    @extend .navbar-item;
+  }
 }
 
 h1 {
