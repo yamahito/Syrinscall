@@ -54,6 +54,17 @@ section.control_panel {
               @extend .fas, .fa-dot-circle;
             }
           }
+          .play-button {
+            @extend .icon;
+          }
+          .play-pause {
+            @extend .fa, .fa-play;
+          }
+          &.is-playing {
+            .play-pause {
+              @extend .fa, .fa-pause;
+            }
+          }
           .card {
             @extend .box;
             padding: 0;

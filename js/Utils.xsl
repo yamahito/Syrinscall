@@ -101,6 +101,47 @@
 	</xsl:function>
 	
 	<xd:doc>
+		<xd:desc>This template attempts to add generic handling of http requests.</xd:desc>
+		<xd:param name="action"/>
+	</xd:doc>
+	<xsl:template name="local:handle-response">
+		<xsl:context-item as="map(*)" use="required"/>
+		<xsl:param name="action" as="xs:QName" select="xs:QName('local:message')"/>
+		<xsl:apply-templates mode="local:action" select="$action">
+			<xsl:with-param name="response" select="parse-json(.?body)" tunnel="yes"/>
+		</xsl:apply-templates>
+	</xsl:template>
+	
+	<xd:doc>
+		<xd:desc>This Template prints the response from a http request to the console</xd:desc>
+		<xd:param name="response"/>
+	</xd:doc>
+	<xsl:template match=".[. eq xs:QName('local:message')]" mode="local:action">
+		<xsl:param tunnel="yes" name="response"/>
+		<xsl:apply-templates select="$response" mode="local:message"/>
+	</xsl:template>
+	
+	<!-- local:message mode outputs to console -->
+	
+	<xsl:mode name="local:message" on-no-match="fail" on-multiple-match="use-last"/>
+	
+	<xd:doc>
+		<xd:desc>Outputs strings</xd:desc>
+	</xd:doc>
+	<xsl:template match=".[. instance of xs:string]" mode="local:message">
+		<xsl:message>Response: String</xsl:message>
+		<xsl:message select="xs:string(.)"/>
+	</xsl:template>
+	
+	<xd:doc>
+		<xd:desc>Outputs maps as json</xd:desc>
+	</xd:doc>
+	<xsl:template match=".[. instance of map(*)]" mode="local:message">
+		<xsl:message>Response: Map</xsl:message>
+		<xsl:message select="serialize(., map{'method':'json','indent':true()})"/>
+	</xsl:template>
+	
+	<xd:doc>
 		<xd:desc>This template simply returns a message (for use with ixsl:schedule-action)</xd:desc>
 		<xd:param name="value">The value to be returned in the message</xd:param>
 	</xd:doc>

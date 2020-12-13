@@ -194,9 +194,9 @@
 	<xsl:template name="card-footer">
 		<footer class="card-footer">
 			<div id="e:{.?pk}-play" class="card-control play">
-				<div class="icon">
-					<i id="e:{.?pk}-play-button" class="fa fa-pause"/>
-				</div>
+				<a id="e:{.?pk}-play-button" class="play-button">
+					<i class="play-pause"/>
+				</a>
 			</div>
 			<div id="e:{.?pk}-volume" class="card-control volume">
 				<div class="volume-number">
@@ -294,7 +294,7 @@
 	
 	<xsl:template name="clear_state">
 		<xsl:message>Clearing state...</xsl:message>
-		<xsl:sequence select="ejs:remove-class(id('Moods', ixsl:page())/html:div/html:button, 'is-playing')"/>
+		<xsl:sequence select="ejs:remove-class((id('Moods', ixsl:page())/html:div/html:button, id('MoodElements', ixsl:page())/html:div/html:div), 'is-playing')"/>
 		<xsl:sequence select="ejs:add-class(id('MoodElements', ixsl:page())/html:div/html:div[not(ejs:contains-class(., 'is-pinned'))], 'is-hidden')"/>
 	</xsl:template>
 	
@@ -337,7 +337,8 @@
 		<xsl:message>Showing element {@id}</xsl:message>
 		<xsl:sequence select="
 			local:set-volume(@id, ($state('element')($pk)?vol, id(@id||'-volume-number')/@value div 100, 0)[1]),
-			ejs:remove-class(.., 'is-hidden')
+			ejs:remove-class(.., 'is-hidden'),
+			ejs:add-class(.., 'is-playing')
 		"/>
 	</xsl:template>
 	
@@ -459,13 +460,46 @@
 		<xsl:call-template name="toggle_settings"/>
 	</xsl:template>
 	
-	<!-- Pin/unpin -->
+	<!-- Pin/unpin Button-->
 	<xsl:template match="html:a[@class='pin']" mode="ixsl:onclick">
 		<xsl:variable name="pinned" select="ejs:contains-class(../.., 'is-pinned')" as="xs:boolean"/>
 		<xsl:variable name="this.element" select="local:get-id-number(../@id)" as="xs:string"/>
 		<xsl:variable name="otherValues" select="tokenize(id('elemsParams', ixsl:page()), '\+')/@value[not(. eq $this.element)]" as="xs:string*"/>
 		<xsl:sequence select="ejs:toggle-class(../.., 'is-pinned')"/>
 		<ixsl:set-attribute name="value" select="string-join(distinct-values(($otherValues, 'is-pinned'[not($pinned)])), '+')" object="id('elemsParams', ixsl:page())"/>
+	</xsl:template>
+	
+	<!-- Play/Pause Button-->
+	<xsl:template match="html:a[@class='play-button']" mode="ixsl:onclick">
+		<xsl:variable name="element" select="local:get-id-number(substring-before(@id, '-play-button'))" as="xs:string"/>
+		<xsl:variable name="column" select="ancestor::html:div[ejs:contains-class(., 'column')]" as="element()"/>
+		<xsl:variable name="playing" as="xs:boolean" select="ejs:contains-class($column, 'is-playing')"/>
+		<xsl:variable name="play-or-stop" as="xs:string" select="if ($playing) then 'stop' else 'play'"/>
+		<xsl:message>{$play-or-stop} Element {$element}</xsl:message>
+		<ixsl:schedule-action http-request="map{
+				'method' : 'get',
+				'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||$element||'/'||$play-or-stop||'/?auth_token='||$auth_token
+			}">
+			<xsl:call-template name="ejs:handle-response">
+				<xsl:with-param name="action" select="xs:QName('local:play-element')"/>
+				<xsl:with-param name="element" tunnel="yes" select="$column"/>
+			</xsl:call-template>
+		</ixsl:schedule-action>
+	</xsl:template>
+	
+	<!-- Element Play Response -->
+	<xsl:template match=".[. eq xs:QName('local:play-element')]" mode="ejs:action">
+		<xsl:param name="response" tunnel="yes"/>
+		<xsl:apply-templates select="$response" mode="local:play-element"/>
+	</xsl:template>
+	<xsl:mode name="local:play-element"/>
+	<xsl:template mode="local:play-element" match=".[.?status eq 'playing']">
+		<xsl:param name="element" tunnel="yes"/>
+		<xsl:sequence select="ejs:add-class($element, 'is-playing')"/>
+	</xsl:template>
+	<xsl:template mode="local:play-element" match=".[.?status eq 'stopped']">
+		<xsl:param name="element" tunnel="yes"/>
+		<xsl:sequence select="ejs:remove-class($element, 'is-playing')"/>
 	</xsl:template>
 	
 	<!-- 
