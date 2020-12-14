@@ -98,6 +98,24 @@ section.control_panel {
   }
 }
 
+.mood-title {
+  @extend .menu-label;
+  .hide-moods, .show-moods {
+    @extend .icon, .is-small, .is-pulled-right;
+    
+  }
+  .hide-moods {
+    .collapse {
+      @extend .fas, .fa-minus-square;
+    }
+  }
+  .show-moods {
+    .collapse {
+      @extend .fas, .fa-plus-square;
+    }
+  }
+}
+
 .volume {
   @extend .field, .has-addons;
   .volume-number {

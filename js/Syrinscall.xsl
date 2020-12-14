@@ -117,7 +117,8 @@
 		<xsl:param name="response" tunnel="yes"/>
 		<xsl:variable name="href" select="$CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/?format=json&amp;auth_token='||$auth_token||'&amp;soundset__uuid='||$response?uuid"/>
 		<xsl:result-document href="#Moods">
-			<p class="menu-label">{$response?name}</p><!-- add hide/show here -->
+			<p class="menu-label mood-title">{$response?name}<a class="hide-moods"><i class="collapse"></i>
+</a></p>
 			<div id="s:{$response?id}"/>
 		</xsl:result-document>
 		<ixsl:schedule-action http-request="map{'method' : 'get', 'href' : $href}">
@@ -506,8 +507,16 @@
 		<xsl:call-template name="toggle_settings"/>
 	</xsl:template>
 	
+	<!-- Hide/show moods -->
+	<xsl:template match="*[ejs:contains-class(., 'mood-title')]/html:a" mode="ixsl:onclick">
+		<xsl:sequence select="
+				ejs:toggle-class(., ('hide-moods', 'show-moods')),
+				ejs:toggle-class(../following-sibling::html:div[1], 'is-hidden')
+			"/>
+	</xsl:template>
+	
 	<!-- Pin/unpin Button-->
-	<xsl:template match="html:a[@class='pin']" mode="ixsl:onclick">
+	<xsl:template match="html:a[ejs:contains-class(.,'pin')]" mode="ixsl:onclick">
 		<xsl:variable name="pinned" select="ejs:contains-class(../.., 'is-pinned')" as="xs:boolean"/>
 		<xsl:variable name="this.element" select="local:get-id-number(../@id)" as="xs:string"/>
 		<xsl:sequence select="ejs:toggle-class(../.., 'is-pinned')"/>
