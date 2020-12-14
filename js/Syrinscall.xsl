@@ -439,9 +439,13 @@
 	</xsl:template>
 	
 	<!-- Logging play messages -->
-	<xsl:template match="html:button[tokenize(@class, '\s') = 'play']" mode="ixsl:onclick">
-		<xsl:message>Playing {.} (ID:{@id})</xsl:message>
+	<xsl:template match="html:button[ejs:contains-class(., 'play_mood')]" mode="ixsl:onclick">
+		<xsl:sequence select="ejs:add-class(., 'is-playing')"/>
 		<xsl:call-template name="refresh_state"/>
+	</xsl:template>
+	<xsl:template match="html:button[ejs:contains-class(., 'play')]" mode="ixsl:onclick">
+		<xsl:message>Playing {.} (ID:{@id})</xsl:message>
+		<xsl:next-match/>
 	</xsl:template>
 	
 	<!-- Master Stop All sounds Button-->
