@@ -193,7 +193,7 @@
 		<xsl:variable name="id" select="'e:'||$pk"/>
 		<xsl:message>Adding Music element: {.?name}, {$id}</xsl:message>
 		<xsl:result-document href="#Music">
-			<div data-rid="{$id}" class="{string-join(('column', 'is-hidden'[not($pinned) and not($id = $in-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')($pk)?is_playing]), ' ')}">
+			<div data-rid="{$id}" class="{string-join(('column', 'is-hidden'[not($pinned) and not($id = $in-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
 				<div class="music-element element card" id="{$id}">
 					<div class="card-content">
 						<div class="media">
@@ -232,7 +232,7 @@
 		<xsl:variable name="id" select="'e:'||$pk"/>
 		<xsl:message>Adding SFX element: {.?name}</xsl:message>
 		<xsl:result-document href="#Elements">
-			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned) and not($id = $in-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')($pk)?is_playing]), ' ')}">
+			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned) and not($id = $in-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
 				<div class="sfx-element element card" id="e:{.?pk}">
 					<div class="card-content">
 						<div class="media">

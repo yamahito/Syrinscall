@@ -12,7 +12,7 @@ nav {
   }
   #Stop {
     @extend .level, .ml-5;
-  }
+    }
   #master_stop, #master-volume {
     @extend .navbar-item;
   }
