@@ -137,7 +137,7 @@
 		<xsl:variable name="mood_number" select="array:size($response)" as="xs:integer"/>
 		<xsl:message>Found {$mood_number} moods...</xsl:message>
 		<xsl:iterate select="(1 to $mood_number)[$mood_number ge 1]">
-			<xsl:param name="elements" select="for $e in $elems return 'https://www.syrinscape.com/online/frontend-api/elements/'||$e||'/'" as="xs:string*"/>
+			<xsl:param name="elements" select="()" as="xs:string*"/>
 			<xsl:param name="in-mood" select="()" as="xs:string*"/>
 			<xsl:on-completion>
 				<xsl:for-each select="$elements">
@@ -154,23 +154,25 @@
 			<xsl:variable name="id" select="$this.mood?pk"/>
 			<xsl:variable name="name" select="$this.mood?name"/>
 			<xsl:message>Adding mood: {$name}</xsl:message>
-			<xsl:variable name="elems" as="map(*)*">
+			<xsl:variable name="local.elems" as="map(*)*">
 				<xsl:for-each select="(1 to array:size($response(.)?elements))">
 					<xsl:variable name="this.element" select="$this.mood?elements(.)"/>
 					<xsl:variable name="url" select="$this.element?element"/>
+					<xsl:variable name="pk-string" as="xs:string?" select="replace($url, 'https://www.syrinscape.com/online/frontend-api/elements/(\d+)/', '$1')"/>
 					<xsl:map>
-						<xsl:map-entry key="'id'" select="replace($url, 'https://www.syrinscape.com/online/frontend-api/elements/(\d+)/', 'e:$1')"/>
+						<xsl:map-entry key="'pk'" select="$pk-string"/>
+						<xsl:map-entry key="'id'" select="'e:'||$pk-string"/>
 						<xsl:map-entry key="'url'" select="$url"/>
 						<xsl:map-entry key="'plays'" select="$this.element?plays"/> 
 					</xsl:map>
 				</xsl:for-each>
 			</xsl:variable>
 			<xsl:result-document href="#{$soundset}">
-				<button type="submit" id="m:{$id}" data-elements="{string-join($elems[.?plays]?id, ' ')}" class="{'is-playing '[$id eq $current_mood]}play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
+				<button type="submit" id="m:{$id}" data-elements="{string-join($local.elems[.?plays]?id, ' ')}" class="{'is-playing '[$id eq $current_mood]}play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
 			</xsl:result-document>
 			<xsl:next-iteration>
-				<xsl:with-param name="elements" select="distinct-values(($elements, $elems?url))"/>
-				<xsl:with-param name="in-mood" select="distinct-values(($in-mood, ($elems[.?plays]?id)[$id eq $current_mood]))"/>
+				<xsl:with-param name="elements" select="distinct-values(($elements, $local.elems[not(.?pk = $elems)]?url))"/>
+				<xsl:with-param name="in-mood" select="distinct-values(($in-mood, ($local.elems[.?plays]?id)[$id eq $current_mood]))"/>
 			</xsl:next-iteration>
 		</xsl:iterate>
 	</xsl:template>
