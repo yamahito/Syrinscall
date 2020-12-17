@@ -125,6 +125,7 @@
 			<xsl:call-template name="ejs:handle-response">
 				<xsl:with-param name="action" select="xs:QName('local:addMoods')"/>
 				<xsl:with-param name="soundset" select="'s:'||$response?id" tunnel="yes"/>
+				<xsl:with-param name="uuid" tunnel="yes" select="$response?uuid"/>
 			</xsl:call-template>
 		</ixsl:schedule-action>
 	</xsl:template>
@@ -133,30 +134,30 @@
 	<xsl:template match=".[. eq xs:QName('local:addMoods')]" mode="ejs:action">
 		<xsl:param name="response" tunnel="yes" as="array(*)?"/>
 		<xsl:param name="soundset" as="xs:string" tunnel="yes"/>
+		<xsl:param name="uuid" tunnel="yes"/>
 		<xsl:param name="state" tunnel="yes"/>
-		<xsl:variable name="current_mood" select="$state?mixpanel-current-mood?pk"/>
+		<xsl:variable name="current_mood" select="string($state?mixpanel-current-mood?pk)"/>
 		<xsl:variable name="mood_number" select="array:size($response)" as="xs:integer"/>
 		<xsl:message>Found {$mood_number} moods...</xsl:message>
-		<xsl:iterate select="(1 to $mood_number)[$mood_number ge 1]">
-			<xsl:param name="elements" select="()" as="xs:string*"/>
+		<xsl:iterate select="(1 to $mood_number)">
 			<xsl:param name="in-mood" select="()" as="xs:string*"/>
 			<xsl:on-completion>
-				<xsl:for-each select="$elements">
-					<xsl:message>fetching element at {.}</xsl:message>
-					<ixsl:schedule-action http-request="map{'method': 'get', 'href' : $CORSproxy||.||'?auth_token='||$auth_token}">
-						<xsl:call-template name="ejs:handle-response">
-							<xsl:with-param name="action" select="xs:QName('local:addElement')"/>
-							<xsl:with-param name="in-mood" select="$in-mood" tunnel="yes"/>
-						</xsl:call-template>
-					</ixsl:schedule-action>
-				</xsl:for-each>
+				<ixsl:schedule-action http-request="map{
+					'method': 'get',
+					'href':  $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/?format=json&amp;auth_token='||$auth_token||'&amp;soundset__uuid='||$uuid
+					}">
+					<xsl:call-template name="ejs:handle-response">
+						<xsl:with-param name="action" select="xs:QName('local:addMoodElements')"/>
+						<xsl:with-param name="in-mood" select="$in-mood" tunnel="yes"/>
+					</xsl:call-template>
+				</ixsl:schedule-action>
 			</xsl:on-completion>
 			<xsl:variable name="this.mood" select="$response(.)"/>
 			<xsl:variable name="id" select="$this.mood?pk"/>
 			<xsl:variable name="name" select="$this.mood?name"/>
 			<xsl:message>Adding mood: {$name}</xsl:message>
 			<xsl:variable name="local.elems" as="map(*)*">
-				<xsl:for-each select="(1 to array:size($response(.)?elements))">
+				<xsl:for-each select="(1 to array:size($this.mood?elements))">
 					<xsl:variable name="this.element" select="$this.mood?elements(.)"/>
 					<xsl:variable name="url" select="$this.element?element"/>
 					<xsl:variable name="pk-string" as="xs:string?" select="replace($url, 'https://www.syrinscape.com/online/frontend-api/elements/(\d+)/', '$1')"/>
@@ -172,10 +173,17 @@
 				<button type="submit" id="m:{$id}" data-elements="{string-join($local.elems[.?plays]?id, ' ')}" class="{'is-playing '[$id eq $current_mood]}play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
 			</xsl:result-document>
 			<xsl:next-iteration>
-				<xsl:with-param name="elements" select="distinct-values(($elements, $local.elems[not(.?pk = $elems)]?url))"/>
-				<xsl:with-param name="in-mood" select="distinct-values(($in-mood, ($local.elems[.?plays]?id)[$id eq $current_mood]))"/>
+				<xsl:with-param name="in-mood" select="distinct-values(($in-mood, ($local.elems[.?plays]?pk)[$id eq $current_mood]))"/>
 			</xsl:next-iteration>
 		</xsl:iterate>
+	</xsl:template>
+	
+	<!-- Adding Elements from Mood -->
+	<xsl:template match=".[. eq xs:QName('local:addMoodElements')]" mode="ejs:action">
+		<xsl:param name="response" tunnel="yes"/>
+		<xsl:for-each select="(1 to array:size($response))">
+			<xsl:apply-templates select="$response(.)" mode="local:addElement"/>			
+		</xsl:for-each>
 	</xsl:template>
 		
 	<!-- Adding Elements -->
@@ -192,9 +200,10 @@
 		<xsl:param name="state" tunnel="yes"/>
 		<xsl:variable name="pk" select=".?pk"/>
 		<xsl:variable name="id" select="'e:'||$pk"/>
+		<xsl:variable name="in-current-mood" select="string($pk) = $in-mood" as="xs:boolean"/>
 		<xsl:message>Adding Music element: {.?name}, {$id}</xsl:message>
 		<xsl:result-document href="#Music">
-			<div data-rid="{$id}" class="{string-join(('column', 'is-hidden'[not($pinned) and not($id = $in-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
+			<div data-rid="{$id}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
 				<div class="music-element element card" id="{$id}">
 					<div class="card-content">
 						<div class="media">
@@ -231,9 +240,10 @@
 		<xsl:param name="state" tunnel="yes"/>
 		<xsl:variable name="pk" select=".?pk"/>
 		<xsl:variable name="id" select="'e:'||$pk"/>
+		<xsl:variable name="in-current-mood" select="string($pk) = $in-mood"/>
 		<xsl:message>Adding SFX element: {.?name}</xsl:message>
 		<xsl:result-document href="#Elements">
-			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned) and not($id = $in-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
+			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
 				<div class="sfx-element element card" id="e:{.?pk}">
 					<div class="card-content">
 						<div class="media">
@@ -268,10 +278,10 @@
 			</div>
 			<div id="e:{.?pk}-volume" class="card-control volume">
 				<div class="volume-number">
-					<input id="e:{.?pk}-volume-number" autocomplete="off" data-rid="e:{.?pk}" class="input" type="number" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
+					<input id="e:{.?pk}-volume-number" autocomplete="off" data-rid="e:{.?pk}" class="input" type="number" min="0" max="100" step="1" value="{(xs:integer(100 * .?initial_volume), 100)[1]}"/>
 				</div>
 				<div class="volume-slider">
-					<input id="e:{.?pk}-volume-slider" autocomplete="off" data-rid="e:{.?pk}" class="slider" type="range" min="0" max="100" step="1" value="{xs:integer(100 * .?initial_volume)}"/>
+					<input id="e:{.?pk}-volume-slider" autocomplete="off" data-rid="e:{.?pk}" class="slider" type="range" min="0" max="100" step="1" value="{(xs:integer(100 * .?initial_volume), 100)[1]}"/>
 				</div>
 			</div>
 		</footer>
@@ -344,7 +354,6 @@
 		<xsl:message>getting status of mood {@id}</xsl:message>
 		<xsl:message>ejs:contains-class(., 'play_mood') is {ejs:contains-class(., 'play_mood')}</xsl:message>
 		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
-		<xsl:variable name="elements" select="tokenize(@data-elements, '\s')" as="xs:string*"/>
 		<!-- Update mood -->
 		<xsl:choose>
 			<xsl:when test="$response?mood($pk)?is_playing">
