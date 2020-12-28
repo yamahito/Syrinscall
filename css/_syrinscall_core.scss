@@ -24,7 +24,7 @@ h1 {
 
 section.settings {
   @extend .modal;
-  .ChosenSets, .ChosenElems {
+  .ChosenSets, .ChosenElems, .ChosenMoods {
     @extend .field, .is-grouped, .is-grouped-multiline;
     min-height: 1em;
   }

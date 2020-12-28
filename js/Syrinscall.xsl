@@ -33,6 +33,7 @@
 	<xsl:variable name="auth_token" select="ixsl:query-params()?auth_token" as="xs:string?"/>
 	<xsl:variable name="sets" select="tokenize(ixsl:query-params()?sets, '\+')" as="xs:string*"/>
 	<xsl:variable name="elems" select="tokenize(ixsl:query-params()?elems, '\+')" as="xs:string*"/>
+	<xsl:variable name="moods" select="tokenize(ixsl:query-params()?moods, '\+')" as="xs:string*"/>
 	
 	<!--
 		Keys
@@ -86,7 +87,9 @@
 			</xsl:result-document>
 		</xsl:for-each>
 		<xsl:for-each select="$elems">
-			<ixsl:schedule-action http-request="map{'method': 'get', 'href' : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||.||'/?auth_token='||$auth_token}">
+			<ixsl:schedule-action http-request="map{
+				'method': 'get',
+				'href' : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||.||'/?auth_token='||$auth_token}">
 				<xsl:call-template name="ejs:handle-response">
 					<xsl:with-param name="action" select="xs:QName('local:addElement')"/>
 					<xsl:with-param name="pinned" tunnel="yes" select="true()"/>
@@ -95,6 +98,29 @@
 			</ixsl:schedule-action>
 			<xsl:result-document href="#ChosenElems">
 				<xsl:call-template name="add_elem_tag">
+					<xsl:with-param name="new_tag" select="."/>
+				</xsl:call-template>
+			</xsl:result-document>
+		</xsl:for-each>
+		<xsl:if test="exists($moods)">
+			<xsl:result-document href="#Moods">
+				<p class="menu-label mood-title">Selected Moods<a class="hide-moods"><i class="collapse"></i>
+</a></p>
+			<div id="s:custom"/>
+			</xsl:result-document>
+		</xsl:if>
+		<xsl:for-each select="$moods">
+			<ixsl:schedule-action http-request="map{
+				'method':	'get',
+				'href':	$CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/'||.||'/?auth_token='||$auth_token}">
+				<xsl:call-template name="ejs:handle-response">
+					<xsl:with-param name="action" select="xs:QName('local:addMood')"/>
+					<xsl:with-param name="state" tunnel="true" select="$response"/>
+					<xsl:with-param name="soundset" tunnel="true" select="'custom'"/>
+				</xsl:call-template>
+			</ixsl:schedule-action>
+			<xsl:result-document href="#ChosenMoods">
+				<xsl:call-template name="add_mood_tag">
 					<xsl:with-param name="new_tag" select="."/>
 				</xsl:call-template>
 			</xsl:result-document>
@@ -110,7 +136,7 @@
 		<ixsl:set-attribute name="value" select="$auth_token" object="id('update_auth', ixsl:page())"/>
 	</xsl:template>
 	
-	<!-- Adding Moods -->
+	<!-- Adding Soundsets -->
 	<xsl:mode name="local:addSet"/>
 	
 	<xsl:template match=".[. eq xs:QName('local:addSet')]" mode="ejs:action">
@@ -130,7 +156,7 @@
 		</ixsl:schedule-action>
 	</xsl:template>
 	
-	<!-- Adding Moods -->
+	<!-- Adding Soundset Moods -->
 	<xsl:template match=".[. eq xs:QName('local:addMoods')]" mode="ejs:action">
 		<xsl:param name="response" tunnel="yes" as="array(*)?"/>
 		<xsl:param name="soundset" as="xs:string" tunnel="yes"/>
@@ -153,7 +179,7 @@
 				</ixsl:schedule-action>
 			</xsl:on-completion>
 			<xsl:variable name="this.mood" select="$response(.)"/>
-			<xsl:variable name="id" select="$this.mood?pk"/>
+			<xsl:variable name="id" select="string($this.mood?pk)"/>
 			<xsl:variable name="name" select="$this.mood?name"/>
 			<xsl:message>Adding mood: {$name}</xsl:message>
 			<xsl:variable name="local.elems" as="map(*)*">
@@ -177,7 +203,46 @@
 			</xsl:next-iteration>
 		</xsl:iterate>
 	</xsl:template>
-	
+
+	<!-- Adding Individual Moods -->
+	<xsl:template match=".[. eq xs:QName('local:addMood')]" mode="ejs:action">
+		<xsl:param name="response" tunnel="yes" as="map(*)?"/>
+		<xsl:param name="soundset" as="xs:string" tunnel="yes"/>
+		<xsl:param name="state" tunnel="yes"/>
+		<xsl:variable name="this.mood" select="$response"/>
+		<xsl:variable name="current_mood" select="string($state?mixpanel-current-mood?pk)"/>
+		<xsl:variable name="mood.id" select="string($this.mood?pk)"/>
+		<xsl:variable name="name" select="$this.mood?name"/>
+		<xsl:message>Adding individual mood: {$name}</xsl:message>
+		<xsl:variable name="local.elems" as="map(*)*">
+			<xsl:for-each select="(1 to array:size($this.mood?elements))">
+				<xsl:variable name="this.element" select="$this.mood?elements(.)"/>
+				<xsl:variable name="url" select="$this.element?element"/>
+				<xsl:variable name="pk-string" as="xs:string?" select="replace($url, 'https://www.syrinscape.com/online/frontend-api/elements/(\d+)/', '$1')"/>
+				<xsl:map>
+					<xsl:map-entry key="'pk'" select="$pk-string"/>
+					<xsl:map-entry key="'id'" select="'e:' || $pk-string"/>
+					<xsl:map-entry key="'url'" select="$url"/>
+					<xsl:map-entry key="'plays'" select="$this.element?plays"/>
+				</xsl:map>
+			</xsl:for-each>
+		</xsl:variable>
+		<xsl:for-each select="$local.elems">
+			<xsl:variable name="elem" select="." as="map(*)"/>
+			<ixsl:schedule-action http-request="map{
+				'method': 'get',
+				'href':  $CORSproxy||$elem?url||'?format=json&amp;auth_token='||$auth_token    }">
+				<xsl:call-template name="ejs:handle-response">
+					<xsl:with-param name="action" select="xs:QName('local:addElement')"/>
+					<xsl:with-param name="in-mood" select="$elem?pk[$mood.id eq $current_mood]" tunnel="yes"/>
+				</xsl:call-template>
+			</ixsl:schedule-action>
+		</xsl:for-each>
+		<xsl:result-document href="#s:{$soundset}">
+			<button type="submit" id="m:{$response?pk}" data-elements="{string-join($local.elems[.?plays]?id, ' ')}" class="{'is-playing '[$mood.id eq $current_mood]}play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$mood.id}/play/?format=json">{$name}</button>
+		</xsl:result-document>
+	</xsl:template>
+
 	<!-- Adding Elements from Mood -->
 	<xsl:template match=".[. eq xs:QName('local:addMoodElements')]" mode="ejs:action">
 		<xsl:param name="response" tunnel="yes"/>
@@ -201,38 +266,48 @@
 		<xsl:variable name="pk" select=".?pk"/>
 		<xsl:variable name="id" select="'e:'||$pk"/>
 		<xsl:variable name="in-current-mood" select="string($pk) = $in-mood" as="xs:boolean"/>
-		<xsl:message>Adding Music element: {.?name}, {$id}</xsl:message>
-		<xsl:result-document href="#Music">
-			<div data-rid="{$id}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
-				<div class="music-element element card" id="{$id}">
-					<div class="card-content">
-						<div class="media">
-							<div class="media-left">
-								<span class="icon is-medium">
-									<i class="fas fa-lg fa-music"/>
-								</span>
-							</div>
-							<div class="media-content">
-								<p class="title is-6">{.?name}</p>
-								<p class="subtitle is-6">{$id}</p>
+		<xsl:if test="not(exists(id($id, ixsl:page())))">
+			<xsl:message>Adding Music element: {.?name}, {$id}</xsl:message>
+			<xsl:result-document href="#Music">
+				<div data-rid="{$id}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
+					<div class="music-element element card" id="{$id}">
+						<div class="card-content">
+							<div class="media">
+								<div class="media-left">
+									<span class="icon is-medium">
+										<i class="fas fa-lg fa-music"/>
+									</span>
+								</div>
+								<div class="media-content">
+									<p class="title is-6">{.?name}</p>
+									<p class="subtitle is-6">{$id}</p>
+								</div>
 							</div>
 						</div>
+						<a class="pin">
+							<span class="icon">
+								<i class="pin_icon"/>
+							</span>
+						</a>
+						<xsl:call-template name="card-footer"/>
 					</div>
-					<a class="pin">
-						<span class="icon">
-							<i class="pin_icon"/>
-						</span>
-					</a>
-					<xsl:call-template name="card-footer"/>
 				</div>
-			</div>
-		</xsl:result-document>
+			</xsl:result-document>
+		</xsl:if>
+		<xsl:on-empty>
+			<xsl:message>Skipping Music element {.?name}, already added.</xsl:message>
+		</xsl:on-empty>
 	</xsl:template>
 	<xsl:template match=".[.?element_type eq 'oneshot']" mode="local:addElement">
-		<xsl:message>Adding Oneshot element: {.?name}</xsl:message>
-		<xsl:result-document href="#OneShots">
-			<button type="submit" id="e:{.?pk}" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/{.?pk}/play/?format=json">{.?name}</button>
-		</xsl:result-document>
+		<xsl:if test="not(exists(id('e:' || .?pk, ixsl:page())))">
+			<xsl:message>Adding Oneshot element: {.?name}</xsl:message>
+			<xsl:result-document href="#OneShots">
+				<button type="submit" id="e:{.?pk}" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/{.?pk}/play/?format=json">{.?name}</button>
+			</xsl:result-document>
+		</xsl:if>
+		<xsl:on-empty>
+			<xsl:message>Skipping Oneshot element {.?name}, already added.</xsl:message>
+		</xsl:on-empty>
 	</xsl:template>
 	<xsl:template match=".[.?element_type eq 'sfx']" mode="local:addElement">
 		<xsl:param name="pinned" as="xs:boolean" select="false()" tunnel="yes"/>
@@ -241,32 +316,37 @@
 		<xsl:variable name="pk" select=".?pk"/>
 		<xsl:variable name="id" select="'e:'||$pk"/>
 		<xsl:variable name="in-current-mood" select="string($pk) = $in-mood"/>
-		<xsl:message>Adding SFX element: {.?name}</xsl:message>
-		<xsl:result-document href="#Elements">
-			<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
-				<div class="sfx-element element card" id="e:{.?pk}">
-					<div class="card-content">
-						<div class="media">
-							<div class="media-left">
-								<span class="icon is-medium">
-									<i class="fas fa-lg fa-volume-up"/>
-								</span>
-							</div>
-							<div class="media-content">
-								<p class="title is-6">{.?name}</p>
-								<p class="subtitle is-6">e:{.?pk}</p>
+		<xsl:if test="not(exists(id($id, ixsl:page())))">
+			<xsl:message>Adding SFX element: {.?name}</xsl:message>
+			<xsl:result-document href="#Elements">
+				<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
+					<div class="sfx-element element card" id="e:{.?pk}">
+						<div class="card-content">
+							<div class="media">
+								<div class="media-left">
+									<span class="icon is-medium">
+										<i class="fas fa-lg fa-volume-up"/>
+									</span>
+								</div>
+								<div class="media-content">
+									<p class="title is-6">{.?name}</p>
+									<p class="subtitle is-6">e:{.?pk}</p>
+								</div>
 							</div>
 						</div>
+						<a class="pin">
+							<span class="icon">
+								<i class="pin_icon"/>
+							</span>
+						</a>
+						<xsl:call-template name="card-footer"/>
 					</div>
-					<a class="pin">
-						<span class="icon">
-							<i class="pin_icon"/>
-						</span>
-					</a>
-					<xsl:call-template name="card-footer"/>
 				</div>
-			</div>
-		</xsl:result-document>
+			</xsl:result-document>
+		</xsl:if>
+		<xsl:on-empty>
+			<xsl:message>Skipping SFX element {.?name}, already added.</xsl:message>
+		</xsl:on-empty>
 	</xsl:template>
 	
 	<xsl:template name="card-footer">
@@ -307,6 +387,21 @@
 			</div>
 		</xsl:result-document>
 		<ixsl:set-attribute name="value" select="string-join(distinct-values((tokenize($old_tags, '\+'), $new_tag)), '+')" object="id('setsParams', ixsl:page())"/>
+	</xsl:template>
+	
+	<!-- Add Mood Tag -->
+	<xsl:template name="add_mood_tag">
+		<xsl:param name="new_tag" as="xs:string"/>
+		<xsl:variable name="old_tags" as="xs:string?" select="id('moodsParams', ixsl:page())/@value"/>
+		<xsl:result-document href="#ChosenMoods">
+			<div class="control" data-rid="e:{$new_tag}" id="e:{$new_tag}-tag">
+				<div class="tags has-addons">
+					<span class="tag is-primary">{$new_tag}</span>
+					<a class="tag is-delete"/>
+				</div>					
+			</div>
+		</xsl:result-document>
+		<ixsl:set-attribute name="value" select="string-join(distinct-values((tokenize($old_tags, '\+'), $new_tag)), '+')" object="id('moodsParams', ixsl:page())"/>
 	</xsl:template>
 	
 	<!-- Add Element Tag -->
@@ -460,6 +555,11 @@
 		<xsl:next-match/>
 	</xsl:template>
 	
+	<!-- Refresh Button -->
+	<xsl:template match="html:button[@id='refresh']" mode="ixsl:onclick">
+		<xsl:call-template name="refresh_state"/>
+	</xsl:template>
+	
 	<!-- Master Stop All sounds Button-->
 	<xsl:template match="html:button[@id = 'master_stop']" mode="ixsl:onclick">
 		<xsl:message>Stopping all sounds.</xsl:message>
@@ -469,7 +569,7 @@
 	<!-- Delete Soundset/Element Tags Button-->
 	<xsl:template match="html:a[ejs:contains-class(., 'tag')][ejs:contains-class(., 'is-delete')]" mode="ixsl:onclick">
 		<xsl:variable name="control" select="ancestor::html:div[@class='control']" as="element(html:div)"/>
-		<xsl:variable name="Chosen" select="ancestor::html:div[@id=('ChosenSets', 'ChosenElems')]"/>
+		<xsl:variable name="Chosen" select="ancestor::html:div[@id=('ChosenSets', 'ChosenElems', 'ChosenMoods')]"/>
 		<xsl:variable name="tags" select="$Chosen/html:div except $control" as="element(html:div)*"/>
 		<xsl:variable name="removed_set" select="normalize-space(preceding-sibling::html:span)" as="xs:string"/>
 		<xsl:variable name="input" select="$Chosen/following-sibling::html:input[1]"/>
@@ -488,6 +588,20 @@
 			<xsl:message>Adding tag {$new_tag}</xsl:message>
 			<xsl:result-document href="#ChosenSets">
 				<xsl:call-template name="add_set_tag">
+					<xsl:with-param name="new_tag" select="$new_tag"/>
+				</xsl:call-template>
+			</xsl:result-document>
+		</xsl:if>
+	</xsl:template>
+	
+	<!-- Add Moods Tags Button-->
+	<xsl:template match="html:button[@id='choose_mood']" mode="ixsl:onclick">
+		<xsl:variable name="new_tag" select="normalize-space(id('add_mood'))[. ne '']" as="xs:string?"/>
+		<xsl:variable name="old_tags" select="(id('ChosenMoods')/html:div/html:div/html:a ! normalize-space(.))[.ne '']" as="xs:string*"/>
+		<xsl:if test="exists($new_tag[not(. = $old_tags)])">
+			<xsl:message>Adding tag {$new_tag}</xsl:message>
+			<xsl:result-document href="#ChosenMoods">
+				<xsl:call-template name="add_mood_tag">
 					<xsl:with-param name="new_tag" select="$new_tag"/>
 				</xsl:call-template>
 			</xsl:result-document>
