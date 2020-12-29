@@ -21433,6 +21433,12 @@ section.settings .ChosenSets, section.settings .ChosenElems, section.settings .C
   min-height: 1em;
 }
 
+nav .input, nav .volume .volume-slider .slider, .volume .volume-slider nav .slider, .control_panel .input, .control_panel .volume .volume-slider .slider, .volume .volume-slider .control_panel .slider {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+}
+
 section.control_panel > form > div div.Music .column .pin, section.control_panel > form > div div.Music section.control_panel > form > div .pin, section.control_panel > form > div div.Elements .column .pin, section.control_panel > form > div div.Elements section.control_panel > form > div .pin {
   position: absolute;
   top: 0.5em;

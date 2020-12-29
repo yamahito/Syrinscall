@@ -30,6 +30,14 @@ section.settings {
   }
 }
 
+nav, .control_panel {
+  .input {
+    color: findColorInvert($primary);
+    background-color: transparent;
+    border: none;
+}
+}
+
 section.control_panel {
   @extend .container;
   &>form {
