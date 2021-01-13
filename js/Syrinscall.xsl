@@ -263,7 +263,7 @@
 		<xsl:param name="pinned" as="xs:boolean" select="false()" tunnel="yes"/>
 		<xsl:param name="in-mood" tunnel="yes" as="xs:string*"/>
 		<xsl:param name="state" tunnel="yes"/>
-		<xsl:variable name="pk" select=".?pk"/>
+		<xsl:variable name="pk" select="xs:integer(.?pk)" as="xs:integer"/>
 		<xsl:variable name="id" select="'e:'||$pk"/>
 		<xsl:variable name="in-current-mood" select="string($pk) = $in-mood" as="xs:boolean"/>
 		<xsl:if test="not(exists(id($id, ixsl:page())))">
@@ -299,10 +299,11 @@
 		</xsl:on-empty>
 	</xsl:template>
 	<xsl:template match=".[.?element_type eq 'oneshot']" mode="local:addElement">
-		<xsl:if test="not(exists(id('e:' || .?pk, ixsl:page())))">
+		<xsl:variable name="pk" select="xs:integer(.?pk)" as="xs:integer"/>
+		<xsl:if test="not(exists(id('e:' || $pk, ixsl:page())))">
 			<xsl:message>Adding Oneshot element: {.?name}</xsl:message>
 			<xsl:result-document href="#OneShots">
-				<button type="submit" id="e:{.?pk}" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/{.?pk}/play/?format=json">{.?name}</button>
+				<button type="submit" id="e:{$pk}" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/{$pk}/play/?format=json">{.?name}</button>
 			</xsl:result-document>
 		</xsl:if>
 		<xsl:on-empty>
@@ -313,14 +314,14 @@
 		<xsl:param name="pinned" as="xs:boolean" select="false()" tunnel="yes"/>
 		<xsl:param name="in-mood" tunnel="yes" as="xs:string*"/>
 		<xsl:param name="state" tunnel="yes"/>
-		<xsl:variable name="pk" select=".?pk"/>
+		<xsl:variable name="pk" select="xs:integer(.?pk)" as="xs:integer"/>
 		<xsl:variable name="id" select="'e:'||$pk"/>
 		<xsl:variable name="in-current-mood" select="string($pk) = $in-mood"/>
 		<xsl:if test="not(exists(id($id, ixsl:page())))">
 			<xsl:message>Adding SFX element: {.?name}</xsl:message>
 			<xsl:result-document href="#Elements">
-				<div data-rid="e:{.?pk}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
-					<div class="sfx-element element card" id="e:{.?pk}">
+				<div data-rid="{$id}" class="{string-join(('column', 'is-hidden'[not($pinned or $in-current-mood)], 'is-pinned'[$pinned], 'is-playing'[$state('element')(string($pk))?is_playing]), ' ')}">
+					<div class="sfx-element element card" id="e:{$pk}">
 						<div class="card-content">
 							<div class="media">
 								<div class="media-left">
@@ -330,7 +331,7 @@
 								</div>
 								<div class="media-content">
 									<p class="title is-6">{.?name}</p>
-									<p class="subtitle is-6">e:{.?pk}</p>
+									<p class="subtitle is-6">e:{$pk}</p>
 								</div>
 							</div>
 						</div>
@@ -350,18 +351,19 @@
 	</xsl:template>
 	
 	<xsl:template name="card-footer">
+		<xsl:variable name="pk" select="xs:integer(.?pk)"/>
 		<footer class="card-footer">
-			<div id="e:{.?pk}-play" class="card-control play">
-				<a id="e:{.?pk}-play-button" class="play-button">
+			<div id="e:{$pk}-play" class="card-control play">
+				<a id="e:{$pk}-play-button" class="play-button">
 					<i class="play-pause"/>
 				</a>
 			</div>
-			<div id="e:{.?pk}-volume" class="card-control volume">
+			<div id="e:{$pk}-volume" class="card-control volume">
 				<div class="volume-number">
-					<input id="e:{.?pk}-volume-number" autocomplete="off" data-rid="e:{.?pk}" class="input" type="number" min="0" max="100" step="1" value="{(xs:integer(100 * .?initial_volume), 100)[1]}"/>
+					<input id="e:{$pk}-volume-number" autocomplete="off" data-rid="e:{$pk}" class="input" type="number" min="0" max="100" step="1" value="{(xs:integer(100 * .?initial_volume), 100)[1]}"/>
 				</div>
 				<div class="volume-slider">
-					<input id="e:{.?pk}-volume-slider" autocomplete="off" data-rid="e:{.?pk}" class="slider" type="range" min="0" max="100" step="1" value="{(xs:integer(100 * .?initial_volume), 100)[1]}"/>
+					<input id="e:{$pk}-volume-slider" autocomplete="off" data-rid="e:{$pk}" class="slider" type="range" min="0" max="100" step="1" value="{(xs:integer(100 * .?initial_volume), 100)[1]}"/>
 				</div>
 			</div>
 		</footer>
