@@ -449,7 +449,7 @@
 	<xsl:template match="html:button[ejs:contains-class(., 'play_mood')]" mode="local:status">
 		<xsl:param name="response" as="map(*)" tunnel="yes"/>
 		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
-		<xsl:variable name="playing" as="xs:boolean" select="$response?mood($pk)?is_playing"/>
+		<xsl:variable name="playing" as="xs:boolean" select="($response?mood)($pk)?is_playing"/>
 		<xsl:message>getting status of mood {$pk}</xsl:message>
 		<xsl:message>ejs:contains-class(., 'play_mood') is {ejs:contains-class(., 'play_mood')}</xsl:message>
 		<!-- Update mood -->
