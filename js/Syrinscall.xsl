@@ -584,7 +584,7 @@
 		<xsl:message>Stopping all sounds.</xsl:message>
 		<ixsl:schedule-action http-request="map{
 				'method'	:	'get',
-				'href'		:	$CORSproxy||'https://www.syrinscape.com/online/frontend-api/stop-all/'||'/?auth_token='||$auth_token
+				'href'		:	$CORSproxy||'https://www.syrinscape.com/online/frontend-api/stop-all'||'/?auth_token='||$auth_token
 			}">
 			<xsl:call-template name="ejs:handle-response">
 				<xsl:with-param name="action" select="xs:QName('local:master_stop')"/>
