@@ -425,7 +425,7 @@
 	<xsl:template name="refresh_state">
 		<ixsl:schedule-action http-request="map{
 				'method' : 'get',
-				'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/?auth_token='||$auth_token
+				'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/?format=json&amp;auth_token='||$auth_token
 			}">
 			<xsl:call-template name="ejs:handle-response">
 				<xsl:with-param name="action" select="xs:QName('local:status')"/>
@@ -448,12 +448,13 @@
 	
 	<xsl:template match="html:button[ejs:contains-class(., 'play_mood')]" mode="local:status">
 		<xsl:param name="response" as="map(*)" tunnel="yes"/>
-		<xsl:message>getting status of mood {@id}</xsl:message>
-		<xsl:message>ejs:contains-class(., 'play_mood') is {ejs:contains-class(., 'play_mood')}</xsl:message>
 		<xsl:variable name="pk" select="local:get-id-number(@id)"/>
+		<xsl:variable name="playing" as="xs:boolean" select="$response?mood($pk)?is_playing"/>
+		<xsl:message>getting status of mood {$pk}</xsl:message>
+		<xsl:message>ejs:contains-class(., 'play_mood') is {ejs:contains-class(., 'play_mood')}</xsl:message>
 		<!-- Update mood -->
 		<xsl:choose>
-			<xsl:when test="$response?mood($pk)?is_playing">
+			<xsl:when test="$playing">
 				<xsl:sequence select="ejs:add-class(., 'is-playing')"/>
 				<xsl:message>Mood {@id} playing</xsl:message>
 			</xsl:when>
