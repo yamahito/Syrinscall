@@ -552,7 +552,7 @@
 		<xsl:sequence select="ejs:add-class(., 'is-playing')"/>
 		<ixsl:schedule-action http-request="map{
 				'method'	: 'get',
-				'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/'||local:get-id-number(@id)||'/play/?format=json'
+				'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/'||local:get-id-number(@id)||'/play/?format=json'||'&amp;auth_token='||$auth_token
 			}">
 			<xsl:call-template name="ejs:handle-response">
 				<xsl:with-param name="action" select="xs:QName('local:play-mood')"/>
@@ -562,7 +562,7 @@
 	<xsl:template match="html:button[ejs:contains-class(., 'play_element')]" mode="ixsl:onclick">
 	 <ixsl:schedule-action http-request="map{
 	 		'method'	:	'get',
-	 		'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||local:get-id-number(@id)||'/play/?format=json'
+	 		'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||local:get-id-number(@id)||'/play/?format=json'||'&amp;auth_token='||$auth_token
 	 	}">
 	 	<xsl:call-template name="ejs:handle-response">
 	 		<xsl:with-param name="action" select="xs:QName('local:play-oneshot')"/>
