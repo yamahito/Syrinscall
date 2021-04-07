@@ -196,7 +196,7 @@
 				</xsl:for-each>
 			</xsl:variable>
 			<xsl:result-document href="#{$soundset}">
-				<button type="submit" id="m:{$id}" data-elements="{string-join($local.elems[.?plays]?id, ' ')}" class="{'is-playing '[$id eq $current_mood]}play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$id}/play/?format=json">{$name}</button>
+				<button type="button" id="m:{$id}" data-elements="{string-join($local.elems[.?plays]?id, ' ')}" class="{'is-playing '[$id eq $current_mood]}play play_mood">{$name}</button>
 			</xsl:result-document>
 			<xsl:next-iteration>
 				<xsl:with-param name="in-mood" select="distinct-values(($in-mood, ($local.elems[.?plays]?pk)[$id eq $current_mood]))"/>
@@ -239,7 +239,7 @@
 			</ixsl:schedule-action>
 		</xsl:for-each>
 		<xsl:result-document href="#s:{$soundset}">
-			<button type="submit" id="m:{$response?pk}" data-elements="{string-join($local.elems[.?plays]?id, ' ')}" class="{'is-playing '[$mood.id eq $current_mood]}play play_mood" formaction="https://www.syrinscape.com/online/frontend-api/moods/{$mood.id}/play/?format=json">{$name}</button>
+			<button type="button" id="m:{$response?pk}" data-elements="{string-join($local.elems[.?plays]?id, ' ')}" class="{'is-playing '[$mood.id eq $current_mood]}play play_mood">{$name}</button>
 		</xsl:result-document>
 	</xsl:template>
 
@@ -303,7 +303,7 @@
 		<xsl:if test="not(exists(id('e:' || $pk, ixsl:page())))">
 			<xsl:message>Adding Oneshot element: {.?name}</xsl:message>
 			<xsl:result-document href="#OneShots">
-				<button type="submit" id="e:{$pk}" class="play play_element" formaction="https://www.syrinscape.com/online/frontend-api/elements/{$pk}/play/?format=json">{.?name}</button>
+				<button type="button" id="e:{$pk}" class="play play_element">{.?name}</button>
 			</xsl:result-document>
 		</xsl:if>
 		<xsl:on-empty>
@@ -550,7 +550,24 @@
 	<!-- Logging play messages -->
 	<xsl:template match="html:button[ejs:contains-class(., 'play_mood')]" mode="ixsl:onclick">
 		<xsl:sequence select="ejs:add-class(., 'is-playing')"/>
-		<xsl:call-template name="refresh_state"/>
+		<ixsl:schedule-action http-request="map{
+				'method'	: 'get',
+				'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/'||local:get-id-number(@id)||'/play/?format=json'
+			}">
+			<xsl:call-template name="ejs:handle-response">
+				<xsl:with-param name="action" select="xs:QName('local:play-mood')"/>
+			</xsl:call-template>
+		</ixsl:schedule-action>
+	</xsl:template>
+	<xsl:template match="html:button[ejs:contains-class(., 'play_element')]" mode="ixsl:onclick">
+	 <ixsl:schedule-action http-request="map{
+	 		'method'	:	'get',
+	 		'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||local:get-id-number(@id)||'/play/?format=json'
+	 	}">
+	 	<xsl:call-template name="ejs:handle-response">
+	 		<xsl:with-param name="action" select="xs:QName('local:play-oneshot')"/>
+	 	</xsl:call-template>
+	 </ixsl:schedule-action>
 	</xsl:template>
 	<xsl:template match="html:button[ejs:contains-class(., 'play')]" mode="ixsl:onclick">
 		<xsl:message>Playing {.} (ID:{@id})</xsl:message>
@@ -565,7 +582,14 @@
 	<!-- Master Stop All sounds Button-->
 	<xsl:template match="html:button[@id = 'master_stop']" mode="ixsl:onclick">
 		<xsl:message>Stopping all sounds.</xsl:message>
-		<xsl:call-template name="refresh_state"/>
+		<ixsl:schedule-action http-request="map{
+				'method'	:	'get',
+				'href'		:	$CORSproxy||'https://www.syrinscape.com/online/frontend-api/stop-all/'||'/?auth_token='||$auth_token
+			}">
+			<xsl:call-template name="ejs:handle-response">
+				<xsl:with-param name="action" select="xs:QName('local:master_stop')"/>
+			</xsl:call-template>
+		</ixsl:schedule-action>
 	</xsl:template>
 	
 	<!-- Delete Soundset/Element Tags Button-->
@@ -656,7 +680,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+		
 	<!-- Play/Pause Button-->
 	<xsl:template match="html:a[@class='play-button']" mode="ixsl:onclick">
 		<xsl:variable name="element" select="local:get-id-number(substring-before(@id, '-play-button'))" as="xs:string"/>
@@ -673,6 +697,23 @@
 				<xsl:with-param name="element" tunnel="yes" select="$column"/>
 			</xsl:call-template>
 		</ixsl:schedule-action>
+	</xsl:template>
+	
+	<!-- Master Stop Response Handling -->
+	
+	<xsl:template match=".[. eq xs:QName('local:master_stop')]" mode="ejs:action">
+		<xsl:call-template name="refresh_state"/>
+	</xsl:template>
+	
+	<!-- Mood Play Response Handling -->
+	
+	<xsl:template match=".[. eq xs:QName('local:play-mood')]" mode="ejs:action">
+		<xsl:call-template name="refresh_state"/>
+	</xsl:template>
+	
+	<!-- Element One-shot Response Handling -->
+	<xsl:template match=".[. eq xs:QName('local:play-oneshot')]" mode="ejs:action">
+		<xsl:call-template name="refresh_state"/>
 	</xsl:template>
 	
 	<!-- Element Play Response Handling -->
