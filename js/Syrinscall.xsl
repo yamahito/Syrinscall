@@ -25,7 +25,7 @@
 		Params
 	-->
 	<xsl:param name="falseAtRunTime" select="false()" as="xs:boolean"/>
-	<xsl:param name="CORSproxy" select="(ixsl:query-params()?cors, 'https://cors-yamahito.herokuapp.com/')[1]"/>
+	<xsl:param name="CORSproxy" select="(ixsl:query-params()?cors, '')[1]"/>
 	
 	<!--
 		Variables
@@ -47,7 +47,12 @@
 	
 	<!-- The initial template opens the setting pane if there is no auth_token set; it also populates the configured sound set IDs in the settings. -->
 	<xsl:template name="xsl:initial-template">
-		<xsl:message>using CORS proxy at {$CORSproxy}</xsl:message>
+		<xsl:message>
+			<xsl:choose>
+			  <xsl:when test="normalize-space($CORSproxy) ne ''">using CORS proxy at {$CORSproxy}</xsl:when>
+				<xsl:otherwise>Not using CORS proxy</xsl:otherwise>
+			</xsl:choose>
+		</xsl:message>
 		<xsl:result-document href="#settingsForm">
 			<input type="hidden" name="cors" value="{$CORSproxy}"/>
 		</xsl:result-document>
@@ -59,7 +64,11 @@
 				<xsl:call-template name="toggle_settings"/>
 			</xsl:otherwise>
 		</xsl:choose>
-		<ixsl:schedule-action http-request="map{     'method' : 'get',     'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/?auth_token='||$auth_token    }">
+		<ixsl:schedule-action
+				http-request="map{
+											'method' : 'get',
+											'media-type' : 'application/json',
+											'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/state/?auth_token='||$auth_token    }">
 			<xsl:call-template name="ejs:handle-response">
 				<xsl:with-param name="action" select="xs:QName('local:populate')"/>
 			</xsl:call-template>
@@ -71,9 +80,11 @@
 		<xsl:param name="response" tunnel="yes" as="map(*)"/>
 		<xsl:for-each select="$sets">
 			<!-- Add Soundsets -->
-			<ixsl:schedule-action http-request="map{
-					'method'	: 'get',
-					'href'		: $CORSproxy||'https://www.syrinscape.com/online/frontend-api/soundsets/'||.||'/?auth_token='||$auth_token
+			<ixsl:schedule-action
+					http-request="map{
+												'method'	: 'get',
+												'media-type' : 'application/json',
+												'href'		: $CORSproxy||'https://www.syrinscape.com/online/frontend-api/soundsets/'||.||'/?auth_token='||$auth_token
 				}">
 				<xsl:call-template name="ejs:handle-response">
 					<xsl:with-param name="action" select="xs:QName('local:addSet')"/>
@@ -87,9 +98,11 @@
 			</xsl:result-document>
 		</xsl:for-each>
 		<xsl:for-each select="$elems">
-			<ixsl:schedule-action http-request="map{
-				'method': 'get',
-				'href' : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||.||'/?auth_token='||$auth_token}">
+			<ixsl:schedule-action
+					http-request="map{
+												'method': 'get',
+												'media-type' : 'application/json',
+												'href' : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||.||'/?auth_token='||$auth_token}">
 				<xsl:call-template name="ejs:handle-response">
 					<xsl:with-param name="action" select="xs:QName('local:addElement')"/>
 					<xsl:with-param name="pinned" tunnel="yes" select="true()"/>
@@ -110,9 +123,10 @@
 			</xsl:result-document>
 		</xsl:if>
 		<xsl:for-each select="$moods">
-			<ixsl:schedule-action http-request="map{
+			<ixsl:schedule-action	http-request="map{
 				'method':	'get',
-				'href':	$CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/'||.||'/?auth_token='||$auth_token}">
+				'href':	$CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/'||.||'/?auth_token='||$auth_token,
+				'media-type' : 'application/json'}">
 				<xsl:call-template name="ejs:handle-response">
 					<xsl:with-param name="action" select="xs:QName('local:addMood')"/>
 					<xsl:with-param name="state" tunnel="true" select="$response"/>
@@ -147,7 +161,7 @@
 </a></p>
 			<div id="s:{$response?id}"/>
 		</xsl:result-document>
-		<ixsl:schedule-action http-request="map{'method' : 'get', 'href' : $href}">
+		<ixsl:schedule-action http-request="map{'method' : 'get', 'href' : $href, 'media-type' : 'application/json'}">
 			<xsl:call-template name="ejs:handle-response">
 				<xsl:with-param name="action" select="xs:QName('local:addMoods')"/>
 				<xsl:with-param name="soundset" select="'s:'||$response?id" tunnel="yes"/>
@@ -169,7 +183,7 @@
 			<xsl:param name="in-mood" select="()" as="xs:string*"/>
 			<xsl:on-completion>
 				<ixsl:schedule-action http-request="map{
-					'method': 'get',
+																						'method': 'get','media-type':'application/json',
 					'href':  $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/?format=json&amp;auth_token='||$auth_token||'&amp;soundset__uuid='||$uuid
 					}">
 					<xsl:call-template name="ejs:handle-response">
@@ -230,7 +244,8 @@
 		<xsl:for-each select="$local.elems">
 			<xsl:variable name="elem" select="." as="map(*)"/>
 			<ixsl:schedule-action http-request="map{
-				'method': 'get',
+																					'method': 'get',
+																					'media-type':'application/json',
 				'href':  $CORSproxy||$elem?url||'?format=json&amp;auth_token='||$auth_token    }">
 				<xsl:call-template name="ejs:handle-response">
 					<xsl:with-param name="action" select="xs:QName('local:addElement')"/>
@@ -424,7 +439,8 @@
 	<!-- Refresh state -->
 	<xsl:template name="refresh_state">
 		<ixsl:schedule-action http-request="map{
-				'method' : 'get',
+																				'method' : 'get',
+																				'media-type':'application/json',
 				'headers': map{
 					'Cache-Control': 'no-store'
 					},
@@ -556,7 +572,8 @@
 	<xsl:template match="html:button[ejs:contains-class(., 'play_mood')]" mode="ixsl:onclick">
 		<xsl:sequence select="ejs:add-class(., 'is-playing')"/>
 		<ixsl:schedule-action http-request="map{
-				'method'	: 'get',
+																				'method'	: 'get',
+																				'media-type':'application/json',
 				'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/moods/'||local:get-id-number(@id)||'/play/?format=json'||'&amp;auth_token='||$auth_token
 			}">
 			<xsl:call-template name="ejs:handle-response">
@@ -566,7 +583,8 @@
 	</xsl:template>
 	<xsl:template match="html:button[ejs:contains-class(., 'play_element')]" mode="ixsl:onclick">
 	 <ixsl:schedule-action http-request="map{
-	 		'method'	:	'get',
+	 																		 'method'	:	'get',
+																			'media-type':'application/json',
 	 		'href'		:	 $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||local:get-id-number(@id)||'/play/?format=json'||'&amp;auth_token='||$auth_token
 	 	}">
 	 	<xsl:call-template name="ejs:handle-response">
@@ -588,7 +606,8 @@
 	<xsl:template match="html:button[@id = 'master_stop']" mode="ixsl:onclick">
 		<xsl:message>Stopping all sounds.</xsl:message>
 		<ixsl:schedule-action http-request="map{
-				'method'	:	'get',
+																				'method'	:	'get',
+																				'media-type': 'application/json',
 				'href'		:	$CORSproxy||'https://www.syrinscape.com/online/frontend-api/stop-all'||'/?auth_token='||$auth_token
 			}">
 			<xsl:call-template name="ejs:handle-response">
@@ -694,7 +713,8 @@
 		<xsl:variable name="play-or-stop" as="xs:string" select="if ($playing) then 'stop' else 'play'"/>
 		<xsl:message>{$play-or-stop} Element {$element}</xsl:message>
 		<ixsl:schedule-action http-request="map{
-				'method' : 'get',
+																				'method' : 'get',
+																				'media-type':'application/json',
 				'href'   : $CORSproxy||'https://www.syrinscape.com/online/frontend-api/elements/'||$element||'/'||$play-or-stop||'/?auth_token='||$auth_token
 			}">
 			<xsl:call-template name="ejs:handle-response">
